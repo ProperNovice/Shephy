@@ -48,9 +48,8 @@ public class Text {
 		int font = 1;
 		setFont(font);
 
-		while (getHeight() <= pixels) {
+		while (getHeight() <= pixels)
 			setFont(++font);
-		}
 
 		font--;
 		setFont(font);
@@ -62,9 +61,8 @@ public class Text {
 		int font = 1;
 		setFont(font);
 
-		while (getWidth() <= pixels) {
+		while (getWidth() <= pixels)
 			setFont(++font);
-		}
 
 		font--;
 		setFont(font);

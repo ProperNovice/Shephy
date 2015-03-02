@@ -1,5 +1,6 @@
 package utils;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class ArrayList<T> implements Iterable<T> {
@@ -12,6 +13,19 @@ public class ArrayList<T> implements Iterable<T> {
 
 	public ArrayList(ArrayList<T> arrayList) {
 		this.list.addAll(arrayList.getList());
+	}
+
+	public ArrayList(T[] arrayList) {
+
+		java.util.ArrayList<T> list = new java.util.ArrayList<>(
+				Arrays.asList(arrayList));
+
+		this.list.addAll(list);
+
+	}
+
+	private ArrayList(java.util.ArrayList<T> list) {
+		this.list = list;
 	}
 
 	public void add(int index, T element) {
@@ -85,6 +99,10 @@ public class ArrayList<T> implements Iterable<T> {
 
 	}
 
+	public T getRandom() {
+		return this.list.get(Random.getRandomNumber(0, this.list.size() - 1));
+	}
+
 	public T getRandomAndRemove() {
 
 		int randomIndex = Random.getRandomNumber(0, this.list.size() - 1);
@@ -100,6 +118,23 @@ public class ArrayList<T> implements Iterable<T> {
 	@Override
 	public Iterator<T> iterator() {
 		return this.list.iterator();
+	}
+
+	public void printList() {
+
+		System.out.println("[");
+
+		for (T t : this.list)
+			System.out.println(t);
+
+		System.out.println("]");
+
+	}
+
+	public ArrayList<T> clone() {
+
+		java.util.ArrayList<T> arrayList = new java.util.ArrayList<>(this.list);
+		return new ArrayList<T>(arrayList);
 	}
 
 }

@@ -4,6 +4,10 @@ public class Semaphore {
 
 	private java.util.concurrent.Semaphore semaphore = null;
 
+	public Semaphore() {
+		this.semaphore = new java.util.concurrent.Semaphore(1);
+	}
+
 	public Semaphore(int permits) {
 		this.semaphore = new java.util.concurrent.Semaphore(permits);
 	}

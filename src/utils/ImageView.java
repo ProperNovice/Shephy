@@ -7,6 +7,7 @@ import javafx.scene.input.MouseEvent;
 public class ImageView {
 
 	private javafx.scene.image.ImageView imageView = null;
+	private double scale = 1;
 
 	public ImageView(String path, Parent parent) {
 
@@ -78,14 +79,16 @@ public class ImageView {
 
 	public final void setScale(double scale) {
 
-		this.imageView.setScaleX(scale);
-		this.imageView.setScaleY(scale);
+		this.scale = scale;
+		
+		this.imageView.setScaleX(this.scale);
+		this.imageView.setScaleY(this.scale);
 
 		double widthTotal = this.imageView.minWidth(0);
 		double heightTotal = this.imageView.minHeight(0);
 
-		double widthNew = scale * widthTotal;
-		double heightNew = scale * heightTotal;
+		double widthNew = this.scale * widthTotal;
+		double heightNew = this.scale * heightTotal;
 
 		double translateX = (widthNew - widthTotal) / 2;
 		double translateY = (heightNew - heightTotal) / 2;
@@ -93,6 +96,28 @@ public class ImageView {
 		this.imageView.setTranslateX(translateX);
 		this.imageView.setTranslateY(translateY);
 
+	}
+
+	public void setWidth(double width) {
+
+		double scale = width / this.imageView.minWidth(0);
+		setScale(scale);
+
+	}
+
+	public void setHeight(double height) {
+
+		double scale = height / this.imageView.minHeight(0);
+		setScale(scale);
+
+	}
+
+	public double getWidht() {
+		return this.imageView.minWidth(0) * this.scale;
+	}
+
+	public double getHeight() {
+		return this.imageView.minHeight(0) * this.scale;
 	}
 
 }

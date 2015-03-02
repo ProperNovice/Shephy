@@ -60,28 +60,19 @@ public class Button {
 		this.button.setFont(new Font(value));
 	}
 
-	public final void setMinHeight(double value) {
+	public final void setHeight(double value) {
 		this.button.setMinHeight(value);
+		this.button.setMaxHeight(value);
 	}
 
-	public void setMinSize(double minWidth, double minHeight) {
+	public void setSize(double minWidth, double minHeight) {
 		this.button.setMinSize(minWidth, minHeight);
+		this.button.setMaxSize(minWidth, minHeight);
 	}
 
-	public final void setMinWidth(double value) {
+	public final void setWidth(double value) {
 		this.button.setMinWidth(value);
-	}
-
-	public final void setMaxHeight(double value) {
-		button.setMaxHeight(value);
-	}
-
-	public final void setMaxWidth(double value) {
-		button.setMaxWidth(value);
-	}
-
-	public void setMaxSize(double maxWidth, double maxHeight) {
-		button.setMaxSize(maxWidth, maxHeight);
+		this.button.setMaxWidth(value);
 	}
 
 }
