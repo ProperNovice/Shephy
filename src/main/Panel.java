@@ -5,6 +5,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import utils.ImageView;
 import utils.Parent;
+import utils.ShutDown;
 
 public class Panel extends Parent implements EventHandler<MouseEvent> {
 
@@ -23,7 +24,7 @@ public class Panel extends Parent implements EventHandler<MouseEvent> {
 		if (!event.getButton().equals(MouseButton.PRIMARY))
 			return;
 
-		System.out.println("start");
+		ShutDown.execute();
 
 	}
 
