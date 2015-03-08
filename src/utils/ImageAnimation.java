@@ -17,33 +17,37 @@ public class ImageAnimation {
 	public ImageAnimation(String path, int cellsRows, int cellsColumns,
 			Parent parent) {
 
-		Image image = new Image("/images/" + path);
+		PlatformFX.runLater(() -> {
 
-		double cellWidth = image.getWidth() / cellsColumns;
-		double cellHeight = image.getHeight() / cellsRows;
+			Image image = new Image("/images/" + path);
 
-		for (int row = 0; row < cellsRows; row++)
-			for (int column = 0; column < cellsColumns; column++)
-				this.list.add(new Rectangle2D(column * cellWidth, row
-						* cellHeight, cellWidth, cellHeight));
+			double cellWidth = image.getWidth() / cellsColumns;
+			double cellHeight = image.getHeight() / cellsRows;
 
-		this.imageView.setImage(image);
-		setViewport();
+			for (int row = 0; row < cellsRows; row++)
+				for (int column = 0; column < cellsColumns; column++)
+					this.list.add(new Rectangle2D(column * cellWidth, row
+							* cellHeight, cellWidth, cellHeight));
 
-		parent.addNode(this.imageView);
+			this.imageView.setImage(image);
+			setViewport();
+
+			parent.addNode(this.imageView);
+
+		});
 
 	}
 
 	public final void setVisible(final boolean value) {
-		this.imageView.setVisible(value);
+		PlatformFX.runLater(() -> this.imageView.setVisible(value));
 	}
 
 	public void toBack() {
-		this.imageView.toBack();
+		PlatformFX.runLater(() -> this.imageView.toBack());
 	}
 
 	public void toFront() {
-		this.imageView.toFront();
+		PlatformFX.runLater(() -> this.imageView.toFront());
 	}
 
 	public final double getLayoutX() {
@@ -55,19 +59,19 @@ public class ImageAnimation {
 	}
 
 	public void relocate(final double x, final double y) {
-		this.imageView.relocate(x, y);
+		PlatformFX.runLater(() -> this.imageView.relocate(x, y));
 	}
 
 	public final void setOnMouseEntered(EventHandler<? super MouseEvent> value) {
-		this.imageView.setOnMouseEntered(value);
+		PlatformFX.runLater(() -> this.imageView.setOnMouseEntered(value));
 	}
 
 	public final void setOnMouseExited(EventHandler<? super MouseEvent> value) {
-		this.imageView.setOnMouseExited(value);
+		PlatformFX.runLater(() -> this.imageView.setOnMouseExited(value));
 	}
 
 	public final void setOnMousePressed(EventHandler<? super MouseEvent> value) {
-		this.imageView.setOnMousePressed(value);
+		PlatformFX.runLater(() -> this.imageView.setOnMousePressed(value));
 	}
 
 	public void showNext() {
@@ -98,7 +102,8 @@ public class ImageAnimation {
 	}
 
 	private void setViewport() {
-		this.imageView.setViewport(this.list.get(this.indexShowing));
+		PlatformFX.runLater(() -> this.imageView.setViewport(this.list
+				.get(this.indexShowing)));
 	}
 
 }

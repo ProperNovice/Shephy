@@ -87,13 +87,7 @@ public class Timer {
 
 	private void fireEvent() {
 
-		new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				timerInterface.fireEvent();
-			}
-		}).start();
+		Executor.runLater(() -> this.timerInterface.fireEvent());
 
 	}
 

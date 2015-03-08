@@ -16,15 +16,15 @@ public class Text {
 	}
 
 	public final void setVisible(final boolean value) {
-		this.text.setVisible(value);
+		PlatformFX.runLater(() -> this.text.setVisible(value));
 	}
 
 	public void toBack() {
-		text.toBack();
+		PlatformFX.runLater(() -> this.text.toBack());
 	}
 
 	public void toFront() {
-		text.toFront();
+		PlatformFX.runLater(() -> this.text.toFront());
 	}
 
 	public final double getLayoutX() {
@@ -45,52 +45,60 @@ public class Text {
 
 	public void setHeight(final double pixels) {
 
-		int font = 1;
-		setFont(font);
+		PlatformFX.runLater(() -> {
 
-		while (getHeight() <= pixels)
-			setFont(++font);
+			int font = 1;
+			setFont(font);
 
-		font--;
-		setFont(font);
+			while (getHeight() <= pixels)
+				setFont(++font);
+
+			font--;
+			setFont(font);
+
+		});
 
 	}
 
 	public void setWidth(final double pixels) {
 
-		int font = 1;
-		setFont(font);
+		PlatformFX.runLater(() -> {
 
-		while (getWidth() <= pixels)
-			setFont(++font);
+			int font = 1;
+			setFont(font);
 
-		font--;
-		setFont(font);
+			while (getWidth() <= pixels)
+				setFont(++font);
+
+			font--;
+			setFont(font);
+
+		});
 
 	}
 
 	public void relocate(final double x, final double y) {
-		this.text.relocate(x, y);
+		PlatformFX.runLater(() -> this.text.relocate(x, y));
 	}
 
 	public final void setOnMouseEntered(EventHandler<? super MouseEvent> value) {
-		this.text.setOnMouseEntered(value);
+		PlatformFX.runLater(() -> this.text.setOnMouseEntered(value));
 	}
 
 	public final void setOnMouseExited(EventHandler<? super MouseEvent> value) {
-		this.text.setOnMouseExited(value);
+		PlatformFX.runLater(() -> this.text.setOnMouseExited(value));
 	}
 
 	public final void setOnMousePressed(EventHandler<? super MouseEvent> value) {
-		this.text.setOnMousePressed(value);
+		PlatformFX.runLater(() -> this.text.setOnMousePressed(value));
 	}
 
 	public final void setText(String text) {
-		this.text.setText(text);
+		PlatformFX.runLater(() -> this.text.setText(text));
 	}
 
 	public final void setFont(final int value) {
-		this.text.setFont(new Font(value));
+		PlatformFX.runLater(() -> this.text.setFont(new Font(value)));
 	}
 
 }

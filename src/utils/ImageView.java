@@ -1,8 +1,10 @@
 package utils;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
 
 public class ImageView {
 
@@ -12,7 +14,6 @@ public class ImageView {
 	public ImageView(String path, Parent parent) {
 
 		String finalPath = "/images/" + path;
-
 		this.imageView = new javafx.scene.image.ImageView(finalPath);
 		addNode(parent);
 
@@ -26,19 +27,19 @@ public class ImageView {
 	}
 
 	private void addNode(Parent parent) {
-		parent.addNode(this.imageView);
+		PlatformFX.runLater(() -> parent.addNode(this.imageView));
 	}
 
 	public final void setVisible(final boolean value) {
-		this.imageView.setVisible(value);
+		PlatformFX.runLater(() -> this.imageView.setVisible(value));
 	}
 
 	public void toBack() {
-		this.imageView.toBack();
+		PlatformFX.runLater(() -> this.imageView.toBack());
 	}
 
 	public void toFront() {
-		this.imageView.toFront();
+		PlatformFX.runLater(() -> this.imageView.toFront());
 	}
 
 	public final double getLayoutX() {
@@ -50,27 +51,43 @@ public class ImageView {
 	}
 
 	public void relocate(final double x, final double y) {
-		this.imageView.relocate(x, y);
+		PlatformFX.runLater(() -> this.imageView.relocate(x, y));
+	}
+
+	public final void setViewport(double x, double y, double width,
+			double height) {
+
+		Rectangle2D rectangle2d = new Rectangle2D(x, y, width, height);
+
+		PlatformFX.runLater(() -> this.imageView.setViewport(rectangle2d));
+
+	}
+
+	public final void setClip(double x, double y, double width, double height) {
+
+		Rectangle rectangle = new Rectangle(x, y, width, height);
+
+		PlatformFX.runLater(() -> this.imageView.setClip(rectangle));
 	}
 
 	public final void setRotate(double value) {
-		this.imageView.setRotate(value);
+		PlatformFX.runLater(() -> this.imageView.setRotate(value));
 	}
 
 	public final void setOnMouseEntered(EventHandler<? super MouseEvent> value) {
-		this.imageView.setOnMouseEntered(value);
+		PlatformFX.runLater(() -> this.imageView.setOnMouseEntered(value));
 	}
 
 	public final void setOnMouseExited(EventHandler<? super MouseEvent> value) {
-		this.imageView.setOnMouseExited(value);
+		PlatformFX.runLater(() -> this.imageView.setOnMouseExited(value));
 	}
 
 	public final void setOnMousePressed(EventHandler<? super MouseEvent> value) {
-		this.imageView.setOnMousePressed(value);
+		PlatformFX.runLater(() -> this.imageView.setOnMousePressed(value));
 	}
 
 	public final void setImage(final Image image) {
-		this.imageView.setImage(image);
+		PlatformFX.runLater(() -> this.imageView.setImage(image));
 	}
 
 	public final Image getImage() {
@@ -79,22 +96,26 @@ public class ImageView {
 
 	public final void setScale(double scale) {
 
-		this.scale = scale;
-		
-		this.imageView.setScaleX(this.scale);
-		this.imageView.setScaleY(this.scale);
+		PlatformFX.runLater(() -> {
 
-		double widthTotal = this.imageView.minWidth(0);
-		double heightTotal = this.imageView.minHeight(0);
+			this.scale = scale;
 
-		double widthNew = this.scale * widthTotal;
-		double heightNew = this.scale * heightTotal;
+			this.imageView.setScaleX(this.scale);
+			this.imageView.setScaleY(this.scale);
 
-		double translateX = (widthNew - widthTotal) / 2;
-		double translateY = (heightNew - heightTotal) / 2;
+			double widthTotal = this.imageView.minWidth(0);
+			double heightTotal = this.imageView.minHeight(0);
 
-		this.imageView.setTranslateX(translateX);
-		this.imageView.setTranslateY(translateY);
+			double widthNew = this.scale * widthTotal;
+			double heightNew = this.scale * heightTotal;
+
+			double translateX = (widthNew - widthTotal) / 2;
+			double translateY = (heightNew - heightTotal) / 2;
+
+			this.imageView.setTranslateX(translateX);
+			this.imageView.setTranslateY(translateY);
+
+		});
 
 	}
 
@@ -112,7 +133,7 @@ public class ImageView {
 
 	}
 
-	public double getWidht() {
+	public double getWidth() {
 		return this.imageView.minWidth(0) * this.scale;
 	}
 

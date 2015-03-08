@@ -5,12 +5,16 @@ import javafx.animation.AnimationTimer;
 public class Animation {
 
 	private static final double ANIMATION_STEP = 9;
-	private static boolean isAnimatingSynchronous = false;
-	private static ArrayList<AnimationList> animationsSynchronous = new ArrayList<>();
-	private static AnimationList animationsAsynchronous = new AnimationList();
-	private static ArrayList<Runnable> runnableAfterAllAnimations = new ArrayList<>();
+	private static ArrayList<ImageViewAnimation> animationsSynchronous = new ArrayList<>();
+	private static ArrayList<ImageViewAnimation> animationsAsynchronous = new ArrayList<>();
 
 	private Animation() {
+
+	}
+
+	public enum AnimationSynchronization {
+
+		SYNCHRONOUS, ASYNCHRONOUS
 
 	}
 
@@ -34,115 +38,41 @@ public class Animation {
 
 	private static void executeAnimationSynchronous() {
 
-		AnimationList animationList = animationsSynchronous.get(0);
+		executeAnimationList(animationsSynchronous);
 
-		animationList.executeAnimations();
-
-		if (!animationList.isEmpty())
+		if (!animationsSynchronous.isEmpty())
 			return;
 
-		animationList.executeRunnableAfterAnimations();
-		animationsSynchronous.remove(animationList);
-
-		if (animationsSynchronous.isEmpty()) {
-
-			if (!runnableAfterAllAnimations.isEmpty())
-				executeRunnableAfterAllAnimations();
-
-			isAnimatingSynchronous = false;
-			return;
-		}
-
-		animationList = animationsSynchronous.get(0);
-		animationList.calculateCredentials();
-		animationList.executeRunnableBeforeAnimations();
+		Lock.unlock();
 
 	}
 
 	private static void executeAnimationAsynchronous() {
-		animationsAsynchronous.executeAnimations();
-	}
 
-	private static void executeRunnableAfterAllAnimations() {
-
-		for (Runnable runnable : runnableAfterAllAnimations)
-			runnable.run();
-
-		runnableAfterAllAnimations.clear();
+		executeAnimationList(animationsAsynchronous);
 
 	}
 
-	public enum AnimationSynchronization {
+	private static void executeAnimationList(
+			ArrayList<ImageViewAnimation> animationsList) {
 
-		SYNCHRONOUS, ASYNCHRONOUS
+		ArrayList<ImageViewAnimation> animationsListTemp = new ArrayList<>(
+				animationsList);
 
-	}
+		for (ImageViewAnimation imageViewAnimation : animationsListTemp) {
 
-	private static class AnimationList {
+			imageViewAnimation.executeAnimation();
 
-		private ArrayList<ImageviewAnimation> animation = new ArrayList<>();
-		private ArrayList<Runnable> runnableBeforeExecution = new ArrayList<>();
-		private ArrayList<Runnable> runnableAfterExecution = new ArrayList<>();
+			if (!imageViewAnimation.animationEnded())
+				continue;
 
-		public void add(ImageviewAnimation animation) {
-			this.animation.add(animation);
-		}
-
-		public boolean isEmpty() {
-			return this.animation.isEmpty();
-		}
-
-		public void executeAnimations() {
-
-			ArrayList<ImageviewAnimation> animationTemp = new ArrayList<>(
-					this.animation);
-
-			for (ImageviewAnimation animationExecuting : animationTemp) {
-
-				animationExecuting.executeAnimation();
-
-				if (!animationExecuting.animationEnded())
-					continue;
-
-				this.animation.remove(animationExecuting);
-
-			}
-
-		}
-
-		public void addRunnableBeforeExecution(Runnable runnable) {
-			this.runnableBeforeExecution.add(runnable);
-		}
-
-		public void addRunnableAfterExecution(Runnable runnable) {
-			this.runnableAfterExecution.add(runnable);
-		}
-
-		public void executeRunnableBeforeAnimations() {
-			executeRunnable(this.runnableBeforeExecution);
-		}
-
-		public void executeRunnableAfterAnimations() {
-			executeRunnable(this.runnableAfterExecution);
-		}
-
-		private void executeRunnable(ArrayList<Runnable> list) {
-
-			for (Runnable runnable : list)
-				runnable.run();
-
-		}
-
-		public void calculateCredentials() {
-
-			for (ImageviewAnimation animationExecuting : this.animation)
-				animationExecuting.calculateCedentials();
+			animationsList.remove(imageViewAnimation);
 
 		}
 
 	}
 
-	private static class ImageviewAnimation {
+	private static class ImageViewAnimation {
 
 		private ImageView imageView = null;
 		private double currentX, currentY;
@@ -150,7 +80,7 @@ public class Animation {
 		private boolean animationEnded = false;
 		private double stepX, stepY;
 
-		public ImageviewAnimation(ImageView imageView, double endingX,
+		public ImageViewAnimation(ImageView imageView, double endingX,
 				double endingY) {
 
 			this.imageView = imageView;
@@ -161,7 +91,7 @@ public class Animation {
 
 		}
 
-		public void calculateCedentials() {
+		private void calculateCedentials() {
 
 			this.currentX = this.imageView.getLayoutX();
 			this.currentY = this.imageView.getLayoutY();
@@ -248,65 +178,26 @@ public class Animation {
 	public static void animate(ImageView imageView, double endingX,
 			double endingY, AnimationSynchronization animationSynchronization) {
 
-		switch (animationSynchronization) {
+		PlatformFX.runLater(() -> {
 
-		case SYNCHRONOUS:
+			ArrayList<ImageViewAnimation> listToAdd = null;
 
-			if (!isAnimatingSynchronous)
-				isAnimatingSynchronous = true;
+			switch (animationSynchronization) {
 
-			AnimationList animationList = null;
+			case SYNCHRONOUS:
+				listToAdd = animationsSynchronous;
+				break;
 
-			if (!animationsSynchronous.isEmpty())
-				animationList = animationsSynchronous.get(animationsSynchronous
-						.size() - 1);
-			else {
-
-				animationList = new AnimationList();
-				animationsSynchronous.add(animationList);
+			case ASYNCHRONOUS:
+				listToAdd = animationsAsynchronous;
+				break;
 
 			}
 
-			animationList.add(new ImageviewAnimation(imageView, endingX,
-					endingY));
+			listToAdd.add(new ImageViewAnimation(imageView, endingX, endingY));
 
-			break;
+		});
 
-		case ASYNCHRONOUS:
-			animationsAsynchronous.add(new ImageviewAnimation(imageView,
-					endingX, endingY));
-			break;
-
-		}
-
-	}
-
-	public static void createNewAnimationQueueSynchronous() {
-		animationsSynchronous.add(new AnimationList());
-	}
-
-	public static void addRunnableBeforeLastAnimation(Runnable runnable) {
-
-		AnimationList animationList = animationsSynchronous
-				.get(animationsSynchronous.size() - 1);
-
-		animationList.addRunnableBeforeExecution(runnable);
-	}
-
-	public static void addRunnableAfterLastAnimation(Runnable runnable) {
-
-		AnimationList animationList = animationsSynchronous
-				.get(animationsSynchronous.size() - 1);
-
-		animationList.addRunnableAfterExecution(runnable);
-	}
-
-	public static void addRunnableAfterAllAnimations(Runnable runnable) {
-		runnableAfterAllAnimations.add(runnable);
-	}
-
-	public static boolean isAnimatingSynchronous() {
-		return isAnimatingSynchronous;
 	}
 
 }

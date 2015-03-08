@@ -12,10 +12,16 @@ public class Circle {
 	private double radius;
 
 	public Circle(double radius, Parent parent) {
-		this.radius = radius;
-		this.circle = new javafx.scene.shape.Circle(this.radius);
-		this.circle.setFill(null);
-		this.circle.setStroke(Color.BLACK);
+
+		PlatformFX.runLater(() -> {
+
+			this.radius = radius;
+			this.circle = new javafx.scene.shape.Circle(this.radius);
+			this.circle.setFill(null);
+			this.circle.setStroke(Color.BLACK);
+
+		});
+
 		parent.addNode(this.circle);
 	}
 
@@ -48,27 +54,28 @@ public class Circle {
 	}
 
 	private void relocate() {
-		this.circle.relocate(this.topLeftX, this.topLeftY);
+		PlatformFX.runLater(() -> this.circle.relocate(this.topLeftX,
+				this.topLeftY));
 	}
 
 	public final void setFill(Paint value) {
-		this.circle.setFill(value);
+		PlatformFX.runLater(() -> this.circle.setFill(value));
 	}
 
 	public final void setStroke(Paint value) {
-		this.circle.setStroke(value);
+		PlatformFX.runLater(() -> this.circle.setStroke(value));
 	}
 
 	public final void setOnMouseEntered(EventHandler<? super MouseEvent> value) {
-		this.circle.setOnMouseEntered(value);
+		PlatformFX.runLater(() -> this.circle.setOnMouseEntered(value));
 	}
 
 	public final void setOnMouseExited(EventHandler<? super MouseEvent> value) {
-		this.circle.setOnMouseExited(value);
+		PlatformFX.runLater(() -> this.circle.setOnMouseExited(value));
 	}
 
 	public final void setOnMousePressed(EventHandler<? super MouseEvent> value) {
-		this.circle.setOnMousePressed(value);
+		PlatformFX.runLater(() -> this.circle.setOnMousePressed(value));
 	}
 
 	public final void setRadius(double radius) {
@@ -81,16 +88,16 @@ public class Circle {
 		this.topLeftX = centerX - this.radius;
 		this.topLeftY = centerY - this.radius;
 
-		circle.setRadius(radius);
+		PlatformFX.runLater(() -> this.circle.setRadius(radius));
 		relocate();
 	}
 
 	public void toBack() {
-		circle.toBack();
+		PlatformFX.runLater(() -> this.circle.toBack());
 	}
 
 	public void toFront() {
-		circle.toFront();
+		PlatformFX.runLater(() -> this.circle.toFront());
 	}
 
 }

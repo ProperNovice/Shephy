@@ -25,13 +25,17 @@ public class Polyline {
 
 	private void createPolyline(Parent parent) {
 
-		this.polyline.getPoints().addAll(0.0, 0.0, this.dimensionX, 0.0,
-				this.dimensionX, this.dimensionY, 0.0, this.dimensionY, 0.0,
-				0.0);
+		PlatformFX.runLater(() -> {
 
-		parent.addNode(this.polyline);
-		this.polyline.setFill(null);
-		this.polyline.setStroke(Color.BLACK);
+			this.polyline.getPoints().addAll(0.0, 0.0, this.dimensionX, 0.0,
+					this.dimensionX, this.dimensionY, 0.0, this.dimensionY,
+					0.0, 0.0);
+
+			parent.addNode(this.polyline);
+			this.polyline.setFill(null);
+			this.polyline.setStroke(Color.BLACK);
+
+		});
 
 	}
 
@@ -56,39 +60,39 @@ public class Polyline {
 	public void relocate(double x, double y) {
 		this.topLeftX = x;
 		this.topLeftY = y;
-		this.polyline.relocate(x, y);
+		PlatformFX.runLater(() -> this.polyline.relocate(x, y));
 	}
 
 	public final void setFill(Paint value) {
-		this.polyline.setFill(value);
+		PlatformFX.runLater(() -> this.polyline.setFill(value));
 	}
 
 	public final void setStroke(Paint value) {
-		this.polyline.setStroke(value);
+		PlatformFX.runLater(() -> this.polyline.setStroke(value));
 	}
 
 	public final void setOnMouseEntered(EventHandler<? super MouseEvent> value) {
-		this.polyline.setOnMouseEntered(value);
+		PlatformFX.runLater(() -> this.polyline.setOnMouseEntered(value));
 	}
 
 	public final void setOnMouseExited(EventHandler<? super MouseEvent> value) {
-		this.polyline.setOnMouseExited(value);
+		PlatformFX.runLater(() -> this.polyline.setOnMouseExited(value));
 	}
 
 	public final void setOnMousePressed(EventHandler<? super MouseEvent> value) {
-		this.polyline.setOnMousePressed(value);
+		PlatformFX.runLater(() -> this.polyline.setOnMousePressed(value));
 	}
 
 	public void toBack() {
-		this.polyline.toBack();
+		PlatformFX.runLater(() -> this.polyline.toBack());
 	}
 
 	public void toFront() {
-		this.polyline.toFront();
+		PlatformFX.runLater(() -> this.polyline.toFront());
 	}
 
 	public final void setVisible(boolean visibility) {
-		this.polyline.setVisible(visibility);
+		PlatformFX.runLater(() -> this.polyline.setVisible(visibility));
 	}
 
 }
