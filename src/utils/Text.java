@@ -2,6 +2,7 @@ package utils;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 
 public class Text {
@@ -35,29 +36,12 @@ public class Text {
 		return this.text.getLayoutY();
 	}
 
-	public double getHeight() {
-		return text.minHeight(0);
-	}
-
 	public double getWidth() {
 		return text.minWidth(0);
 	}
 
-	public void setHeight(final double pixels) {
-
-		PlatformFX.runLater(() -> {
-
-			int font = 1;
-			setFont(font);
-
-			while (getHeight() <= pixels)
-				setFont(++font);
-
-			font--;
-			setFont(font);
-
-		});
-
+	public double getHeight() {
+		return text.minHeight(0);
 	}
 
 	public void setWidth(final double pixels) {
@@ -68,6 +52,23 @@ public class Text {
 			setFont(font);
 
 			while (getWidth() <= pixels)
+				setFont(++font);
+
+			font--;
+			setFont(font);
+
+		});
+
+	}
+
+	public void setHeight(final double pixels) {
+
+		PlatformFX.runLater(() -> {
+
+			int font = 1;
+			setFont(font);
+
+			while (getHeight() <= pixels)
 				setFont(++font);
 
 			font--;
@@ -97,8 +98,12 @@ public class Text {
 		PlatformFX.runLater(() -> this.text.setText(text));
 	}
 
-	public final void setFont(final int value) {
+	private final void setFont(final int value) {
 		PlatformFX.runLater(() -> this.text.setFont(new Font(value)));
+	}
+
+	public final void setFill(Paint value) {
+		PlatformFX.runLater(() -> this.text.setFill(value));
 	}
 
 }

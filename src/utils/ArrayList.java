@@ -93,10 +93,7 @@ public class ArrayList<T> implements Iterable<T> {
 	}
 
 	public T getFirstAndRemove() {
-
-		T first = this.list.remove(0);
-		return first;
-
+		return this.list.remove(0);
 	}
 
 	public T getRandom() {
@@ -104,11 +101,8 @@ public class ArrayList<T> implements Iterable<T> {
 	}
 
 	public T getRandomAndRemove() {
-
 		int randomIndex = Random.getRandomNumber(0, this.list.size() - 1);
-		T randomObject = this.list.remove(randomIndex);
-		return randomObject;
-
+		return this.list.remove(randomIndex);
 	}
 
 	public int size() {
@@ -122,12 +116,12 @@ public class ArrayList<T> implements Iterable<T> {
 
 	public void printList() {
 
-		System.out.println("[");
+		System.out.println("/*");
 
 		for (T t : this.list)
 			System.out.println(t);
 
-		System.out.println("]");
+		System.out.println("*/");
 
 	}
 

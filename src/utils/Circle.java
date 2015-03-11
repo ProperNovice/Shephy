@@ -88,8 +88,17 @@ public class Circle {
 		this.topLeftX = centerX - this.radius;
 		this.topLeftY = centerY - this.radius;
 
-		PlatformFX.runLater(() -> this.circle.setRadius(radius));
-		relocate();
+		PlatformFX.runLater(() -> {
+
+			this.circle.setRadius(radius);
+			relocate();
+
+		});
+
+	}
+
+	public final void setVisible(boolean value) {
+		PlatformFX.runLater(() -> this.circle.setVisible(value));
 	}
 
 	public void toBack() {
