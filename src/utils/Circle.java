@@ -5,7 +5,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
-public class Circle {
+public class Circle implements Node {
 
 	private javafx.scene.shape.Circle circle = null;
 	private double topLeftX = 0, topLeftY = 0;
@@ -41,6 +41,7 @@ public class Circle {
 
 	}
 
+	@Override
 	public void relocate(double x, double y) {
 		this.topLeftX = x;
 		this.topLeftY = y;
@@ -107,6 +108,16 @@ public class Circle {
 
 	public void toFront() {
 		PlatformFX.runLater(() -> this.circle.toFront());
+	}
+
+	@Override
+	public double getLayoutX() {
+		return this.circle.getLayoutX();
+	}
+
+	@Override
+	public double getLayoutY() {
+		return this.circle.getLayoutY();
 	}
 
 }

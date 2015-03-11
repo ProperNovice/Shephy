@@ -5,7 +5,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
-public class Polyline {
+public class Polyline implements Node {
 
 	private javafx.scene.shape.Polyline polyline = new javafx.scene.shape.Polyline();
 	private double topLeftX = 0, topLeftY = 0;
@@ -21,6 +21,19 @@ public class Polyline {
 		this.dimensionX = x;
 		this.dimensionY = y;
 		createPolyline(parent);
+	}
+
+	public Polyline(Parent parent, double... points) {
+
+		Double[] list = new Double[points.length];
+
+		for (int counter = 0; counter < points.length; counter++)
+			list[counter] = points[counter];
+
+		PlatformFX.runLater(() -> {
+			this.polyline.getPoints().addAll(list);
+			parent.addNode(this.polyline);
+		});
 	}
 
 	private void createPolyline(Parent parent) {
@@ -57,6 +70,7 @@ public class Polyline {
 
 	}
 
+	@Override
 	public void relocate(double x, double y) {
 		this.topLeftX = x;
 		this.topLeftY = y;
@@ -93,6 +107,16 @@ public class Polyline {
 
 	public final void setVisible(boolean visibility) {
 		PlatformFX.runLater(() -> this.polyline.setVisible(visibility));
+	}
+
+	@Override
+	public double getLayoutX() {
+		return this.polyline.getLayoutX();
+	}
+
+	@Override
+	public double getLayoutY() {
+		return this.polyline.getLayoutY();
 	}
 
 }

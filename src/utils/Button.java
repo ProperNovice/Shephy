@@ -4,7 +4,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 
-public class Button {
+public class Button implements Node {
 
 	private javafx.scene.control.Button button = null;
 
@@ -20,10 +20,12 @@ public class Button {
 		PlatformFX.runLater(() -> this.button.setVisible(value));
 	}
 
+	@Override
 	public final double getLayoutX() {
 		return this.button.getLayoutX();
 	}
 
+	@Override
 	public final double getLayoutY() {
 		return this.button.getLayoutY();
 	}
@@ -36,6 +38,7 @@ public class Button {
 		PlatformFX.runLater(() -> this.button.toFront());
 	}
 
+	@Override
 	public void relocate(final double x, final double y) {
 		PlatformFX.runLater(() -> this.button.relocate(x, y));
 	}

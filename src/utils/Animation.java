@@ -5,17 +5,15 @@ import javafx.animation.AnimationTimer;
 public class Animation {
 
 	private static final double ANIMATION_STEP = 9;
-	private static ArrayList<ImageViewAnimation> animationsSynchronous = new ArrayList<>();
-	private static ArrayList<ImageViewAnimation> animationsAsynchronous = new ArrayList<>();
+	private static ArrayList<NodeAnimation> animationsSynchronous = new ArrayList<>();
+	private static ArrayList<NodeAnimation> animationsAsynchronous = new ArrayList<>();
 
 	private Animation() {
 
 	}
 
-	public enum AnimationSynchronization {
-
+	public enum AnimationSynch {
 		SYNCHRONOUS, ASYNCHRONOUS
-
 	}
 
 	public static void startAnimation() {
@@ -54,12 +52,12 @@ public class Animation {
 	}
 
 	private static void executeAnimationList(
-			ArrayList<ImageViewAnimation> animationsList) {
+			ArrayList<NodeAnimation> animationsList) {
 
-		ArrayList<ImageViewAnimation> animationsListTemp = new ArrayList<>(
+		ArrayList<NodeAnimation> animationsListTemp = new ArrayList<>(
 				animationsList);
 
-		for (ImageViewAnimation imageViewAnimation : animationsListTemp) {
+		for (NodeAnimation imageViewAnimation : animationsListTemp) {
 
 			imageViewAnimation.executeAnimation();
 
@@ -72,18 +70,17 @@ public class Animation {
 
 	}
 
-	private static class ImageViewAnimation {
+	private static class NodeAnimation {
 
-		private ImageView imageView = null;
+		private Node node = null;
 		private double currentX, currentY;
 		private double endingX, endingY;
 		private boolean animationEnded = false;
 		private double stepX, stepY;
 
-		public ImageViewAnimation(ImageView imageView, double endingX,
-				double endingY) {
+		public NodeAnimation(Node node, double endingX, double endingY) {
 
-			this.imageView = imageView;
+			this.node = node;
 			this.endingX = endingX;
 			this.endingY = endingY;
 
@@ -93,8 +90,8 @@ public class Animation {
 
 		private void calculateCedentials() {
 
-			this.currentX = this.imageView.getLayoutX();
-			this.currentY = this.imageView.getLayoutY();
+			this.currentX = this.node.getLayoutX();
+			this.currentY = this.node.getLayoutY();
 
 			double differenceX = Math.abs(this.endingX - this.currentX);
 			double differenceY = Math.abs(this.endingY - this.currentY);
@@ -123,7 +120,7 @@ public class Animation {
 			executeX();
 			executeY();
 
-			this.imageView.relocate(this.currentX, this.currentY);
+			this.node.relocate(this.currentX, this.currentY);
 
 			if (this.currentX != this.endingX)
 				return;
@@ -175,14 +172,14 @@ public class Animation {
 
 	}
 
-	public static void animate(ImageView imageView, double endingX,
-			double endingY, AnimationSynchronization animationSynchronization) {
+	public static void animate(Node node, double endingX, double endingY,
+			AnimationSynch animationSynch) {
 
 		PlatformFX.runLater(() -> {
 
-			ArrayList<ImageViewAnimation> listToAdd = null;
+			ArrayList<NodeAnimation> listToAdd = null;
 
-			switch (animationSynchronization) {
+			switch (animationSynch) {
 
 			case SYNCHRONOUS:
 				listToAdd = animationsSynchronous;
@@ -194,7 +191,7 @@ public class Animation {
 
 			}
 
-			listToAdd.add(new ImageViewAnimation(imageView, endingX, endingY));
+			listToAdd.add(new NodeAnimation(node, endingX, endingY));
 
 		});
 

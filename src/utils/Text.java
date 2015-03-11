@@ -5,7 +5,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 
-public class Text {
+public class Text implements Node {
 
 	private javafx.scene.text.Text text = null;
 
@@ -28,10 +28,12 @@ public class Text {
 		PlatformFX.runLater(() -> this.text.toFront());
 	}
 
+	@Override
 	public final double getLayoutX() {
 		return this.text.getLayoutX();
 	}
 
+	@Override
 	public final double getLayoutY() {
 		return this.text.getLayoutY();
 	}
@@ -78,6 +80,7 @@ public class Text {
 
 	}
 
+	@Override
 	public void relocate(final double x, final double y) {
 		PlatformFX.runLater(() -> this.text.relocate(x, y));
 	}

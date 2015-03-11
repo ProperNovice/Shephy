@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 
-public class ImageView {
+public class ImageView implements Node {
 
 	private javafx.scene.image.ImageView imageView = null;
 	private double scale = 1;
@@ -42,14 +42,17 @@ public class ImageView {
 		PlatformFX.runLater(() -> this.imageView.toFront());
 	}
 
+	@Override
 	public final double getLayoutX() {
 		return this.imageView.getLayoutX();
 	}
 
+	@Override
 	public final double getLayoutY() {
 		return this.imageView.getLayoutY();
 	}
 
+	@Override
 	public void relocate(final double x, final double y) {
 		PlatformFX.runLater(() -> this.imageView.relocate(x, y));
 	}
