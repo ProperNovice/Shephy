@@ -1,13 +1,14 @@
 package gui;
 
-import utils.Animation;
-import utils.ShutDown;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import utils.Animation;
+import utils.Logger;
+import utils.ShutDown;
 import enums.Dimensions;
 
 public class TestFX extends Application {
@@ -18,6 +19,7 @@ public class TestFX extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		Animation.startAnimation();
+		Logger.startLogging();
 
 		this.panel = new Panel();
 
@@ -29,7 +31,7 @@ public class TestFX extends Application {
 		primaryStage.setHeight(height);
 		primaryStage.setResizable(false);
 
-		primaryStage.setTitle("TestFx");
+		primaryStage.setTitle("TestFX");
 
 		primaryStage
 				.setX((Screen.getPrimary().getBounds().getWidth() - width) / 2);

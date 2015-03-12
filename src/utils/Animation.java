@@ -54,8 +54,7 @@ public class Animation {
 	private static void executeAnimationList(
 			ArrayList<NodeAnimation> animationsList) {
 
-		ArrayList<NodeAnimation> animationsListTemp = new ArrayList<>(
-				animationsList);
+		ArrayList<NodeAnimation> animationsListTemp = animationsList.clone();
 
 		for (NodeAnimation imageViewAnimation : animationsListTemp) {
 

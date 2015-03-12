@@ -32,6 +32,8 @@ public class Polyline implements Node {
 
 		PlatformFX.runLater(() -> {
 			this.polyline.getPoints().addAll(list);
+			this.polyline.setFill(null);
+			this.polyline.setStroke(Color.BLACK);
 			parent.addNode(this.polyline);
 		});
 	}

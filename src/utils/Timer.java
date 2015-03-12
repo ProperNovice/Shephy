@@ -78,17 +78,11 @@ public class Timer {
 	}
 
 	private void sleepTime(long duration) {
-		try {
-			java.lang.Thread.sleep(duration);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		Executor.sleep(duration);
 	}
 
 	private void fireEvent() {
-
 		Executor.runLater(() -> this.timerInterface.fireEvent());
-
 	}
 
 	public boolean isRunning() {
@@ -104,7 +98,6 @@ public class Timer {
 				stopTimer();
 			}
 		}));
-
 	}
 
 }
