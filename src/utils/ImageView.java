@@ -144,4 +144,8 @@ public class ImageView implements Node {
 		return this.imageView.minHeight(0) * this.scale;
 	}
 
+	public double getScale() {
+		return this.scale;
+	}
+
 }
