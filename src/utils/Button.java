@@ -63,12 +63,12 @@ public class Button implements Node {
 		PlatformFX.runLater(() -> this.button.setFont(new Font(value)));
 	}
 
-	public void setSize(double minWidth, double minHeight) {
+	public void setSize(double width, double height) {
 
 		PlatformFX.runLater(() -> {
 
-			this.button.setMinSize(minWidth, minHeight);
-			this.button.setMaxSize(minWidth, minHeight);
+			this.button.setMinSize(width, height);
+			this.button.setMaxSize(width, height);
 
 		});
 
