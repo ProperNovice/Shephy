@@ -10,7 +10,7 @@ public class Random {
 
 	public static boolean chanceOutcome(double chance) {
 
-		double rng = getRandomNumber(0, 100);
+		double rng = getRandomNumber(1, 100);
 
 		if (rng <= chance)
 			return true;
