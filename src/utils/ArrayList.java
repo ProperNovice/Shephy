@@ -10,6 +10,10 @@ public class ArrayList<T> implements Iterable<T> {
 
 	}
 
+	public ArrayList(T[] list) {
+		addAll(list);
+	}
+
 	private ArrayList(java.util.ArrayList<T> list) {
 		this.list = list;
 	}
@@ -23,6 +27,14 @@ public class ArrayList<T> implements Iterable<T> {
 	}
 
 	public boolean addAll(ArrayList<T> list) {
+
+		for (T t : list)
+			this.list.add(t);
+
+		return true;
+	}
+
+	public boolean addAll(T[] list) {
 
 		for (T t : list)
 			this.list.add(t);
@@ -82,6 +94,10 @@ public class ArrayList<T> implements Iterable<T> {
 		return this.list.remove(0);
 	}
 
+	public T removeLast() {
+		return this.list.remove(this.list.size() - 1);
+	}
+
 	public T getRandom() {
 		return this.list.get(Random.getRandomNumber(0, this.list.size() - 1));
 	}
@@ -108,6 +124,7 @@ public class ArrayList<T> implements Iterable<T> {
 			System.out.println(t);
 
 		System.out.println("*/");
+		System.out.println();
 
 	}
 
