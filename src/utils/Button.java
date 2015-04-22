@@ -34,6 +34,7 @@ public class Button implements Node {
 		PlatformFX.runLater(() -> this.button.toBack());
 	}
 
+	@Override
 	public void toFront() {
 		PlatformFX.runLater(() -> this.button.toFront());
 	}

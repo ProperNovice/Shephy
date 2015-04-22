@@ -106,6 +106,7 @@ public class Circle implements Node {
 		PlatformFX.runLater(() -> this.circle.toBack());
 	}
 
+	@Override
 	public void toFront() {
 		PlatformFX.runLater(() -> this.circle.toFront());
 	}

@@ -24,6 +24,7 @@ public class Text implements Node {
 		PlatformFX.runLater(() -> this.text.toBack());
 	}
 
+	@Override
 	public void toFront() {
 		PlatformFX.runLater(() -> this.text.toFront());
 	}

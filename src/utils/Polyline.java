@@ -103,6 +103,7 @@ public class Polyline implements Node {
 		PlatformFX.runLater(() -> this.polyline.toBack());
 	}
 
+	@Override
 	public void toFront() {
 		PlatformFX.runLater(() -> this.polyline.toFront());
 	}

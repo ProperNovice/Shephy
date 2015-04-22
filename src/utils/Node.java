@@ -8,4 +8,6 @@ public interface Node {
 
 	public double getLayoutY();
 
+	public void toFront();
+
 }

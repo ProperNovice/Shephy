@@ -190,6 +190,7 @@ public class Animation {
 
 			}
 
+			node.toFront();
 			listToAdd.add(new NodeAnimation(node, endingX, endingY));
 
 		});

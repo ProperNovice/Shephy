@@ -38,6 +38,7 @@ public class ImageView implements Node {
 		PlatformFX.runLater(() -> this.imageView.toBack());
 	}
 
+	@Override
 	public void toFront() {
 		PlatformFX.runLater(() -> this.imageView.toFront());
 	}

@@ -10,6 +10,13 @@ public class ArrayList<T> implements Iterable<T> {
 
 	}
 
+	public ArrayList(ArrayList<T> arrayList) {
+
+		for (T t : arrayList)
+			this.list.add(t);
+
+	}
+
 	public ArrayList(T[] list) {
 		addAll(list);
 	}
