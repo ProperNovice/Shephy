@@ -23,9 +23,7 @@ public class Timer {
 	}
 
 	public interface TimerInterface {
-
 		public void fireEvent();
-
 	}
 
 	public void startTimer() {
@@ -33,8 +31,8 @@ public class Timer {
 		this.stopTimer.set(false);
 		this.startTime = currentTimeMillis();
 		this.timerClass = new TimerClass();
-		this.timerClass.start();
 		this.isRunning.set(true);
+		this.timerClass.start();
 
 	}
 
@@ -49,6 +47,8 @@ public class Timer {
 
 				if (stopTimer.get())
 					break;
+
+				System.out.println(this);
 
 				sleepTime(ACTUAL_MILLIS_TO_FIRE_NEXT_EVENT);
 
@@ -78,6 +78,7 @@ public class Timer {
 	}
 
 	private void sleepTime(long duration) {
+		System.out.println(duration);
 		Executor.sleep(duration);
 	}
 
