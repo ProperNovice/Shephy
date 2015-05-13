@@ -4,11 +4,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import utils.EventHandler.EventHandlerAble;
 
-public class TextOption extends Text {
+public class TextButton extends Text {
 
 	private Polyline polyline = null;
 
-	public TextOption(String text, EventHandlerAble eventHandlerAble,
+	public TextButton(String text, EventHandlerAble eventHandlerAble,
 			Parent parent) {
 
 		super(text, parent);
