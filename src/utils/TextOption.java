@@ -6,7 +6,7 @@ import utils.EventHandler.EventHandlerAble;
 
 public class TextOption extends Text {
 
-	private Polyline border = null;
+	private Polyline polyline = null;
 
 	public TextOption(String text, EventHandlerAble eventHandlerAble,
 			Parent parent) {
@@ -14,11 +14,11 @@ public class TextOption extends Text {
 		super(text, parent);
 		createBorder(parent);
 
-		this.border.toFront();
+		this.polyline.toFront();
 		super.text.toFront();
 
 		super.text.setOnMousePressed(new EventHandler(eventHandlerAble));
-		this.border.setOnMousePressed(new EventHandler(eventHandlerAble));
+		this.polyline.setOnMousePressed(new EventHandler(eventHandlerAble));
 
 		setEventHandlers();
 
@@ -26,9 +26,10 @@ public class TextOption extends Text {
 
 	private void createBorder(Parent parent) {
 
-		this.border = new Polyline(super.getWidth(), super.getHeight(), parent);
-		this.border.setStroke(null);
-		this.border.setFill(Color.WHEAT);
+		this.polyline = new Polyline(super.getWidth(), super.getHeight(),
+				parent);
+		this.polyline.setStroke(null);
+		this.polyline.setFill(Color.WHEAT);
 
 	}
 
@@ -75,8 +76,8 @@ public class TextOption extends Text {
 	private void resizePolyLine() {
 
 		PlatformFX.runLater(() -> {
-			this.border.getPoints().clear();
-			this.border.getPoints().addAll(0.0, 0.0, getWidth(), 0.0,
+			this.polyline.getPoints().clear();
+			this.polyline.getPoints().addAll(0.0, 0.0, getWidth(), 0.0,
 					getWidth(), getHeight(), 0.0, getHeight(), 0.0, 0.0);
 		});
 	}
@@ -86,7 +87,7 @@ public class TextOption extends Text {
 
 		PlatformFX.runLater(() -> {
 			this.text.relocate(x, y);
-			this.border.relocate(x, y);
+			this.polyline.relocate(x, y);
 		});
 
 	}
@@ -96,7 +97,7 @@ public class TextOption extends Text {
 
 		PlatformFX.runLater(() -> {
 			this.text.setVisible(value);
-			this.border.setVisible(value);
+			this.polyline.setVisible(value);
 		});
 
 	}
@@ -107,7 +108,7 @@ public class TextOption extends Text {
 		@Override
 		public void handle(MouseEvent event) {
 
-			border.setFill(Color.BLACK);
+			polyline.setFill(Color.BLACK);
 			text.setFill(Color.WHITE);
 
 		}
@@ -120,7 +121,7 @@ public class TextOption extends Text {
 		@Override
 		public void handle(MouseEvent event) {
 
-			border.setFill(Color.WHEAT);
+			polyline.setFill(Color.WHEAT);
 			text.setFill(Color.BLACK);
 
 		}
@@ -130,9 +131,9 @@ public class TextOption extends Text {
 	private void setEventHandlers() {
 
 		super.text.setOnMouseEntered(new OnMouseEntered());
-		this.border.setOnMouseEntered(new OnMouseEntered());
+		this.polyline.setOnMouseEntered(new OnMouseEntered());
 		super.text.setOnMouseExited(new OnMouseExited());
-		this.border.setOnMouseExited(new OnMouseExited());
+		this.polyline.setOnMouseExited(new OnMouseExited());
 
 	}
 
