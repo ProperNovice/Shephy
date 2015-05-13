@@ -1,5 +1,6 @@
 package utils;
 
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -52,6 +53,10 @@ public class Polyline implements Node {
 
 		});
 
+	}
+
+	public final ObservableList<Double> getPoints() {
+		return polyline.getPoints();
 	}
 
 	public boolean contains(double localX, double localY) {

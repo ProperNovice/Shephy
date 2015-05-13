@@ -7,7 +7,7 @@ import javafx.scene.text.Font;
 
 public class Text implements Node {
 
-	private javafx.scene.text.Text text = null;
+	protected javafx.scene.text.Text text = null;
 
 	public Text(String text, Parent parent) {
 
@@ -16,7 +16,7 @@ public class Text implements Node {
 
 	}
 
-	public final void setVisible(final boolean value) {
+	public void setVisible(final boolean value) {
 		PlatformFX.runLater(() -> this.text.setVisible(value));
 	}
 
@@ -102,7 +102,7 @@ public class Text implements Node {
 		PlatformFX.runLater(() -> this.text.setText(text));
 	}
 
-	private final void setFont(final int value) {
+	protected final void setFont(final int value) {
 		PlatformFX.runLater(() -> this.text.setFont(new Font(value)));
 	}
 
