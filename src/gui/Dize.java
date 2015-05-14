@@ -11,7 +11,7 @@ import utils.Logger;
 import utils.ShutDown;
 import enums.Dimensions;
 
-public class TestFX extends Application {
+public class Dize extends Application {
 
 	private Panel panel = null;
 
@@ -31,7 +31,7 @@ public class TestFX extends Application {
 		primaryStage.setHeight(height);
 		primaryStage.setResizable(false);
 
-		primaryStage.setTitle("TestFX");
+		primaryStage.setTitle("diZe");
 
 		primaryStage
 				.setX((Screen.getPrimary().getBounds().getWidth() - width) / 2);

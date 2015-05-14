@@ -10,11 +10,14 @@ import utils.ShutDown;
 public class Panel extends Parent implements EventHandler<MouseEvent> {
 
 	private ImageView background = new ImageView("Background.png", this);
+	private PanelGame panelGame = new PanelGame();
 
 	public Panel() {
 
 		this.background.toBack();
 		this.background.setOnMousePressed(this);
+
+		this.getChildren().add(this.panelGame);
 
 	}
 
