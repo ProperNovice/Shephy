@@ -4,10 +4,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Timer {
 
-	private long startTime = 0;
 	private long MILLIS_TO_FIRE_EVENT = -1;
-	private long ACTUAL_MILLIS_TO_FIRE_NEXT_EVENT = -1;
-	private AtomicBoolean stopTimer = new AtomicBoolean(false);
 	private AtomicBoolean isRunning = new AtomicBoolean(false);
 	private TimerClass timerClass = null;
 	private TimerInterface timerInterface = null;
@@ -16,7 +13,6 @@ public class Timer {
 
 		this.timerInterface = timerInterface;
 		this.MILLIS_TO_FIRE_EVENT = millisToFireEvent;
-		this.ACTUAL_MILLIS_TO_FIRE_NEXT_EVENT = millisToFireEvent;
 
 		addShutDownHook();
 
@@ -28,39 +24,38 @@ public class Timer {
 
 	public void startTimer() {
 
-		this.stopTimer.set(false);
-		this.startTime = currentTimeMillis();
-		this.timerClass = new TimerClass();
 		this.isRunning.set(true);
+		this.timerClass = new TimerClass();
 		this.timerClass.start();
 
 	}
 
 	private class TimerClass extends java.lang.Thread {
 
-		private long actualTimePassed = -1;
+		private long startTime = -1;
+		private AtomicBoolean stopTimer = new AtomicBoolean(false);
+
+		public TimerClass() {
+			this.startTime = currentTimeMillis();
+		}
+
+		public void stopTimer() {
+			this.stopTimer.set(true);
+		}
 
 		@Override
 		public void run() {
 
-			while (true) {
+			while (!this.stopTimer.get()) {
 
-				if (stopTimer.get())
-					break;
+				sleepTime(0);
 
-				System.out.println(this);
+				long actualTimeSleeping = currentTimeMillis() - this.startTime;
 
-				sleepTime(ACTUAL_MILLIS_TO_FIRE_NEXT_EVENT);
+				if (actualTimeSleeping < MILLIS_TO_FIRE_EVENT)
+					continue;
 
-				this.actualTimePassed = currentTimeMillis() - startTime;
-
-				ACTUAL_MILLIS_TO_FIRE_NEXT_EVENT = MILLIS_TO_FIRE_EVENT
-						+ (MILLIS_TO_FIRE_EVENT - actualTimePassed);
-
-				startTime += MILLIS_TO_FIRE_EVENT;
-
-				if (stopTimer.get())
-					break;
+				this.startTime += MILLIS_TO_FIRE_EVENT;
 
 				fireEvent();
 
@@ -70,7 +65,7 @@ public class Timer {
 
 	public void stopTimer() {
 		this.isRunning.set(false);
-		this.stopTimer.set(true);
+		this.timerClass.stopTimer();
 	}
 
 	private long currentTimeMillis() {
@@ -78,7 +73,6 @@ public class Timer {
 	}
 
 	private void sleepTime(long duration) {
-		System.out.println(duration);
 		Executor.sleep(duration);
 	}
 
