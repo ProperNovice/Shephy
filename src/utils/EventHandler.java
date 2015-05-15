@@ -18,8 +18,6 @@ public class EventHandler implements javafx.event.EventHandler<MouseEvent> {
 	@Override
 	public void handle(MouseEvent event) {
 
-		System.out.println(event.getEventType());
-
 		if (event.getEventType().equals(MouseEvent.MOUSE_PRESSED))
 			if (!event.getButton().equals(MouseButton.PRIMARY))
 				return;
