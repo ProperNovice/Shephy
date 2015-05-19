@@ -11,7 +11,7 @@ import utils.Logger;
 import utils.ShutDown;
 import enums.Dimensions;
 
-public class Dize extends Application {
+public class TestFX extends Application {
 
 	private Panel panel = null;
 
