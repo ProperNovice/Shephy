@@ -31,7 +31,7 @@ public class TestFX extends Application {
 		primaryStage.setHeight(height);
 		primaryStage.setResizable(false);
 
-		primaryStage.setTitle("diZe");
+		primaryStage.setTitle("TestFX");
 
 		primaryStage
 				.setX((Screen.getPrimary().getBounds().getWidth() - width) / 2);
