@@ -1,5 +1,7 @@
 package gameState;
 
+import utils.Logger;
+import components.CardEvent;
 import instances.Instances;
 import controller.Controller;
 
@@ -9,6 +11,10 @@ public class GameState {
 
 	public void handleGameStateChange() {
 
+	}
+
+	public void handleCardEventPressed(CardEvent cardEvent) {
+		Logger.logNewLine("pressed " + cardEvent.getCardEnum());
 	}
 
 }

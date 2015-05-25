@@ -23,4 +23,8 @@ public class Controller {
 
 	}
 
+	public GameStateController gameStateController() {
+		return this.gameStateController;
+	}
+
 }

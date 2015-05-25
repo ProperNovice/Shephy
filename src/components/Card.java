@@ -1,5 +1,6 @@
 package components;
 
+import controller.Controller;
 import instances.Instances;
 import utils.ImageView;
 import enums.CardEnum;
@@ -8,8 +9,9 @@ import gui.PanelGame;
 
 public class Card {
 
-	private ImageView imageView = null;
-	private CardEnum cardEnum = null;
+	protected ImageView imageView = null;
+	protected CardEnum cardEnum = null;
+	protected Controller controller = Instances.getControllerInstance();
 
 	public Card(CardEnum cardEnum) {
 
@@ -35,11 +37,17 @@ public class Card {
 		this.imageView = new ImageView(path, panelGame);
 		this.imageView.setViewport(topLeftX, topLeftY, width, height);
 		this.imageView.relocate(50, 50);
+		
+		this.imageView.setWidth(Dimensions.CARD.x());
 
 	}
 
 	public void relocate(double x, double y) {
 		this.imageView.relocate(x, y);
+	}
+
+	public CardEnum getCardEnum() {
+		return this.cardEnum;
 	}
 
 }

@@ -1,5 +1,7 @@
 package controller;
 
+import components.CardEvent;
+
 import enums.GameStateEnum;
 import gameState.GameState;
 import gameState.StartGame;
@@ -29,6 +31,10 @@ public class GameStateController {
 
 		this.currentGameState.handleGameStateChange();
 
+	}
+
+	public void handleCardEventPressed(CardEvent cardEvent) {
+		this.currentGameState.handleCardEventPressed(cardEvent);
 	}
 
 }
