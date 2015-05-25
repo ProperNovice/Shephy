@@ -1,8 +1,8 @@
 package controller;
 
+import instances.Instances;
 import utils.Executor;
 import enums.GameStateEnum;
-import instances.Instances;
 
 public class Controller {
 
