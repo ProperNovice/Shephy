@@ -28,7 +28,7 @@ public enum CardEnum {
 	SLUMP("09", 0, 1),
 	STORM("09", 0, 2),
 	WOLVES("09", 0, 3),
-	BACK_EVENT("back_01", 0, 3),
+	BACK_EVENT("01", 0, 3),
 
 	;
 

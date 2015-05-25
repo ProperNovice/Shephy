@@ -22,7 +22,7 @@ public class Card {
 
 	}
 
-	private void createImageview() {
+	protected void createImageview() {
 
 		double topLeftX = Dimensions.CARD_IMAGE_TOP_LEFT.x();
 		double topLeftY = Dimensions.CARD_IMAGE_TOP_LEFT.y();
@@ -33,12 +33,10 @@ public class Card {
 		topLeftY += this.cardEnum.row() * height;
 
 		PanelGame panelGame = Instances.getPanelGameInstance();
-
 		String path = "/cards/front_" + this.cardEnum.filename() + ".png";
 
 		this.imageView = new ImageView(path, panelGame);
 		this.imageView.setViewport(topLeftX, topLeftY, width, height);
-		this.imageView.relocate(50, 50);
 
 		this.imageView.setWidth(Dimensions.CARD.x());
 
