@@ -4,7 +4,11 @@ public enum Dimensions {
 
 	FRAME(1366, 768),
 	INSETS(7, 29),
-	GAP_BETWEEN_BORDERS(50, 50);
+	GAP_BETWEEN_BORDERS(50, 50),
+	CARD_IMAGE_TOP_LEFT(176, 144),
+	CARD_IMAGE_DIMENSION(497, 686),
+	
+	;
 
 	private double x = -1, y = -1;
 
