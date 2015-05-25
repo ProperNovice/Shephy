@@ -1,7 +1,7 @@
 package controller;
 
 import components.CardEvent;
-
+import components.CardSheep;
 import enums.GameStateEnum;
 import gameState.GameState;
 import gameState.StartGame;
@@ -35,6 +35,10 @@ public class GameStateController {
 
 	public void handleCardEventPressed(CardEvent cardEvent) {
 		this.currentGameState.handleCardEventPressed(cardEvent);
+	}
+
+	public void handleCardSheepPressed(CardSheep cardSheep) {
+		Logger.logNewLine("pressed " + cardSheep.getCardEnum());
 	}
 
 }

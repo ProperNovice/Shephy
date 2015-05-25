@@ -1,11 +1,13 @@
 package components;
 
-import controller.Controller;
+import gui.PanelGame;
 import instances.Instances;
+import utils.Animation;
+import utils.Animation.AnimationSynch;
 import utils.ImageView;
+import controller.Controller;
 import enums.CardEnum;
 import enums.Dimensions;
-import gui.PanelGame;
 
 public class Card {
 
@@ -32,12 +34,12 @@ public class Card {
 
 		PanelGame panelGame = Instances.getPanelGameInstance();
 
-		String path = "/cards/" + this.cardEnum.filename() + ".png";
+		String path = "/cards/front_" + this.cardEnum.filename() + ".png";
 
 		this.imageView = new ImageView(path, panelGame);
 		this.imageView.setViewport(topLeftX, topLeftY, width, height);
 		this.imageView.relocate(50, 50);
-		
+
 		this.imageView.setWidth(Dimensions.CARD.x());
 
 	}
@@ -48,6 +50,11 @@ public class Card {
 
 	public CardEnum getCardEnum() {
 		return this.cardEnum;
+	}
+
+	public void animate(double endingX, double endingY) {
+		Animation.animate(this.imageView, endingX, endingY,
+				AnimationSynch.SYNCHRONOUS);
 	}
 
 }
