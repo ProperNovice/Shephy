@@ -1,9 +1,11 @@
 package gameState;
 
+import instances.Instances;
 import utils.Logger;
+
 import components.CardEvent;
 import components.CardSheep;
-import instances.Instances;
+
 import controller.Controller;
 
 public class GameState {
@@ -15,11 +17,19 @@ public class GameState {
 	}
 
 	public void handleCardEventPressed(CardEvent cardEvent) {
+
+		if (this.controller.hand().contains(cardEvent))
+			handleCardEventHandPressed(cardEvent);
+
+	}
+
+	protected void handleCardEventHandPressed(CardEvent cardEvent) {
 		Logger.logNewLine("pressed " + cardEvent.getCardEnum());
 	}
 
 	public void handleCardSheepPressed(CardSheep cardSheep) {
 		Logger.logNewLine("pressed " + cardSheep.getCardEnum());
+		System.out.println(cardSheep.getValue());
 	}
 
 }

@@ -1,7 +1,9 @@
 package controller;
 
-import model.Deck;
 import instances.Instances;
+import model.Deck;
+import model.Hand;
+import model.SheepFoundation;
 import utils.Executor;
 import enums.GameStateEnum;
 
@@ -9,6 +11,8 @@ public class Controller {
 
 	private GameStateController gameStateController = null;
 	private Deck deck = null;
+	private Hand hand = null;
+	private SheepFoundation sheepFoundation = null;
 
 	public Controller() {
 
@@ -24,6 +28,8 @@ public class Controller {
 		Instances.createController(this);
 		this.gameStateController = new GameStateController();
 		this.deck = new Deck();
+		this.hand = new Hand();
+		this.sheepFoundation = new SheepFoundation();
 
 	}
 
@@ -33,6 +39,14 @@ public class Controller {
 
 	public Deck deck() {
 		return this.deck;
+	}
+
+	public Hand hand() {
+		return this.hand;
+	}
+
+	public SheepFoundation sheepFoundation() {
+		return this.sheepFoundation;
 	}
 
 }

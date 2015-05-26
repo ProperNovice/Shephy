@@ -4,7 +4,7 @@ import javafx.animation.AnimationTimer;
 
 public class Animation {
 
-	private static final double ANIMATION_STEP = 9;
+	private static final double ANIMATION_STEP = 11;
 	private static ArrayList<NodeAnimation> animationsSynchronous = new ArrayList<>();
 	private static ArrayList<NodeAnimation> animationsAsynchronous = new ArrayList<>();
 

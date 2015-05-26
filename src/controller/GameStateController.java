@@ -1,16 +1,19 @@
 package controller;
 
-import components.CardEvent;
-import components.CardSheep;
 import enums.GameStateEnum;
 import gameState.GameState;
 import gameState.StartGame;
+import gameState.StartNewRound;
 import utils.Logger;
+
+import components.CardEvent;
+import components.CardSheep;
 
 public class GameStateController {
 
 	private GameState currentGameState = null;
 	private GameState startGame = new StartGame();
+	private GameState startNewRound = new StartNewRound();
 
 	public GameStateController() {
 
@@ -22,6 +25,10 @@ public class GameStateController {
 
 		case START_GAME:
 			this.currentGameState = this.startGame;
+			break;
+
+		case START_NEW_ROUND:
+			this.currentGameState = this.startNewRound;
 			break;
 
 		}
@@ -38,7 +45,7 @@ public class GameStateController {
 	}
 
 	public void handleCardSheepPressed(CardSheep cardSheep) {
-		Logger.logNewLine("pressed " + cardSheep.getCardEnum());
+		this.currentGameState.handleCardSheepPressed(cardSheep);
 	}
 
 }

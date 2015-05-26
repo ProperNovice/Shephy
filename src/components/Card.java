@@ -1,5 +1,6 @@
 package components;
 
+import javafx.scene.image.Image;
 import instances.Instances;
 import utils.Animation;
 import utils.Animation.AnimationSynch;
@@ -11,6 +12,7 @@ import enums.Dimensions;
 public class Card {
 
 	protected ImageView imageView = null;
+	protected Image front = null;
 	protected CardEnum cardEnum = null;
 	protected Controller controller = Instances.getControllerInstance();
 
@@ -31,9 +33,11 @@ public class Card {
 		topLeftX += this.cardEnum.column() * width;
 		topLeftY += this.cardEnum.row() * height;
 
-		String path = "/cards/front_" + this.cardEnum.filename() + ".png";
+		String path = "/images/cards/front_" + this.cardEnum.filename()
+				+ ".png";
+		this.front = new Image(path);
 
-		this.imageView = new ImageView(path);
+		this.imageView = new ImageView(this.front);
 		this.imageView.setViewport(topLeftX, topLeftY, width, height);
 
 		this.imageView.setWidth(Dimensions.CARD.x());
@@ -51,6 +55,10 @@ public class Card {
 	public void animate(double endingX, double endingY) {
 		Animation.animate(this.imageView, endingX, endingY,
 				AnimationSynch.SYNCHRONOUS);
+	}
+
+	public void toBack() {
+		this.imageView.toBack();
 	}
 
 }
