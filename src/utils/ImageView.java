@@ -67,17 +67,24 @@ public class ImageView implements Node {
 	public final void setViewport(double x, double y, double width,
 			double height) {
 
-		Rectangle2D rectangle2d = new Rectangle2D(x, y, width, height);
+		PlatformFX.runLater(() -> {
 
-		PlatformFX.runLater(() -> this.imageView.setViewport(rectangle2d));
+			Rectangle2D rectangle2d = new Rectangle2D(x, y, width, height);
+			this.imageView.setViewport(rectangle2d);
+
+		});
 
 	}
 
 	public final void setClip(double x, double y, double width, double height) {
 
-		Rectangle rectangle = new Rectangle(x, y, width, height);
+		PlatformFX.runLater(() -> {
 
-		PlatformFX.runLater(() -> this.imageView.setClip(rectangle));
+			Rectangle rectangle = new Rectangle(x, y, width, height);
+			this.imageView.setClip(rectangle);
+
+		});
+
 	}
 
 	public final void setRotate(double value) {

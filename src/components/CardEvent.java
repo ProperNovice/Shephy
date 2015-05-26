@@ -16,6 +16,7 @@ public class CardEvent extends Card implements EventHandlerAble {
 	@Override
 	public void handleMouseButtonPrimary() {
 		super.controller.gameStateController().handleCardEventPressed(this);
+		super.imageView.setVisible(false);
 	}
 
 }
