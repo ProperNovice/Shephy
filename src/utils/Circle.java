@@ -1,5 +1,7 @@
 package utils;
 
+import gui.PanelGame;
+import instances.Instances;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -20,9 +22,26 @@ public class Circle implements Node {
 			this.circle.setFill(null);
 			this.circle.setStroke(Color.BLACK);
 
+			parent.addNode(this.circle);
+
 		});
 
-		parent.addNode(this.circle);
+	}
+
+	public Circle(double radius) {
+
+		PlatformFX.runLater(() -> {
+
+			this.radius = radius;
+			this.circle = new javafx.scene.shape.Circle(this.radius);
+			this.circle.setFill(null);
+			this.circle.setStroke(Color.BLACK);
+
+			PanelGame panelGame = Instances.getPanelGameInstance();
+			panelGame.addNode(this.circle);
+
+		});
+
 	}
 
 	public boolean contains(double localX, double localY) {

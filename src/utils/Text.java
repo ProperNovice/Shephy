@@ -1,5 +1,7 @@
 package utils;
 
+import gui.PanelGame;
+import instances.Instances;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
@@ -13,6 +15,15 @@ public class Text implements Node {
 
 		this.text = new javafx.scene.text.Text(text);
 		parent.addNode(this.text);
+
+	}
+
+	public Text(String text) {
+
+		this.text = new javafx.scene.text.Text(text);
+
+		PanelGame panelGame = Instances.getPanelGameInstance();
+		panelGame.addNode(this.text);
 
 	}
 

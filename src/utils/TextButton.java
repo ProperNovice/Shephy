@@ -1,5 +1,6 @@
 package utils;
 
+import instances.Instances;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import utils.EventHandler.EventHandlerAble;
@@ -13,6 +14,21 @@ public class TextButton extends Text {
 
 		super(text, parent);
 		createBorder(parent);
+
+		this.polyline.toFront();
+		super.text.toFront();
+
+		super.text.setOnMousePressed(new EventHandler(eventHandlerAble));
+		this.polyline.setOnMousePressed(new EventHandler(eventHandlerAble));
+
+		setEventHandlers();
+
+	}
+
+	public TextButton(String text, EventHandlerAble eventHandlerAble) {
+
+		super(text, Instances.getPanelGameInstance());
+		createBorder(Instances.getPanelGameInstance());
 
 		this.polyline.toFront();
 		super.text.toFront();

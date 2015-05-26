@@ -1,5 +1,7 @@
 package utils;
 
+import gui.PanelGame;
+import instances.Instances;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -18,24 +20,67 @@ public class Polyline implements Node {
 		createPolyline(parent);
 	}
 
+	public Polyline(double x) {
+
+		this.dimensionX = x;
+		this.dimensionY = x;
+
+		PanelGame panelGame = Instances.getPanelGameInstance();
+		createPolyline(panelGame);
+
+	}
+
 	public Polyline(double x, double y, Parent parent) {
+
 		this.dimensionX = x;
 		this.dimensionY = y;
 		createPolyline(parent);
+
+	}
+
+	public Polyline(double x, double y) {
+
+		this.dimensionX = x;
+		this.dimensionY = y;
+
+		PanelGame panelGame = Instances.getPanelGameInstance();
+		createPolyline(panelGame);
+
 	}
 
 	public Polyline(Parent parent, double... points) {
 
-		Double[] list = new Double[points.length];
-
-		for (int counter = 0; counter < points.length; counter++)
-			list[counter] = points[counter];
-
 		PlatformFX.runLater(() -> {
+
+			Double[] list = new Double[points.length];
+
+			for (int counter = 0; counter < points.length; counter++)
+				list[counter] = points[counter];
+
 			this.polyline.getPoints().addAll(list);
 			this.polyline.setFill(null);
 			this.polyline.setStroke(Color.BLACK);
 			parent.addNode(this.polyline);
+
+		});
+	}
+
+	public Polyline(double... points) {
+
+		PlatformFX.runLater(() -> {
+
+			Double[] list = new Double[points.length];
+
+			for (int counter = 0; counter < points.length; counter++)
+				list[counter] = points[counter];
+
+			this.polyline.getPoints().addAll(list);
+			this.polyline.setFill(null);
+			this.polyline.setStroke(Color.BLACK);
+
+			PanelGame panelGame = Instances.getPanelGameInstance();
+			panelGame.addNode(this.polyline);
+
 		});
 	}
 

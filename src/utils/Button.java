@@ -1,5 +1,7 @@
 package utils;
 
+import gui.PanelGame;
+import instances.Instances;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
@@ -13,6 +15,16 @@ public class Button implements Node {
 		this.button = new javafx.scene.control.Button(text);
 		PlatformFX.runLater(() -> this.button.setFocusTraversable(false));
 		parent.addNode(this.button);
+
+	}
+
+	public Button(String text) {
+
+		this.button = new javafx.scene.control.Button(text);
+		PlatformFX.runLater(() -> this.button.setFocusTraversable(false));
+
+		PanelGame panelGame = Instances.getPanelGameInstance();
+		panelGame.addNode(this.button);
 
 	}
 

@@ -23,6 +23,13 @@ public class ImageView implements Node {
 
 	}
 
+	public ImageView(Image image, Parent parent) {
+
+		this.imageView = new javafx.scene.image.ImageView(image);
+		addNode(parent);
+
+	}
+
 	public ImageView(Image image) {
 
 		this.imageView = new javafx.scene.image.ImageView(image);

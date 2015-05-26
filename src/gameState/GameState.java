@@ -29,7 +29,6 @@ public class GameState {
 
 	public void handleCardSheepPressed(CardSheep cardSheep) {
 		Logger.logNewLine("pressed " + cardSheep.getCardEnum());
-		System.out.println(cardSheep.getValue());
 	}
 
 }
