@@ -1,6 +1,5 @@
 package components;
 
-import gui.PanelGame;
 import instances.Instances;
 import utils.Animation;
 import utils.Animation.AnimationSynch;
@@ -32,10 +31,9 @@ public class Card {
 		topLeftX += this.cardEnum.column() * width;
 		topLeftY += this.cardEnum.row() * height;
 
-		PanelGame panelGame = Instances.getPanelGameInstance();
 		String path = "/cards/front_" + this.cardEnum.filename() + ".png";
 
-		this.imageView = new ImageView(path, panelGame);
+		this.imageView = new ImageView(path);
 		this.imageView.setViewport(topLeftX, topLeftY, width, height);
 
 		this.imageView.setWidth(Dimensions.CARD.x());

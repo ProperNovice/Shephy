@@ -1,5 +1,7 @@
 package utils;
 
+import instances.Instances;
+import gui.PanelGame;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
@@ -11,18 +13,22 @@ public class ImageView implements Node {
 	private javafx.scene.image.ImageView imageView = null;
 	private double scale = 1;
 
-	public ImageView(String path, Parent parent) {
+	public ImageView(String path) {
 
 		String finalPath = "/images/" + path;
 		this.imageView = new javafx.scene.image.ImageView(finalPath);
-		addNode(parent);
+
+		PanelGame panelGame = Instances.getPanelGameInstance();
+		addNode(panelGame);
 
 	}
 
-	public ImageView(Image image, Parent parent) {
+	public ImageView(Image image) {
 
 		this.imageView = new javafx.scene.image.ImageView(image);
-		addNode(parent);
+
+		PanelGame panelGame = Instances.getPanelGameInstance();
+		addNode(panelGame);
 
 	}
 

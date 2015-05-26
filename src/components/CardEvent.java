@@ -6,8 +6,6 @@ import enums.CardEnum;
 
 public class CardEvent extends Card implements EventHandlerAble {
 
-	public boolean a = false;
-
 	public CardEvent(CardEnum cardEnum) {
 
 		super(cardEnum);

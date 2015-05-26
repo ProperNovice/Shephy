@@ -1,15 +1,15 @@
 package gui;
 
 import javafx.event.EventHandler;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import utils.ImageView;
 import utils.Parent;
 import utils.ShutDown;
 
 public class Panel extends Parent implements EventHandler<MouseEvent> {
 
-	private ImageView background = new ImageView("Background.png", this);
+	private ImageView background = new ImageView("/images/Background.png");
 	private PanelGame panelGame = new PanelGame();
 
 	public Panel() {
@@ -17,6 +17,7 @@ public class Panel extends Parent implements EventHandler<MouseEvent> {
 		this.background.toBack();
 		this.background.setOnMousePressed(this);
 
+		this.getChildren().add(this.background);
 		this.getChildren().add(this.panelGame);
 
 	}
