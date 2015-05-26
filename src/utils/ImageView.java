@@ -60,16 +60,17 @@ public class ImageView implements Node {
 	}
 
 	@Override
-	public void relocate(final double x, final double y) {
+	public void relocate(double x, final double y) {
 		PlatformFX.runLater(() -> this.imageView.relocate(x, y));
 	}
 
-	public final void setViewport(double x, double y, double width,
-			double height) {
+	public final void setViewport(double topLeftX, double topLeftL,
+			double width, double height) {
 
 		PlatformFX.runLater(() -> {
 
-			Rectangle2D rectangle2d = new Rectangle2D(x, y, width, height);
+			Rectangle2D rectangle2d = new Rectangle2D(topLeftX, topLeftL,
+					width, height);
 			this.imageView.setViewport(rectangle2d);
 
 		});
