@@ -2,12 +2,12 @@ package enums;
 
 public enum CardEnum {
 
-	SHEEP_1("01", 0, 1),
-	SHEEP_3("01", 0, 2),
-	SHEEP_10("01", 0, 3),
-	SHEEP_30("01", 1, 0),
-	SHEEP_100("01", 1, 1),
-	SHEEP_300("01", 1, 2),
+	SHEEP_1("sheep_1", 0, 1),
+	SHEEP_3("sheep_3", 0, 2),
+	SHEEP_10("sheep_10", 0, 3),
+	SHEEP_30("sheep_30", 1, 0),
+	SHEEP_100("sheep_100", 1, 1),
+	SHEEP_300("sheep_300", 1, 2),
 	SHEEP_1000("01", 1, 3),
 	ALL_PURPOSE_SHEEP("01", 0, 0),
 	BE_FRUITFUL("02", 0, 0),
