@@ -16,7 +16,8 @@ public class Discard {
 	public void addCardAnimateSynchronous(CardEvent cardEvent) {
 
 		this.discard.add(cardEvent);
-		cardEvent.animate(Coordinates.DISCARD.x(), Coordinates.DISCARD.y(), AnimationSynch.SYNCHRONOUS);
+		cardEvent.animate(Coordinates.DISCARD.x(), Coordinates.DISCARD.y(),
+				AnimationSynch.SYNCHRONOUS);
 
 	}
 
