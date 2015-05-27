@@ -35,7 +35,7 @@ public class Board {
 		double firstX = Coordinates.BOARD.x();
 		double y = Coordinates.BOARD.y();
 
-		for (int counter = cardSheepIndex; counter <= this.board.size() - 1; counter++)
+		for (int counter = this.board.size() - 1; counter >= cardSheepIndex; counter--)
 			this.board.get(counter).animate(
 					firstX + counter * Dimensions.CARD_PLUS_GAP.x(), y);
 

@@ -51,4 +51,8 @@ public class Card {
 		this.imageView.toBack();
 	}
 
+	public void toFront() {
+		this.imageView.toFront();
+	}
+	
 }

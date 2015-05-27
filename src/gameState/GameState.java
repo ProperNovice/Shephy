@@ -24,11 +24,11 @@ public class GameState {
 	}
 
 	protected void handleCardEventHandPressed(CardEvent cardEvent) {
-		Logger.logNewLine("pressed " + cardEvent.getCardEnum());
+		Logger.logNewLine("hand " + cardEvent.getCardEnum());
 	}
 
 	public void handleCardSheepPressed(CardSheep cardSheep) {
-		Logger.logNewLine("pressed " + cardSheep.getCardEnum());
+		Logger.logNewLine("" + cardSheep.getCardEnum());
 	}
 
 }

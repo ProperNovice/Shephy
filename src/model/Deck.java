@@ -73,9 +73,4 @@ public class Deck {
 		return this.deck.removeFirst();
 	}
 
-	public void toBack() {
-		for (CardEvent cardEvent : this.deck)
-			cardEvent.toBack();
-	}
-
 }

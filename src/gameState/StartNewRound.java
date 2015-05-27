@@ -24,11 +24,8 @@ public class StartNewRound extends GameState {
 			CardEvent cardEvent = super.controller.deck().removeFirstCard();
 			cardEvent.flip();
 			super.controller.hand().addCardAnimateSynchronous(cardEvent);
-			cardEvent.toBack();
 
 		}
-
-		super.controller.deck().toBack();
 
 	}
 
