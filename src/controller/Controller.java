@@ -17,6 +17,7 @@ public class Controller {
 	private SheepFoundation sheepFoundation = null;
 	private Board board = null;
 	private Discard discard = null;
+	private TextController textController = null;
 
 	public Controller() {
 
@@ -36,6 +37,7 @@ public class Controller {
 		this.sheepFoundation = new SheepFoundation();
 		this.board = new Board();
 		this.discard = new Discard();
+		this.textController = new TextController();
 
 	}
 
@@ -61,6 +63,10 @@ public class Controller {
 
 	public Discard discard() {
 		return this.discard;
+	}
+
+	public TextController textController() {
+		return this.textController;
 	}
 
 }

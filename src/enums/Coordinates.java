@@ -7,6 +7,7 @@ public enum Coordinates {
 	HAND(DECK.x() + Dimensions.CARD_PLUS_GAP.x(), Dimensions.FRAME.y() - Dimensions.GAP_BETWEEN_BORDERS.y() - Dimensions.CARD.y()),
 	SHEEP_FOUNDATION(Dimensions.GAP_BETWEEN_BORDERS.x(), Dimensions.GAP_BETWEEN_BORDERS.y()),
 	BOARD(SHEEP_FOUNDATION.x(), SHEEP_FOUNDATION.y() + Dimensions.CARD_PLUS_GAP.y()),
+	TEXT(HAND.x() + 5 * Dimensions.CARD_PLUS_GAP.x() + 6 * Dimensions.GAP_BETWEEN_CARDS.x(), HAND.y()),
 
 	;
 
