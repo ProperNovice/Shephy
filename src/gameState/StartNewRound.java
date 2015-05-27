@@ -3,6 +3,7 @@ package gameState;
 import utils.Lock;
 import utils.Logger;
 import components.CardEvent;
+import enums.GameStateEnum;
 
 public class StartNewRound extends GameState {
 
@@ -12,6 +13,9 @@ public class StartNewRound extends GameState {
 		fillHand();
 
 		Lock.lock();
+
+		super.controller.gameStateController().setGameState(
+				GameStateEnum.CHOOSE_EVENT);
 
 	}
 
@@ -26,7 +30,6 @@ public class StartNewRound extends GameState {
 			super.controller.hand().addCardAnimateSynchronous(cardEvent);
 
 		}
-
 	}
 
 }

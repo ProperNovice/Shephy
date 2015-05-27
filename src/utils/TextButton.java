@@ -102,8 +102,10 @@ public class TextButton extends Text {
 	public void relocate(final double x, double y) {
 
 		PlatformFX.runLater(() -> {
+
 			this.text.relocate(x, y);
 			this.polyline.relocate(x, y);
+
 		});
 
 	}
@@ -112,8 +114,10 @@ public class TextButton extends Text {
 	public final void setVisible(final boolean value) {
 
 		PlatformFX.runLater(() -> {
+
 			this.text.setVisible(value);
 			this.polyline.setVisible(value);
+
 		});
 
 	}

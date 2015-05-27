@@ -2,7 +2,9 @@ package enums;
 
 public enum GameStateEnum {
 
-	START_GAME("start game"), START_NEW_ROUND("start new round"),
+	START_GAME("start game"),
+	START_NEW_ROUND("start new round"),
+	CHOOSE_EVENT("choose event"),
 
 	;
 

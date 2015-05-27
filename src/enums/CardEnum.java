@@ -29,7 +29,7 @@ public enum CardEnum {
 	STORM("storm"),
 	WOLVES("wolves"),
 	BACK_EVENT("back_event"),
-
+	
 	;
 
 	private String filename;

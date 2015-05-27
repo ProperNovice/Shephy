@@ -3,6 +3,7 @@ package controller;
 import instances.Instances;
 import model.Board;
 import model.Deck;
+import model.Discard;
 import model.Hand;
 import model.SheepFoundation;
 import utils.Executor;
@@ -15,6 +16,7 @@ public class Controller {
 	private Hand hand = null;
 	private SheepFoundation sheepFoundation = null;
 	private Board board = null;
+	private Discard discard = null;
 
 	public Controller() {
 
@@ -33,6 +35,7 @@ public class Controller {
 		this.hand = new Hand();
 		this.sheepFoundation = new SheepFoundation();
 		this.board = new Board();
+		this.discard = new Discard();
 
 	}
 
@@ -54,6 +57,10 @@ public class Controller {
 
 	public Board board() {
 		return this.board;
+	}
+
+	public Discard discard() {
+		return this.discard;
 	}
 
 }

@@ -1,11 +1,11 @@
 package controller;
 
 import enums.GameStateEnum;
+import gameState.ChooseEvent;
 import gameState.GameState;
 import gameState.StartGame;
 import gameState.StartNewRound;
 import utils.Logger;
-
 import components.CardEvent;
 import components.CardSheep;
 
@@ -14,6 +14,7 @@ public class GameStateController {
 	private GameState currentGameState = null;
 	private GameState startGame = new StartGame();
 	private GameState startNewRound = new StartNewRound();
+	private GameState chooseEvent = new ChooseEvent();
 
 	public GameStateController() {
 
@@ -29,6 +30,10 @@ public class GameStateController {
 
 		case START_NEW_ROUND:
 			this.currentGameState = this.startNewRound;
+			break;
+			
+		case CHOOSE_EVENT:
+			this.currentGameState = this.chooseEvent;
 			break;
 
 		}

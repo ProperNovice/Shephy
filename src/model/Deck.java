@@ -73,4 +73,17 @@ public class Deck {
 		return this.deck.removeFirst();
 	}
 
+	public void setCardAsFirst(CardEnum cardEnum) {
+
+		CardEvent cardEvent = null;
+
+		for (CardEvent cardEventTemp : this.deck)
+			if (cardEventTemp.getCardEnum().equals(cardEnum))
+				cardEvent = cardEventTemp;
+
+		this.deck.remove(cardEvent);
+		this.deck.add(0, cardEvent);
+
+	}
+
 }

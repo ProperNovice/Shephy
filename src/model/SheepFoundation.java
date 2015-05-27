@@ -82,7 +82,7 @@ public class SheepFoundation {
 		}
 
 		public void addCardAnimateSynchronous(CardSheep cardSheep) {
-			this.sheeps.add(cardSheep);
+			this.sheeps.add(0, cardSheep);
 			cardSheep.animate(this.topLeftX, this.topLeftY);
 		}
 
