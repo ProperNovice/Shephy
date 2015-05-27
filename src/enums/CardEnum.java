@@ -2,57 +2,44 @@ package enums;
 
 public enum CardEnum {
 
-	SHEEP_1("sheep_1", 0, 1),
-	SHEEP_3("sheep_3", 0, 2),
-	SHEEP_10("sheep_10", 0, 3),
-	SHEEP_30("sheep_30", 1, 0),
-	SHEEP_100("sheep_100", 1, 1),
-	SHEEP_300("sheep_300", 1, 2),
-	SHEEP_1000("01", 1, 3),
-	ALL_PURPOSE_SHEEP("01", 0, 0),
-	BE_FRUITFUL("02", 0, 0),
-	CROWDING("03", 0, 0),
-	DOMINION("04", 0, 0),
-	FALLING_ROCK("05", 0, 0),
-	FILL_THE_EARTH("06", 0, 0),
-	FLOURISH("07", 0, 0),
-	GOLDEN_HOOVES("08", 0, 0),
-	INSPIRATION("08", 0, 1),
-	LIGHTNING("08", 0, 2),
-	METEOR("08", 0, 3),
-	MULTIPLY("08", 1, 0),
-	PLAGUE("08", 1, 1),
-	PLANNING_SHEEP("08", 1, 2),
-	SHEEP_DOG("08", 1, 3),
-	SHEPHION("09", 0, 0),
-	SLUMP("09", 0, 1),
-	STORM("09", 0, 2),
-	WOLVES("09", 0, 3),
-	BACK_EVENT("01", 0, 3),
+	SHEEP_1("sheep_1"),
+	SHEEP_3("sheep_3"),
+	SHEEP_10("sheep_10"),
+	SHEEP_30("sheep_30"),
+	SHEEP_100("sheep_100"),
+	SHEEP_300("sheep_300"),
+	SHEEP_1000("sheep_1000"),
+	ALL_PURPOSE_SHEEP("all-purpose_sheep"),
+	BE_FRUITFUL("be_fruitful"),
+	CROWDING("crowding"),
+	DOMINION("dominion"),
+	FALLING_ROCK("falling_rock"),
+	FILL_THE_EARTH("fill_the_earth"),
+	FLOURISH("flourish"),
+	GOLDEN_HOOVES("golden_hooves"),
+	INSPIRATION("inspiration"),
+	LIGHTNING("lightning"),
+	METEOR("meteor"),
+	MULTIPLY("multiply"),
+	PLAGUE("plague"),
+	PLANNING_SHEEP("planning_sheep"),
+	SHEEP_DOG("sheep_dog"),
+	SHEPHION("shephion"),
+	SLUMP("slump"),
+	STORM("storm"),
+	WOLVES("wolves"),
+	BACK_EVENT("back_event"),
 
 	;
 
 	private String filename;
-	private int row, column;
 
-	private CardEnum(String filename, int row, int column) {
-
+	private CardEnum(String filename) {
 		this.filename = filename;
-		this.row = row;
-		this.column = column;
-
 	}
 
 	public String filename() {
 		return this.filename;
-	}
-
-	public int row() {
-		return this.row;
-	}
-
-	public int column() {
-		return this.column;
 	}
 
 }

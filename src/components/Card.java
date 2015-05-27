@@ -1,7 +1,7 @@
 package components;
 
-import javafx.scene.image.Image;
 import instances.Instances;
+import javafx.scene.image.Image;
 import utils.Animation;
 import utils.Animation.AnimationSynch;
 import utils.ImageView;
@@ -25,20 +25,10 @@ public class Card {
 
 	protected void createImageview() {
 
-		double topLeftX = Dimensions.CARD_IMAGE_TOP_LEFT.x();
-		double topLeftY = Dimensions.CARD_IMAGE_TOP_LEFT.y();
-		double width = Dimensions.CARD_IMAGE_DIMENSION.x();
-		double height = Dimensions.CARD_IMAGE_DIMENSION.y();
-
-		topLeftX += this.cardEnum.column() * width;
-		topLeftY += this.cardEnum.row() * height;
-
-		String path = "/images/cards/front_" + this.cardEnum.filename()
-				+ ".png";
+		String path = "/images/cards/" + this.cardEnum.filename() + ".png";
 		this.front = new Image(path);
 
 		this.imageView = new ImageView(this.front);
-		this.imageView.setViewport(topLeftX, topLeftY, width, height);
 
 		this.imageView.setWidth(Dimensions.CARD.x());
 

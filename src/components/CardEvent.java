@@ -15,7 +15,7 @@ public class CardEvent extends Card implements EventHandlerAble {
 		super(cardEnum);
 		super.imageView.setOnMousePressed(new EventHandler(this));
 
-		this.back = new Image("/images/cards/back_02.png");
+		this.back = new Image("/images/cards/back_event.png");
 
 	}
 
