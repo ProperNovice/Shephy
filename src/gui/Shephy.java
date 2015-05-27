@@ -34,7 +34,7 @@ public class Shephy extends Application {
 		primaryStage.setTitle("Shephy");
 
 		primaryStage
-				.setX((Screen.getPrimary().getBounds().getWidth() - width) / 2);
+				.setX((Screen.getPrimary().getBounds().getWidth() - width) / 2 - 110);
 		primaryStage
 				.setY((Screen.getPrimary().getBounds().getHeight() - height) / 2);
 

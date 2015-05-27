@@ -5,6 +5,7 @@ import enums.CardEnum;
 import enums.Coordinates;
 import enums.Dimensions;
 import utils.ArrayList;
+import utils.Logger;
 
 public class SheepFoundation {
 
@@ -37,21 +38,28 @@ public class SheepFoundation {
 		this.sheepList.add(new SheepList(1000, x, y));
 
 	}
-	
+
 	private void populateSheepLists() {
-		
+
 		for (int counter = 1; counter <= 7; counter++) {
-			
-			this.sheepList.get(0).addCardRelocate(new CardSheep(CardEnum.SHEEP_1, 1));
-			this.sheepList.get(1).addCardRelocate(new CardSheep(CardEnum.SHEEP_3, 3));
-			this.sheepList.get(2).addCardRelocate(new CardSheep(CardEnum.SHEEP_10, 10));
-			this.sheepList.get(3).addCardRelocate(new CardSheep(CardEnum.SHEEP_30, 30));
-			this.sheepList.get(4).addCardRelocate(new CardSheep(CardEnum.SHEEP_100, 100));
-			this.sheepList.get(5).addCardRelocate(new CardSheep(CardEnum.SHEEP_300, 300));
-			this.sheepList.get(6).addCardRelocate(new CardSheep(CardEnum.SHEEP_1000, 1000));
-			
+
+			this.sheepList.get(0).addCardRelocate(
+					new CardSheep(CardEnum.SHEEP_1, 1));
+			this.sheepList.get(1).addCardRelocate(
+					new CardSheep(CardEnum.SHEEP_3, 3));
+			this.sheepList.get(2).addCardRelocate(
+					new CardSheep(CardEnum.SHEEP_10, 10));
+			this.sheepList.get(3).addCardRelocate(
+					new CardSheep(CardEnum.SHEEP_30, 30));
+			this.sheepList.get(4).addCardRelocate(
+					new CardSheep(CardEnum.SHEEP_100, 100));
+			this.sheepList.get(5).addCardRelocate(
+					new CardSheep(CardEnum.SHEEP_300, 300));
+			this.sheepList.get(6).addCardRelocate(
+					new CardSheep(CardEnum.SHEEP_1000, 1000));
+
 		}
-		
+
 	}
 
 	private class SheepList {
@@ -81,6 +89,29 @@ public class SheepFoundation {
 		public int getValue() {
 			return this.value;
 		}
+
+		public CardSheep getSheep() {
+			return this.sheeps.removeFirst();
+		}
+
+	}
+
+	public CardSheep getCardSheep(int value) {
+
+		for (SheepList sheepList : this.sheepList)
+			if (sheepList.getValue() == value)
+				return sheepList.getSheep();
+
+		Logger.logNewLine("sheep foundation getSheep() null");
+		return null;
+
+	}
+
+	public void addCardSheepAnimate(CardSheep cardSheep) {
+
+		for (SheepList sheepList : this.sheepList)
+			if (cardSheep.getValue() == sheepList.getValue())
+				sheepList.addCardAnimateSynchronous(cardSheep);
 
 	}
 

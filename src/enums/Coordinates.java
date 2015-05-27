@@ -2,10 +2,11 @@ package enums;
 
 public enum Coordinates {
 	
-	DISCARD(Dimensions.GAP_BETWEEN_BORDERS.x(), Dimensions.FRAME.y() - Dimensions.GAP_BETWEEN_BORDERS.y() - Dimensions.CARD_PLUS_GAP.y()),
-	HAND(DISCARD.x() + Dimensions.CARD_PLUS_GAP.x(), DISCARD.y()),
-	DECK(HAND.x() + 5 * Dimensions.CARD_PLUS_GAP.x(), DISCARD.y()),
+	DISCARD(Dimensions.GAP_BETWEEN_BORDERS.x(), Dimensions.FRAME.y() - Dimensions.GAP_BETWEEN_BORDERS.y() - Dimensions.CARD.y()),
+	DECK(DISCARD.x() + Dimensions.CARD_PLUS_GAP.x(), DISCARD.y()),
+	HAND(DECK.x() + Dimensions.CARD_PLUS_GAP.x(), Dimensions.FRAME.y() - Dimensions.GAP_BETWEEN_BORDERS.y() - Dimensions.CARD.y()),
 	SHEEP_FOUNDATION(Dimensions.GAP_BETWEEN_BORDERS.x(), Dimensions.GAP_BETWEEN_BORDERS.y()),
+	BOARD(SHEEP_FOUNDATION.x(), SHEEP_FOUNDATION.y() + Dimensions.CARD_PLUS_GAP.y()),
 
 	;
 
