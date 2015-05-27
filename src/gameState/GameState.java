@@ -2,11 +2,11 @@ package gameState;
 
 import instances.Instances;
 import utils.Logger;
-
 import components.CardEvent;
 import components.CardSheep;
-
 import controller.Controller;
+import enums.GameStateEnum;
+import enums.TextEnum;
 
 public class GameState {
 
@@ -24,11 +24,28 @@ public class GameState {
 	}
 
 	protected void handleCardEventHandPressed(CardEvent cardEvent) {
-		Logger.logNewLine("hand " + cardEvent.getCardEnum());
+
 	}
 
 	public void handleCardSheepPressed(CardSheep cardSheep) {
 		Logger.logNewLine("" + cardSheep.getCardEnum());
+	}
+
+	public void handleTextOptionPressed(TextEnum textEnum) {
+		Logger.logNewLine("" + textEnum);
+	}
+
+	protected void setGameStateStartNewRound() {
+		this.controller.gameStateController().setGameState(
+				GameStateEnum.START_NEW_ROUND);
+	}
+
+	protected void removeCardEventFromHandAddToDiscardAnimate(
+			CardEvent cardEvent) {
+		
+		this.controller.hand().removeCardShiftHandAnimateAsynchronous(cardEvent);
+		this.controller.discard().addCardAnimateSynchronous(cardEvent);
+
 	}
 
 }

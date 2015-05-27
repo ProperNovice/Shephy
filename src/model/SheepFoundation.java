@@ -6,6 +6,7 @@ import enums.Coordinates;
 import enums.Dimensions;
 import utils.ArrayList;
 import utils.Logger;
+import utils.Animation.AnimationSynch;
 
 public class SheepFoundation {
 
@@ -83,7 +84,8 @@ public class SheepFoundation {
 
 		public void addCardAnimateSynchronous(CardSheep cardSheep) {
 			this.sheeps.add(0, cardSheep);
-			cardSheep.animate(this.topLeftX, this.topLeftY);
+			cardSheep.animate(this.topLeftX, this.topLeftY,
+					AnimationSynch.SYNCHRONOUS);
 		}
 
 		public int getValue() {

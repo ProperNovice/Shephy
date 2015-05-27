@@ -1,5 +1,6 @@
 package gui;
 
+import instances.Instances;
 import utils.EventHandler.EventHandlerAble;
 import utils.Text;
 import utils.TextButton;
@@ -41,9 +42,8 @@ public class TextGame implements EventHandlerAble {
 
 	@Override
 	public void handleMouseButtonPrimary() {
-
-		System.out.println("pressed");
-
+		Instances.getControllerInstance().gameStateController()
+				.handleTextOptionPressed(this.textEnum);
 	}
 
 	public void relocate(double x, double y) {

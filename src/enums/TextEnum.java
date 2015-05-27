@@ -3,7 +3,6 @@ package enums;
 public enum TextEnum {
 
 	CHOOSE_EVENT("Choose event", TextTypeEnum.INDICATOR),
-	CHOOSE_EVENAT("Choose event", TextTypeEnum.OPTION),
 
 	;
 

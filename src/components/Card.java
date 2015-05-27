@@ -42,9 +42,9 @@ public class Card {
 		return this.cardEnum;
 	}
 
-	public void animate(double endingX, double endingY) {
-		Animation.animate(this.imageView, endingX, endingY,
-				AnimationSynch.SYNCHRONOUS);
+	public void animate(double endingX, double endingY,
+			AnimationSynch animationSynch) {
+		Animation.animate(this.imageView, endingX, endingY, animationSynch);
 	}
 
 	public void toBack() {
@@ -54,5 +54,5 @@ public class Card {
 	public void toFront() {
 		this.imageView.toFront();
 	}
-	
+
 }

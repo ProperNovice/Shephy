@@ -1,6 +1,8 @@
 package controller;
 
 import enums.GameStateEnum;
+import enums.TextEnum;
+import gameState.Animating;
 import gameState.ChooseEvent;
 import gameState.GameState;
 import gameState.StartGame;
@@ -15,6 +17,7 @@ public class GameStateController {
 	private GameState startGame = new StartGame();
 	private GameState startNewRound = new StartNewRound();
 	private GameState chooseEvent = new ChooseEvent();
+	private GameState animating = new Animating();
 
 	public GameStateController() {
 
@@ -31,9 +34,13 @@ public class GameStateController {
 		case START_NEW_ROUND:
 			this.currentGameState = this.startNewRound;
 			break;
-			
+
 		case CHOOSE_EVENT:
 			this.currentGameState = this.chooseEvent;
+			break;
+
+		case ANIMATING:
+			this.currentGameState = this.animating;
 			break;
 
 		}
@@ -51,6 +58,10 @@ public class GameStateController {
 
 	public void handleCardSheepPressed(CardSheep cardSheep) {
 		this.currentGameState.handleCardSheepPressed(cardSheep);
+	}
+
+	public void handleTextOptionPressed(TextEnum textEnum) {
+		this.currentGameState.handleTextOptionPressed(textEnum);
 	}
 
 }
