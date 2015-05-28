@@ -1,5 +1,6 @@
 package gameState;
 
+import utils.ArrayList;
 import utils.Lock;
 import utils.Logger;
 import components.CardEvent;
@@ -25,6 +26,8 @@ public class ChooseEvent extends GameState {
 
 		super.controller.textController().concealText();
 
+		super.removeCardEventFromHandAddToDiscardAnimateSynchronous(cardEvent);
+
 		CardEnum cardEnumPressed = cardEvent.getCardEnum();
 
 		Logger.logNewLine("resolving " + cardEnumPressed);
@@ -32,7 +35,11 @@ public class ChooseEvent extends GameState {
 		switch (cardEnumPressed) {
 
 		case LIGHTNING:
-			resolveLightning(cardEvent);
+			resolveLightning();
+			break;
+
+		case SHEPHION:
+			resolveShephion();
 			break;
 
 		default:
@@ -46,12 +53,21 @@ public class ChooseEvent extends GameState {
 		super.controller.textController().showText(TextEnum.CHOOSE_EVENT);
 	}
 
-	private void resolveLightning(CardEvent cardEvent) {
+	private void resolveLightning() {
 
 		CardSheep cardSheep = super.controller.board().removeHighestSheep();
 
 		super.controller.sheepFoundation().addCardSheepAnimate(cardSheep);
-		super.removeCardEventFromHandAddToDiscardAnimate(cardEvent);
+		Lock.lock();
+
+		super.setGameStateStartNewRound();
+
+	}
+
+	private void resolveShephion() {
+
+		ArrayList<CardSheep> sheep = super.controller.board().removeAllSheep();
+		super.controller.sheepFoundation().addCardSheepAnimate(sheep);
 		Lock.lock();
 
 		super.setGameStateStartNewRound();

@@ -15,7 +15,7 @@ public class StartGame extends GameState {
 		addCardSheepToBoard(3);
 		addCardSheepToBoard(30);
 
-		setCardAsFirst(CardEnum.LIGHTNING);
+		setCardAsFirst(CardEnum.CROWDING);
 
 		super.controller.gameStateController().setGameState(
 				GameStateEnum.START_NEW_ROUND);
@@ -43,13 +43,11 @@ public class StartGame extends GameState {
 	// FLOURISH("flourish"),
 	// GOLDEN_HOOVES("golden_hooves"),
 	// INSPIRATION("inspiration"),
-	// LIGHTNING("lightning"),
 	// METEOR("meteor"),
 	// MULTIPLY("multiply"),
 	// PLAGUE("plague"),
 	// PLANNING_SHEEP("planning_sheep"),
 	// SHEEP_DOG("sheep_dog"),
-	// SHEPHION("shephion"),
 	// SLUMP("slump"),
 	// STORM("storm"),
 	// WOLVES("wolves"),

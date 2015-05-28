@@ -40,10 +40,11 @@ public class GameState {
 				GameStateEnum.START_NEW_ROUND);
 	}
 
-	protected void removeCardEventFromHandAddToDiscardAnimate(
+	protected void removeCardEventFromHandAddToDiscardAnimateSynchronous(
 			CardEvent cardEvent) {
-		
-		this.controller.hand().removeCardShiftHandAnimateAsynchronous(cardEvent);
+
+		this.controller.hand()
+				.removeCardShiftHandAnimateAsynchronous(cardEvent);
 		this.controller.discard().addCardAnimateSynchronous(cardEvent);
 
 	}

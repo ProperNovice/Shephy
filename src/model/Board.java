@@ -55,11 +55,23 @@ public class Board {
 
 	}
 
+	public int size() {
+		return this.board.size();
+	}
+
 	public CardSheep removeHighestSheep() {
 
 		CardSheep cardSheep = this.board.remove(0);
 		rearrangeBoard();
 		return cardSheep;
+
+	}
+
+	public ArrayList<CardSheep> removeAllSheep() {
+
+		ArrayList<CardSheep> sheep = this.board.clone();
+		this.board.clear();
+		return sheep;
 
 	}
 

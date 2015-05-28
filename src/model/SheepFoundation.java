@@ -117,4 +117,11 @@ public class SheepFoundation {
 
 	}
 
+	public void addCardSheepAnimate(ArrayList<CardSheep> sheep) {
+
+		for (CardSheep cardSheep : sheep)
+			addCardSheepAnimate(cardSheep);
+
+	}
+
 }
