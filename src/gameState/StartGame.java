@@ -12,6 +12,8 @@ public class StartGame extends GameState {
 		addCardSheepToBoard(1);
 		addCardSheepToBoard(1);
 		addCardSheepToBoard(1);
+		addCardSheepToBoard(1);
+		addCardSheepToBoard(1);
 //		addCardSheepToBoard(3);
 //		addCardSheepToBoard(3);
 //		addCardSheepToBoard(30);

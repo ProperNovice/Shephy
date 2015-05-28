@@ -1,5 +1,6 @@
 package utils;
 
+import java.util.Collections;
 import java.util.Iterator;
 
 public class ArrayList<T> implements Iterable<T> {
@@ -120,6 +121,10 @@ public class ArrayList<T> implements Iterable<T> {
 
 	public int size() {
 		return this.list.size();
+	}
+
+	public void reverse() {
+		Collections.reverse(this.list);
 	}
 
 	@Override

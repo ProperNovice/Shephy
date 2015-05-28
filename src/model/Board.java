@@ -87,7 +87,7 @@ public class Board {
 
 	}
 
-	public CardSheep removeLast() {
+	public CardSheep removeLastSheep() {
 		return this.board.removeLast();
 	}
 
