@@ -5,6 +5,7 @@ import enums.TextEnum;
 import gameState.Animating;
 import gameState.ChooseEvent;
 import gameState.GameState;
+import gameState.ResolveCrowding;
 import gameState.StartGame;
 import gameState.StartNewRound;
 import utils.Logger;
@@ -18,6 +19,7 @@ public class GameStateController {
 	private GameState startNewRound = new StartNewRound();
 	private GameState chooseEvent = new ChooseEvent();
 	private GameState animating = new Animating();
+	private GameState resolveCrowding = new ResolveCrowding();
 
 	public GameStateController() {
 
@@ -41,6 +43,10 @@ public class GameStateController {
 
 		case ANIMATING:
 			this.currentGameState = this.animating;
+			break;
+
+		case RESOLVE_CROWDING:
+			this.currentGameState = this.resolveCrowding;
 			break;
 
 		}

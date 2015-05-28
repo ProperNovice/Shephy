@@ -6,6 +6,7 @@ public enum GameStateEnum {
 	START_NEW_ROUND("start new round"),
 	CHOOSE_EVENT("choose event"),
 	ANIMATING("animating"),
+	RESOLVE_CROWDING("resolve crowding"),
 
 	;
 

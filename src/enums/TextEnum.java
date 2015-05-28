@@ -3,6 +3,7 @@ package enums;
 public enum TextEnum {
 
 	CHOOSE_EVENT("Choose event", TextTypeEnum.INDICATOR),
+	CHOOSE_SHEEP_TO_RELEASE("Choose sheep\nto release", TextTypeEnum.INDICATOR),
 
 	;
 

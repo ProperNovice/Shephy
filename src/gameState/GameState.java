@@ -28,7 +28,14 @@ public class GameState {
 	}
 
 	public void handleCardSheepPressed(CardSheep cardSheep) {
-		Logger.logNewLine("" + cardSheep.getCardEnum());
+
+		if (this.controller.board().contains(cardSheep))
+			handleCardSheepBoardPressed(cardSheep);
+
+	}
+
+	protected void handleCardSheepBoardPressed(CardSheep cardSheep) {
+
 	}
 
 	public void handleTextOptionPressed(TextEnum textEnum) {

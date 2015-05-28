@@ -108,7 +108,10 @@ public class ChooseEvent extends GameState {
 
 		}
 
-		System.out.println("resove");
+		Lock.lock();
+
+		super.controller.gameStateController().setGameState(
+				GameStateEnum.RESOLVE_CROWDING);
 
 	}
 

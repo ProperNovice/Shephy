@@ -32,6 +32,9 @@ public class TextController {
 
 	public void showText(ArrayList<TextEnum> arrayList) {
 
+		double x = Coordinates.TEXT.x();
+		double y = Coordinates.TEXT.y();
+
 		while (!arrayList.isEmpty()) {
 
 			TextEnum textEnum = arrayList.removeFirst();
@@ -43,13 +46,12 @@ public class TextController {
 
 				this.textsShowing.add(textGame);
 				textGame.setVisible(true);
-
-				double x = Coordinates.TEXT.x();
-				double y = Coordinates.TEXT.y()
-						+ this.textsShowing.indexOf(textGame)
-						* Dimensions.TEXT.y();
-
 				textGame.relocate(x, y);
+
+				y += Dimensions.TEXT.y();
+
+				if (textGame.getTextEnum().string().contains("\n"))
+					y += Dimensions.TEXT.y();
 
 			}
 		}

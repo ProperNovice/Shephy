@@ -35,7 +35,11 @@ public class TextGame implements EventHandlerAble {
 
 		}
 
-		this.text.setHeight(Dimensions.TEXT.y());
+		if (this.textEnum.string().contains("\n"))
+			this.text.setHeight(2 * Dimensions.TEXT.y());
+		else
+			this.text.setHeight(Dimensions.TEXT.y());
+
 		this.text.setVisible(false);
 
 	}

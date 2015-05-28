@@ -90,5 +90,9 @@ public class Board {
 	public CardSheep removeLastSheep() {
 		return this.board.removeLast();
 	}
+	
+	public boolean contains(CardSheep cardSheep) {
+		return this.board.contains(cardSheep);
+	}
 
 }
