@@ -29,6 +29,10 @@ public class ArrayList<T> implements Iterable<T> {
 		this.list.add(index, element);
 	}
 
+	public void addFirst(T element) {
+		add(0, element);
+	}
+
 	public boolean add(T e) {
 		return this.list.add(e);
 	}

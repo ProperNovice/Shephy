@@ -42,6 +42,10 @@ public class ChooseEvent extends GameState {
 			resolveShephion();
 			break;
 
+		case CROWDING:
+			resolveCrowding();
+			break;
+
 		default:
 			System.out.println("not yet implemented");
 
@@ -71,6 +75,24 @@ public class ChooseEvent extends GameState {
 		Lock.lock();
 
 		super.setGameStateStartNewRound();
+
+	}
+
+	private void resolveCrowding() {
+
+		System.out.println(super.controller.board().allCardsAreSameValue());
+
+		int boardSize = super.controller.board().size();
+
+		if (boardSize <= 2) {
+
+			Lock.lock();
+			super.setGameStateStartNewRound();
+			return;
+
+		}
+
+		System.out.println("resove");
 
 	}
 

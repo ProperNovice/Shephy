@@ -21,7 +21,7 @@ public class Hand {
 
 	public void addCardAnimateSynchronous(CardEvent cardEvent) {
 
-		this.hand.add(0, cardEvent);
+		this.hand.addFirst(cardEvent);
 
 		if (hand.size() < this.MAXIMUM_SIZE)
 			return;

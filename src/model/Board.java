@@ -75,4 +75,20 @@ public class Board {
 
 	}
 
+	public boolean allCardsAreSameValue() {
+
+		int valueFirstCard = this.board.get(0).getValue();
+
+		for (CardSheep cardSheep : this.board)
+			if (cardSheep.getValue() != valueFirstCard)
+				return false;
+
+		return true;
+
+	}
+
+	public CardSheep removeLast() {
+		return this.board.removeLast();
+	}
+
 }
