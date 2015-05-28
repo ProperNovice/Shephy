@@ -59,9 +59,9 @@ public class ChooseEvent extends GameState {
 
 	private void resolveLightning() {
 
-		CardSheep cardSheep = super.controller.board().removeHighestSheep();
+		CardSheep cardSheep = super.controller.board().removeHighestSheepRearrangeSynchronous();
 
-		super.controller.sheepFoundation().addCardSheepAnimate(cardSheep);
+		super.controller.sheepFoundation().addCardSheepAnimateSynchronous(cardSheep);
 		Lock.lock();
 
 		super.setGameStateStartNewRound();
@@ -71,7 +71,7 @@ public class ChooseEvent extends GameState {
 	private void resolveShephion() {
 
 		ArrayList<CardSheep> sheep = super.controller.board().removeAllSheep();
-		super.controller.sheepFoundation().addCardSheepAnimate(sheep);
+		super.controller.sheepFoundation().addCardSheepAnimateSynchronous(sheep);
 		Lock.lock();
 
 		super.setGameStateStartNewRound();
@@ -101,7 +101,7 @@ public class ChooseEvent extends GameState {
 
 			sheep.reverse();
 
-			super.controller.sheepFoundation().addCardSheepAnimate(sheep);
+			super.controller.sheepFoundation().addCardSheepAnimateSynchronous(sheep);
 			Lock.lock();
 			super.setGameStateStartNewRound();
 			return;

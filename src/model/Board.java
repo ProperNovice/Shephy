@@ -59,7 +59,7 @@ public class Board {
 		return this.board.size();
 	}
 
-	public CardSheep removeHighestSheep() {
+	public CardSheep removeHighestSheepRearrangeSynchronous() {
 
 		CardSheep cardSheep = this.board.remove(0);
 		rearrangeBoard();
@@ -90,9 +90,14 @@ public class Board {
 	public CardSheep removeLastSheep() {
 		return this.board.removeLast();
 	}
-	
+
 	public boolean contains(CardSheep cardSheep) {
 		return this.board.contains(cardSheep);
+	}
+
+	public void removeSheepRearrangeSynchronous(CardSheep cardSheep) {
+		this.board.remove(cardSheep);
+		rearrangeBoard();
 	}
 
 }

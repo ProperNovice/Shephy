@@ -15,7 +15,7 @@ public class StartGame extends GameState {
 		addCardSheepToBoard(100);
 		addCardSheepToBoard(3);
 
-		setCardAsFirst(CardEnum.CROWDING);
+		setCardAsFirst(CardEnum.FALLING_ROCK);
 
 		super.controller.gameStateController().setGameState(
 				GameStateEnum.START_NEW_ROUND);
@@ -36,7 +36,6 @@ public class StartGame extends GameState {
 
 	// ALL_PURPOSE_SHEEP("all-purpose_sheep"),
 	// BE_FRUITFUL("be_fruitful"),
-	// CROWDING("crowding"),
 	// DOMINION("dominion"),
 	// FALLING_ROCK("falling_rock"),
 	// FILL_THE_EARTH("fill_the_earth"),
@@ -52,5 +51,9 @@ public class StartGame extends GameState {
 	// STORM("storm"),
 	// WOLVES("wolves"),
 	// BACK_EVENT("back_event"),
+
+	// CROWDING("crowding"),
+	// LIGHTNING("lightning"),
+	// SHEPHION("shephion"),
 
 }

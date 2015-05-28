@@ -109,7 +109,7 @@ public class SheepFoundation {
 
 	}
 
-	public void addCardSheepAnimate(CardSheep cardSheep) {
+	public void addCardSheepAnimateSynchronous(CardSheep cardSheep) {
 
 		for (SheepList sheepList : this.sheepList)
 			if (cardSheep.getValue() == sheepList.getValue())
@@ -117,10 +117,10 @@ public class SheepFoundation {
 
 	}
 
-	public void addCardSheepAnimate(ArrayList<CardSheep> sheep) {
+	public void addCardSheepAnimateSynchronous(ArrayList<CardSheep> sheep) {
 
 		for (CardSheep cardSheep : sheep)
-			addCardSheepAnimate(cardSheep);
+			addCardSheepAnimateSynchronous(cardSheep);
 
 	}
 
