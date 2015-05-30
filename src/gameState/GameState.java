@@ -53,10 +53,8 @@ public class GameState {
 	protected void removeCardEventFromHandAddToDiscardAnimateAsynchronous(
 			CardEvent cardEvent) {
 
-		this.controller.hand()
-				.removeCardShiftHandAnimateAsynchronous(cardEvent);
-		this.controller.discard().addCardAnimate(cardEvent,
-				AnimationSynch.ASYNCHRONOUS);
+		this.controller.hand().removeCardShiftHandAnimateSynchronous(cardEvent);
+		this.controller.discard().addCardAnimateSynchronous(cardEvent);
 
 	}
 
@@ -65,8 +63,8 @@ public class GameState {
 		CardSheep cardSheep = this.controller.board()
 				.removeHighestSheepRearrangeAsynchronous();
 
-		this.controller.sheepFoundation().addCardSheepAnimate(cardSheep,
-				AnimationSynch.ASYNCHRONOUS);
+		this.controller.sheepFoundation().addCardSheepAnimateSynchronous(
+				cardSheep);
 
 		this.setGameStateStartNewRound();
 
@@ -75,7 +73,7 @@ public class GameState {
 	protected void resolveShephion() {
 
 		ArrayList<CardSheep> sheep = this.controller.board().removeAllSheep();
-		this.controller.sheepFoundation().addCardSheepAnimate(sheep,
+		this.controller.sheepFoundation().addCardSheepAnimateSynchronous(sheep,
 				AnimationSynch.ASYNCHRONOUS);
 
 		this.setGameStateStartNewRound();
@@ -84,9 +82,7 @@ public class GameState {
 
 	protected void resolveCrowding() {
 
-		int boardSize = this.controller.board().size();
-
-		if (boardSize <= 2) {
+		if (this.controller.board().size() <= 2) {
 
 			this.setGameStateStartNewRound();
 			return;
@@ -97,16 +93,13 @@ public class GameState {
 
 			ArrayList<CardSheep> sheep = new ArrayList<>();
 
-			while (boardSize > 2) {
+			while (this.controller.board().size() > 2)
 				sheep.add(this.controller.board().removeLastSheep());
-				boardSize--;
-			}
 
 			sheep.reverse();
 
-			this.controller.sheepFoundation().addCardSheepAnimate(sheep,
-					AnimationSynch.SYNCHRONOUS);
-			Lock.lock();
+			this.controller.sheepFoundation().addCardSheepAnimateSynchronous(
+					sheep, AnimationSynch.ASYNCHRONOUS);
 
 			this.setGameStateStartNewRound();
 			return;
@@ -124,8 +117,8 @@ public class GameState {
 				|| this.controller.board().allCardsAreSameValue()) {
 
 			CardSheep cardSheep = this.controller.board().removeLastSheep();
-			this.controller.sheepFoundation().addCardSheepAnimate(cardSheep,
-					AnimationSynch.ASYNCHRONOUS);
+			this.controller.sheepFoundation().addCardSheepAnimateSynchronous(
+					cardSheep);
 
 			this.setGameStateStartNewRound();
 			return;
@@ -167,9 +160,7 @@ public class GameState {
 		if (this.controller.hand().size() == 1) {
 
 			CardEvent cardEvent = this.controller.hand().removeSoleCard();
-			this.controller.discard().addCardAnimate(cardEvent,
-					AnimationSynch.SYNCHRONOUS);
-			Lock.lock();
+			this.controller.discard().addCardAnimateSynchronous(cardEvent);
 
 			this.controller.gameStateController().setGameState(
 					GameStateEnum.START_NEW_ROUND);

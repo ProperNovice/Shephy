@@ -1,9 +1,10 @@
 package model;
 
-import components.CardEvent;
-import enums.Coordinates;
 import utils.ArrayList;
-import utils.Animation.AnimationSynch;
+
+import components.CardEvent;
+
+import enums.Coordinates;
 
 public class Discard {
 
@@ -13,12 +14,10 @@ public class Discard {
 
 	}
 
-	public void addCardAnimate(CardEvent cardEvent,
-			AnimationSynch animationSynch) {
+	public void addCardAnimateSynchronous(CardEvent cardEvent) {
 
 		this.discard.add(cardEvent);
-		cardEvent.animate(Coordinates.DISCARD.x(), Coordinates.DISCARD.y(),
-				animationSynch);
+		cardEvent.animate(Coordinates.DISCARD.x(), Coordinates.DISCARD.y());
 
 	}
 

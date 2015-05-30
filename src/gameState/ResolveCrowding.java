@@ -1,6 +1,5 @@
 package gameState;
 
-import utils.Animation.AnimationSynch;
 import utils.Logger;
 
 import components.CardSheep;
@@ -27,8 +26,8 @@ public class ResolveCrowding extends GameState {
 				GameStateEnum.ANIMATING);
 
 		super.controller.board().removeSheepRearrangeAsynchronous(cardSheep);
-		super.controller.sheepFoundation().addCardSheepAnimate(cardSheep,
-				AnimationSynch.ASYNCHRONOUS);
+		super.controller.sheepFoundation().addCardSheepAnimateSynchronous(
+				cardSheep);
 
 		if (super.controller.board().size() == 2) {
 

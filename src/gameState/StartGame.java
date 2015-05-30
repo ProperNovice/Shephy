@@ -11,11 +11,13 @@ public class StartGame extends GameState {
 
 		addCardSheepToBoard(1);
 		addCardSheepToBoard(1);
-		addCardSheepToBoard(3);
-		addCardSheepToBoard(100);
-		addCardSheepToBoard(3);
+		addCardSheepToBoard(1);
+		addCardSheepToBoard(1);
+//		addCardSheepToBoard(3);
+//		addCardSheepToBoard(100);
+//		addCardSheepToBoard(3);
 
-		setCardAsFirst(CardEnum.MULTIPLY);
+		setCardAsFirst(CardEnum.CROWDING);
 		setCardAsFirst(CardEnum.METEOR);
 
 		super.controller.gameStateController().setGameState(

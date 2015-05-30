@@ -1,10 +1,11 @@
 package model;
 
+import utils.ArrayList;
+
 import components.CardEvent;
+
 import enums.Coordinates;
 import enums.Dimensions;
-import utils.Animation.AnimationSynch;
-import utils.ArrayList;
 
 public class Hand {
 
@@ -30,11 +31,11 @@ public class Hand {
 		if (hand.size() < this.MAXIMUM_SIZE)
 			return;
 
-		shiftHand(AnimationSynch.SYNCHRONOUS);
+		shiftHand();
 
 	}
 
-	private void shiftHand(AnimationSynch animationSynch) {
+	private void shiftHand() {
 
 		double endingX = Coordinates.HAND.x() + 4
 				* Dimensions.CARD_PLUS_GAP.x();
@@ -42,11 +43,11 @@ public class Hand {
 
 		for (int counter = this.hand.size() - 1; counter >= 0; counter--) {
 
-			this.hand.get(counter).animate(endingX, endingY, animationSynch);
+			this.hand.get(counter).animate(endingX, endingY);
 			endingX -= Dimensions.CARD_PLUS_GAP.x();
 
 		}
-		
+
 		for (CardEvent cardEvent : this.hand)
 			cardEvent.toFront();
 
@@ -56,10 +57,10 @@ public class Hand {
 		return this.hand.contains(cardEvent);
 	}
 
-	public void removeCardShiftHandAnimateAsynchronous(CardEvent cardEvent) {
+	public void removeCardShiftHandAnimateSynchronous(CardEvent cardEvent) {
 
 		this.hand.remove(cardEvent);
-		shiftHand(AnimationSynch.ASYNCHRONOUS);
+		shiftHand();
 
 	}
 

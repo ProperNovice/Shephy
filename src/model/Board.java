@@ -1,8 +1,9 @@
 package model;
 
-import utils.Animation.AnimationSynch;
 import utils.ArrayList;
+
 import components.CardSheep;
+
 import enums.Coordinates;
 import enums.Dimensions;
 
@@ -37,19 +38,18 @@ public class Board {
 
 		for (int counter = this.board.size() - 1; counter >= cardSheepIndex; counter--)
 			this.board.get(counter).animate(
-					firstX + counter * Dimensions.CARD_PLUS_GAP.x(), y,
-					AnimationSynch.SYNCHRONOUS);
+					firstX + counter * Dimensions.CARD_PLUS_GAP.x(), y);
 
 	}
 
-	private void rearrangeBoardAsynchronous() {
+	private void rearrangeBoardSynchronous() {
 
 		double endingX = Coordinates.BOARD.x();
 		double endingY = Coordinates.BOARD.y();
 
 		for (CardSheep cardSheep : this.board) {
 
-			cardSheep.animate(endingX, endingY, AnimationSynch.ASYNCHRONOUS);
+			cardSheep.animate(endingX, endingY);
 			endingX += Dimensions.CARD_PLUS_GAP.x();
 
 		}
@@ -63,7 +63,7 @@ public class Board {
 	public CardSheep removeHighestSheepRearrangeAsynchronous() {
 
 		CardSheep cardSheep = this.board.remove(0);
-		rearrangeBoardAsynchronous();
+		rearrangeBoardSynchronous();
 		return cardSheep;
 
 	}
@@ -98,7 +98,7 @@ public class Board {
 
 	public void removeSheepRearrangeAsynchronous(CardSheep cardSheep) {
 		this.board.remove(cardSheep);
-		rearrangeBoardAsynchronous();
+		rearrangeBoardSynchronous();
 	}
 
 	public boolean isFull() {
