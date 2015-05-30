@@ -2,6 +2,7 @@ package gameState;
 
 import utils.Lock;
 import components.CardEvent;
+import enums.GameStateEnum;
 import enums.TextEnum;
 
 public class ResolveSheepDog extends GameState {
@@ -24,7 +25,8 @@ public class ResolveSheepDog extends GameState {
 		super.controller.discard().addCardAnimateSynchronous(cardEvent);
 		Lock.lock();
 
-		super.setGameStateStartNewRound();
+		super.controller.gameStateController().setGameState(
+				GameStateEnum.START_NEW_ROUND);
 
 	}
 

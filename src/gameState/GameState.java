@@ -46,11 +46,6 @@ public class GameState {
 		Logger.logNewLine("" + textEnum);
 	}
 
-	protected void setGameStateStartNewRound() {
-		this.controller.gameStateController().setGameState(
-				GameStateEnum.START_NEW_ROUND);
-	}
-
 	protected void removeCardEventFromHandAddToDiscardAnimateAsynchronous(
 			CardEvent cardEvent) {
 
@@ -69,7 +64,8 @@ public class GameState {
 
 		Lock.lock();
 
-		this.setGameStateStartNewRound();
+		this.controller.gameStateController().setGameState(
+				GameStateEnum.START_NEW_ROUND);
 
 	}
 
@@ -80,7 +76,8 @@ public class GameState {
 
 		Lock.lock();
 
-		this.setGameStateStartNewRound();
+		this.controller.gameStateController().setGameState(
+				GameStateEnum.START_NEW_ROUND);
 
 	}
 
@@ -90,7 +87,8 @@ public class GameState {
 
 			Lock.lock();
 
-			this.setGameStateStartNewRound();
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
 			return;
 
 		}
@@ -109,7 +107,8 @@ public class GameState {
 
 			Lock.lock();
 
-			this.setGameStateStartNewRound();
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
 			return;
 
 		}
@@ -132,7 +131,8 @@ public class GameState {
 
 			Lock.lock();
 
-			this.setGameStateStartNewRound();
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
 			return;
 
 		}
@@ -149,9 +149,12 @@ public class GameState {
 		Logger.logNewLine("resolving multiply");
 
 		if (this.controller.board().isFull()) {
+
 			Lock.lock();
-			this.setGameStateStartNewRound();
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
 			return;
+
 		}
 
 		CardSheep cardSheep = this.controller.sheepFoundation().getCardSheep(3);
