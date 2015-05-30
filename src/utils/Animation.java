@@ -197,4 +197,13 @@ public class Animation {
 
 	}
 
+	public static boolean isRunning() {
+
+		if (animationsSynchronous.isEmpty())
+			return false;
+
+		return true;
+
+	}
+
 }

@@ -3,10 +3,11 @@ package gameState;
 import instances.Instances;
 import utils.Animation.AnimationSynch;
 import utils.ArrayList;
-import utils.Lock;
 import utils.Logger;
+
 import components.CardEvent;
 import components.CardSheep;
+
 import controller.Controller;
 import enums.GameStateEnum;
 import enums.TextEnum;
@@ -140,8 +141,8 @@ public class GameState {
 		}
 
 		CardSheep cardSheep = this.controller.sheepFoundation().getCardSheep(3);
+
 		this.controller.board().addCardSheepAnimateSynchronous(cardSheep);
-		Lock.lock();
 
 		this.controller.gameStateController().setGameState(
 				GameStateEnum.START_NEW_ROUND);

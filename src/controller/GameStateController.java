@@ -10,6 +10,8 @@ import gameState.ResolveFallingRock;
 import gameState.ResolveSheepDog;
 import gameState.StartGame;
 import gameState.StartNewRound;
+import utils.Animation;
+import utils.Lock;
 import utils.Logger;
 import components.CardEvent;
 import components.CardSheep;
@@ -30,6 +32,10 @@ public class GameStateController {
 	}
 
 	public void setGameState(GameStateEnum gameStateEnum) {
+
+		if (Animation.isRunning()
+				&& !gameStateEnum.equals(GameStateEnum.ANIMATING))
+			Lock.lock();
 
 		switch (gameStateEnum) {
 
