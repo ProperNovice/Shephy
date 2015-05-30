@@ -1,7 +1,7 @@
 package gameState;
 
+import utils.Lock;
 import components.CardEvent;
-
 import enums.TextEnum;
 
 public class ResolveSheepDog extends GameState {
@@ -20,7 +20,9 @@ public class ResolveSheepDog extends GameState {
 		super.controller.textController().concealText();
 		super.controller.hand()
 				.removeCardShiftHandAnimateSynchronous(cardEvent);
+
 		super.controller.discard().addCardAnimateSynchronous(cardEvent);
+		Lock.lock();
 
 		super.setGameStateStartNewRound();
 

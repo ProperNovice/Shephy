@@ -11,17 +11,11 @@ public class StartGame extends GameState {
 
 		addCardSheepToBoard(1);
 		addCardSheepToBoard(1);
-		addCardSheepToBoard(1);
-		addCardSheepToBoard(1);
-//		addCardSheepToBoard(3);
-//		addCardSheepToBoard(100);
-//		addCardSheepToBoard(3);
+		addCardSheepToBoard(3);
+		addCardSheepToBoard(100);
+		addCardSheepToBoard(3);
 
-		setCardAsFirst(CardEnum.SHEEP_DOG);
-		setCardAsFirst(CardEnum.CROWDING);
-		setCardAsFirst(CardEnum.FALLING_ROCK);
-		setCardAsFirst(CardEnum.MULTIPLY);
-//		setCardAsFirst(CardEnum.METEOR);
+		setCardAsFirst(CardEnum.METEOR);
 
 		super.controller.gameStateController().setGameState(
 				GameStateEnum.START_NEW_ROUND);

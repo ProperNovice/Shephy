@@ -1,9 +1,8 @@
 package gameState;
 
+import utils.Lock;
 import utils.Logger;
-
 import components.CardSheep;
-
 import enums.GameStateEnum;
 import enums.TextEnum;
 
@@ -27,9 +26,11 @@ public class ResolveFallingRock extends GameState {
 		super.controller.gameStateController().setGameState(
 				GameStateEnum.ANIMATING);
 
-		super.controller.board().removeSheepRearrangeAsynchronous(cardSheep);
+		super.controller.board().removeSheepRearrangeSynchronous(cardSheep);
 		super.controller.sheepFoundation().addCardSheepAnimateSynchronous(
 				cardSheep);
+
+		Lock.lock();
 
 		super.controller.gameStateController().setGameState(
 				GameStateEnum.START_NEW_ROUND);

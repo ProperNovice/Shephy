@@ -1,12 +1,13 @@
 package model;
 
+import utils.ArrayList;
+import utils.Logger;
+
 import components.CardSheep;
+
 import enums.CardEnum;
 import enums.Coordinates;
 import enums.Dimensions;
-import utils.ArrayList;
-import utils.Logger;
-import utils.Animation.AnimationSynch;
 
 public class SheepFoundation {
 
@@ -116,8 +117,7 @@ public class SheepFoundation {
 
 	}
 
-	public void addCardSheepAnimateSynchronous(ArrayList<CardSheep> sheep,
-			AnimationSynch animationSynch) {
+	public void addCardSheepAnimateSynchronous(ArrayList<CardSheep> sheep) {
 
 		for (CardSheep cardSheep : sheep)
 			addCardSheepAnimateSynchronous(cardSheep);

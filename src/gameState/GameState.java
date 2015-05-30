@@ -1,8 +1,8 @@
 package gameState;
 
 import instances.Instances;
-import utils.Animation.AnimationSynch;
 import utils.ArrayList;
+import utils.Lock;
 import utils.Logger;
 
 import components.CardEvent;
@@ -62,10 +62,12 @@ public class GameState {
 	protected void resolveLightning() {
 
 		CardSheep cardSheep = this.controller.board()
-				.removeHighestSheepRearrangeAsynchronous();
+				.removeHighestSheepRearrangeSynchronous();
 
 		this.controller.sheepFoundation().addCardSheepAnimateSynchronous(
 				cardSheep);
+
+		Lock.lock();
 
 		this.setGameStateStartNewRound();
 
@@ -74,8 +76,9 @@ public class GameState {
 	protected void resolveShephion() {
 
 		ArrayList<CardSheep> sheep = this.controller.board().removeAllSheep();
-		this.controller.sheepFoundation().addCardSheepAnimateSynchronous(sheep,
-				AnimationSynch.ASYNCHRONOUS);
+		this.controller.sheepFoundation().addCardSheepAnimateSynchronous(sheep);
+
+		Lock.lock();
 
 		this.setGameStateStartNewRound();
 
@@ -84,6 +87,8 @@ public class GameState {
 	protected void resolveCrowding() {
 
 		if (this.controller.board().size() <= 2) {
+
+			Lock.lock();
 
 			this.setGameStateStartNewRound();
 			return;
@@ -100,12 +105,16 @@ public class GameState {
 			sheep.reverse();
 
 			this.controller.sheepFoundation().addCardSheepAnimateSynchronous(
-					sheep, AnimationSynch.ASYNCHRONOUS);
+					sheep);
+
+			Lock.lock();
 
 			this.setGameStateStartNewRound();
 			return;
 
 		}
+
+		Lock.lock();
 
 		this.controller.gameStateController().setGameState(
 				GameStateEnum.RESOLVE_CROWDING);
@@ -121,10 +130,14 @@ public class GameState {
 			this.controller.sheepFoundation().addCardSheepAnimateSynchronous(
 					cardSheep);
 
+			Lock.lock();
+
 			this.setGameStateStartNewRound();
 			return;
 
 		}
+
+		Lock.lock();
 
 		this.controller.gameStateController().setGameState(
 				GameStateEnum.RESOLVE_FALLING_ROCK);
@@ -136,6 +149,7 @@ public class GameState {
 		Logger.logNewLine("resolving multiply");
 
 		if (this.controller.board().isFull()) {
+			Lock.lock();
 			this.setGameStateStartNewRound();
 			return;
 		}
@@ -143,6 +157,8 @@ public class GameState {
 		CardSheep cardSheep = this.controller.sheepFoundation().getCardSheep(3);
 
 		this.controller.board().addCardSheepAnimateSynchronous(cardSheep);
+
+		Lock.lock();
 
 		this.controller.gameStateController().setGameState(
 				GameStateEnum.START_NEW_ROUND);
@@ -152,6 +168,8 @@ public class GameState {
 	protected void resolveSheepDog() {
 
 		if (this.controller.hand().isEmpty()) {
+
+			Lock.lock();
 
 			this.controller.gameStateController().setGameState(
 					GameStateEnum.START_NEW_ROUND);
@@ -163,11 +181,15 @@ public class GameState {
 			CardEvent cardEvent = this.controller.hand().removeSoleCard();
 			this.controller.discard().addCardAnimateSynchronous(cardEvent);
 
+			Lock.lock();
+
 			this.controller.gameStateController().setGameState(
 					GameStateEnum.START_NEW_ROUND);
 			return;
 
 		}
+
+		Lock.lock();
 
 		this.controller.gameStateController().setGameState(
 				GameStateEnum.RESOLVE_SHEEP_DOG);
