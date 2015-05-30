@@ -13,11 +13,11 @@ public class Discard {
 
 	}
 
-	public void addCardAnimateSynchronous(CardEvent cardEvent) {
+	public void addCardAnimateAsynchronous(CardEvent cardEvent) {
 
 		this.discard.add(cardEvent);
 		cardEvent.animate(Coordinates.DISCARD.x(), Coordinates.DISCARD.y(),
-				AnimationSynch.SYNCHRONOUS);
+				AnimationSynch.ASYNCHRONOUS);
 
 	}
 

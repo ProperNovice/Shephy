@@ -6,6 +6,7 @@ import gameState.Animating;
 import gameState.ChooseEvent;
 import gameState.GameState;
 import gameState.ResolveCrowding;
+import gameState.ResolveFallingRock;
 import gameState.StartGame;
 import gameState.StartNewRound;
 import utils.Logger;
@@ -20,6 +21,7 @@ public class GameStateController {
 	private GameState chooseEvent = new ChooseEvent();
 	private GameState animating = new Animating();
 	private GameState resolveCrowding = new ResolveCrowding();
+	private GameState resolveFallingRock = new ResolveFallingRock();
 
 	public GameStateController() {
 
@@ -47,6 +49,10 @@ public class GameStateController {
 
 		case RESOLVE_CROWDING:
 			this.currentGameState = this.resolveCrowding;
+			break;
+
+		case RESOLVE_FALLING_ROCK:
+			this.currentGameState = this.resolveFallingRock;
 			break;
 
 		}

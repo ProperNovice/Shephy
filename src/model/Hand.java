@@ -19,6 +19,10 @@ public class Hand {
 		return this.hand.size() == this.MAXIMUM_SIZE;
 	}
 
+	public boolean isEmpty() {
+		return this.hand.size() == 0;
+	}
+
 	public void addCardAnimateSynchronous(CardEvent cardEvent) {
 
 		this.hand.addFirst(cardEvent);

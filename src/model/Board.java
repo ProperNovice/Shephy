@@ -9,6 +9,7 @@ import enums.Dimensions;
 public class Board {
 
 	private ArrayList<CardSheep> board = new ArrayList<>();
+	private final int MAXIMUM_SIZE = 7;
 
 	public Board() {
 
@@ -98,6 +99,10 @@ public class Board {
 	public void removeSheepRearrangeSynchronous(CardSheep cardSheep) {
 		this.board.remove(cardSheep);
 		rearrangeBoard();
+	}
+
+	public boolean isFull() {
+		return (this.board.size() == this.MAXIMUM_SIZE);
 	}
 
 }

@@ -1,10 +1,9 @@
 package gameState;
 
-import utils.ArrayList;
-import utils.Lock;
 import utils.Logger;
+
 import components.CardEvent;
-import components.CardSheep;
+
 import enums.CardEnum;
 import enums.GameStateEnum;
 import enums.TextEnum;
@@ -14,7 +13,7 @@ public class ChooseEvent extends GameState {
 	@Override
 	public void handleGameStateChange() {
 
-		showText();
+		super.controller.textController().showText(TextEnum.CHOOSE_EVENT);
 
 	}
 
@@ -35,83 +34,28 @@ public class ChooseEvent extends GameState {
 		switch (cardEnumPressed) {
 
 		case LIGHTNING:
-			resolveLightning();
+			super.resolveLightning();
 			break;
 
 		case SHEPHION:
-			resolveShephion();
+			super.resolveShephion();
 			break;
 
 		case CROWDING:
-			resolveCrowding();
+			super.resolveCrowding();
 			break;
+
+		case FALLING_ROCK:
+			super.resolveFallingRock();
+			break;
+
+		case MULTIPLY:
+			super.resolveMultiply();
 
 		default:
 			System.out.println("not yet implemented");
 
 		}
-
-	}
-
-	private void showText() {
-		super.controller.textController().showText(TextEnum.CHOOSE_EVENT);
-	}
-
-	private void resolveLightning() {
-
-		CardSheep cardSheep = super.controller.board().removeHighestSheepRearrangeSynchronous();
-
-		super.controller.sheepFoundation().addCardSheepAnimateSynchronous(cardSheep);
-		Lock.lock();
-
-		super.setGameStateStartNewRound();
-
-	}
-
-	private void resolveShephion() {
-
-		ArrayList<CardSheep> sheep = super.controller.board().removeAllSheep();
-		super.controller.sheepFoundation().addCardSheepAnimateSynchronous(sheep);
-		Lock.lock();
-
-		super.setGameStateStartNewRound();
-
-	}
-
-	private void resolveCrowding() {
-
-		int boardSize = super.controller.board().size();
-
-		if (boardSize <= 2) {
-
-			Lock.lock();
-			super.setGameStateStartNewRound();
-			return;
-
-		}
-
-		if (super.controller.board().allCardsAreSameValue()) {
-
-			ArrayList<CardSheep> sheep = new ArrayList<>();
-
-			while (boardSize > 2) {
-				sheep.add(super.controller.board().removeLastSheep());
-				boardSize--;
-			}
-
-			sheep.reverse();
-
-			super.controller.sheepFoundation().addCardSheepAnimateSynchronous(sheep);
-			Lock.lock();
-			super.setGameStateStartNewRound();
-			return;
-
-		}
-
-		Lock.lock();
-
-		super.controller.gameStateController().setGameState(
-				GameStateEnum.RESOLVE_CROWDING);
 
 	}
 

@@ -7,6 +7,7 @@ public enum GameStateEnum {
 	CHOOSE_EVENT("choose event"),
 	ANIMATING("animating"),
 	RESOLVE_CROWDING("resolve crowding"),
+	RESOLVE_FALLING_ROCK("resolve falling rock"),
 
 	;
 
