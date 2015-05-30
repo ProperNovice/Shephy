@@ -4,6 +4,7 @@ public enum TextEnum {
 
 	CHOOSE_EVENT("Choose event", TextTypeEnum.INDICATOR),
 	CHOOSE_SHEEP_TO_RELEASE("Choose sheep\nto release", TextTypeEnum.INDICATOR),
+	CHOOSE_EVENT_TO_DISCARD("Choose event\nto discard", TextTypeEnum.INDICATOR),
 
 	;
 

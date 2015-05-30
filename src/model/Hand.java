@@ -46,7 +46,7 @@ public class Hand {
 			endingX -= Dimensions.CARD_PLUS_GAP.x();
 
 		}
-
+		
 		for (CardEvent cardEvent : this.hand)
 			cardEvent.toFront();
 
@@ -61,6 +61,14 @@ public class Hand {
 		this.hand.remove(cardEvent);
 		shiftHand(AnimationSynch.ASYNCHRONOUS);
 
+	}
+
+	public int size() {
+		return this.hand.size();
+	}
+
+	public CardEvent removeSoleCard() {
+		return this.hand.removeFirst();
 	}
 
 }

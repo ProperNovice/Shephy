@@ -15,7 +15,8 @@ public class StartGame extends GameState {
 		addCardSheepToBoard(100);
 		addCardSheepToBoard(3);
 
-		setCardAsFirst(CardEnum.SHEEP_DOG);
+		setCardAsFirst(CardEnum.MULTIPLY);
+		setCardAsFirst(CardEnum.METEOR);
 
 		super.controller.gameStateController().setGameState(
 				GameStateEnum.START_NEW_ROUND);
@@ -26,7 +27,7 @@ public class StartGame extends GameState {
 
 		CardSheep cardSheep = super.controller.sheepFoundation().getCardSheep(
 				value);
-		super.controller.board().addCardSheep(cardSheep);
+		super.controller.board().addCardSheepAnimateSynchronous(cardSheep);
 
 	}
 
@@ -44,7 +45,6 @@ public class StartGame extends GameState {
 	// METEOR("meteor"),
 	// PLAGUE("plague"),
 	// PLANNING_SHEEP("planning_sheep"),
-	// SHEEP_DOG("sheep_dog"),
 	// SLUMP("slump"),
 	// STORM("storm"),
 	// WOLVES("wolves"),
@@ -54,6 +54,7 @@ public class StartGame extends GameState {
 	// FALLING_ROCK("falling_rock"),
 	// LIGHTNING("lightning"),
 	// MULTIPLY("multiply"),
+	// SHEEP_DOG("sheep_dog"),
 	// SHEPHION("shephion"),
 
 }

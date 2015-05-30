@@ -25,7 +25,7 @@ public class ChooseEvent extends GameState {
 
 		super.controller.textController().concealText();
 
-		super.removeCardEventFromHandAddToDiscardAnimateSynchronous(cardEvent);
+		super.removeCardEventFromHandAddToDiscardAnimateAsynchronous(cardEvent);
 
 		CardEnum cardEnumPressed = cardEvent.getCardEnum();
 
@@ -51,6 +51,11 @@ public class ChooseEvent extends GameState {
 
 		case MULTIPLY:
 			super.resolveMultiply();
+			break;
+
+		case SHEEP_DOG:
+			super.resolveSheepDog();
+			break;
 
 		default:
 			System.out.println("not yet implemented");

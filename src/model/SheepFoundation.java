@@ -82,10 +82,10 @@ public class SheepFoundation {
 			cardSheep.relocate(this.topLeftX, this.topLeftY);
 		}
 
-		public void addCardAnimateSynchronous(CardSheep cardSheep) {
+		public void addCardAnimate(CardSheep cardSheep,
+				AnimationSynch animationSynch) {
 			this.sheeps.addFirst(cardSheep);
-			cardSheep.animate(this.topLeftX, this.topLeftY,
-					AnimationSynch.SYNCHRONOUS);
+			cardSheep.animate(this.topLeftX, this.topLeftY, animationSynch);
 		}
 
 		public int getValue() {
@@ -109,18 +109,20 @@ public class SheepFoundation {
 
 	}
 
-	public void addCardSheepAnimateSynchronous(CardSheep cardSheep) {
+	public void addCardSheepAnimate(CardSheep cardSheep,
+			AnimationSynch animationSynch) {
 
 		for (SheepList sheepList : this.sheepList)
 			if (cardSheep.getValue() == sheepList.getValue())
-				sheepList.addCardAnimateSynchronous(cardSheep);
+				sheepList.addCardAnimate(cardSheep, animationSynch);
 
 	}
 
-	public void addCardSheepAnimateSynchronous(ArrayList<CardSheep> sheep) {
+	public void addCardSheepAnimate(ArrayList<CardSheep> sheep,
+			AnimationSynch animationSynch) {
 
 		for (CardSheep cardSheep : sheep)
-			addCardSheepAnimateSynchronous(cardSheep);
+			addCardSheepAnimate(cardSheep, animationSynch);
 
 	}
 

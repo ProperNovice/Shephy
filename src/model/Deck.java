@@ -82,7 +82,7 @@ public class Deck {
 				cardEvent = cardEventTemp;
 
 		this.deck.remove(cardEvent);
-		this.deck.add(3, cardEvent);
+		this.deck.add(0, cardEvent);
 
 	}
 

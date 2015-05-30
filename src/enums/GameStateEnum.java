@@ -8,6 +8,7 @@ public enum GameStateEnum {
 	ANIMATING("animating"),
 	RESOLVE_CROWDING("resolve crowding"),
 	RESOLVE_FALLING_ROCK("resolve falling rock"),
+	RESOLVE_SHEEP_DOG("resolve sheep dog"),
 
 	;
 

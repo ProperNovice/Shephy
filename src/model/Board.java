@@ -15,7 +15,7 @@ public class Board {
 
 	}
 
-	public void addCardSheep(CardSheep cardSheep) {
+	public void addCardSheepAnimateSynchronous(CardSheep cardSheep) {
 
 		for (CardSheep cardSheepTemp : this.board) {
 
@@ -42,14 +42,14 @@ public class Board {
 
 	}
 
-	private void rearrangeBoard() {
+	private void rearrangeBoardAsynchronous() {
 
 		double endingX = Coordinates.BOARD.x();
 		double endingY = Coordinates.BOARD.y();
 
 		for (CardSheep cardSheep : this.board) {
 
-			cardSheep.animate(endingX, endingY, AnimationSynch.SYNCHRONOUS);
+			cardSheep.animate(endingX, endingY, AnimationSynch.ASYNCHRONOUS);
 			endingX += Dimensions.CARD_PLUS_GAP.x();
 
 		}
@@ -60,10 +60,10 @@ public class Board {
 		return this.board.size();
 	}
 
-	public CardSheep removeHighestSheepRearrangeSynchronous() {
+	public CardSheep removeHighestSheepRearrangeAsynchronous() {
 
 		CardSheep cardSheep = this.board.remove(0);
-		rearrangeBoard();
+		rearrangeBoardAsynchronous();
 		return cardSheep;
 
 	}
@@ -96,9 +96,9 @@ public class Board {
 		return this.board.contains(cardSheep);
 	}
 
-	public void removeSheepRearrangeSynchronous(CardSheep cardSheep) {
+	public void removeSheepRearrangeAsynchronous(CardSheep cardSheep) {
 		this.board.remove(cardSheep);
-		rearrangeBoard();
+		rearrangeBoardAsynchronous();
 	}
 
 	public boolean isFull() {

@@ -1,6 +1,7 @@
 package gameState;
 
 import instances.Instances;
+import utils.Animation.AnimationSynch;
 import utils.ArrayList;
 import utils.Lock;
 import utils.Logger;
@@ -49,23 +50,23 @@ public class GameState {
 				GameStateEnum.START_NEW_ROUND);
 	}
 
-	protected void removeCardEventFromHandAddToDiscardAnimateSynchronous(
+	protected void removeCardEventFromHandAddToDiscardAnimateAsynchronous(
 			CardEvent cardEvent) {
 
 		this.controller.hand()
 				.removeCardShiftHandAnimateAsynchronous(cardEvent);
-		this.controller.discard().addCardAnimateAsynchronous(cardEvent);
+		this.controller.discard().addCardAnimate(cardEvent,
+				AnimationSynch.ASYNCHRONOUS);
 
 	}
 
 	protected void resolveLightning() {
 
 		CardSheep cardSheep = this.controller.board()
-				.removeHighestSheepRearrangeSynchronous();
+				.removeHighestSheepRearrangeAsynchronous();
 
-		this.controller.sheepFoundation().addCardSheepAnimateSynchronous(
-				cardSheep);
-		Lock.lock();
+		this.controller.sheepFoundation().addCardSheepAnimate(cardSheep,
+				AnimationSynch.ASYNCHRONOUS);
 
 		this.setGameStateStartNewRound();
 
@@ -74,8 +75,8 @@ public class GameState {
 	protected void resolveShephion() {
 
 		ArrayList<CardSheep> sheep = this.controller.board().removeAllSheep();
-		this.controller.sheepFoundation().addCardSheepAnimateSynchronous(sheep);
-		Lock.lock();
+		this.controller.sheepFoundation().addCardSheepAnimate(sheep,
+				AnimationSynch.ASYNCHRONOUS);
 
 		this.setGameStateStartNewRound();
 
@@ -103,8 +104,8 @@ public class GameState {
 
 			sheep.reverse();
 
-			this.controller.sheepFoundation().addCardSheepAnimateSynchronous(
-					sheep);
+			this.controller.sheepFoundation().addCardSheepAnimate(sheep,
+					AnimationSynch.SYNCHRONOUS);
 			Lock.lock();
 
 			this.setGameStateStartNewRound();
@@ -123,9 +124,8 @@ public class GameState {
 				|| this.controller.board().allCardsAreSameValue()) {
 
 			CardSheep cardSheep = this.controller.board().removeLastSheep();
-			this.controller.sheepFoundation().addCardSheepAnimateSynchronous(
-					cardSheep);
-			Lock.lock();
+			this.controller.sheepFoundation().addCardSheepAnimate(cardSheep,
+					AnimationSynch.ASYNCHRONOUS);
 
 			this.setGameStateStartNewRound();
 			return;
@@ -147,11 +147,38 @@ public class GameState {
 		}
 
 		CardSheep cardSheep = this.controller.sheepFoundation().getCardSheep(3);
-		this.controller.board().addCardSheep(cardSheep);
+		this.controller.board().addCardSheepAnimateSynchronous(cardSheep);
 		Lock.lock();
 
 		this.controller.gameStateController().setGameState(
 				GameStateEnum.START_NEW_ROUND);
+
+	}
+
+	protected void resolveSheepDog() {
+
+		if (this.controller.hand().isEmpty()) {
+
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
+			return;
+		}
+
+		if (this.controller.hand().size() == 1) {
+
+			CardEvent cardEvent = this.controller.hand().removeSoleCard();
+			this.controller.discard().addCardAnimate(cardEvent,
+					AnimationSynch.SYNCHRONOUS);
+			Lock.lock();
+
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
+			return;
+
+		}
+
+		this.controller.gameStateController().setGameState(
+				GameStateEnum.RESOLVE_SHEEP_DOG);
 
 	}
 
