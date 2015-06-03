@@ -25,7 +25,7 @@ public class ChooseEvent extends GameState {
 
 		super.controller.textController().concealText();
 
-		super.removeCardEventFromHandAddToDiscardAnimateAsynchronous(cardEvent);
+		super.removeCardEventFromHandHandleAnimateSynchronous(cardEvent);
 
 		CardEnum cardEnumPressed = cardEvent.getCardEnum();
 
@@ -55,6 +55,10 @@ public class ChooseEvent extends GameState {
 
 		case SHEEP_DOG:
 			super.resolveSheepDog();
+			break;
+
+		case METEOR:
+			super.resolveMeteor();
 			break;
 
 		default:

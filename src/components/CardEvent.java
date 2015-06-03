@@ -9,6 +9,7 @@ public class CardEvent extends Card implements EventHandlerAble {
 
 	protected Image back = null;
 	private boolean isFrontSide = true;
+	private boolean goesToDiscardPile = true;
 
 	public CardEvent(CardEnum cardEnum) {
 
@@ -22,6 +23,14 @@ public class CardEvent extends Card implements EventHandlerAble {
 	@Override
 	public void handleMouseButtonPrimary() {
 		super.controller.gameStateController().handleCardEventPressed(this);
+	}
+
+	public void setGoesOutsideOfTheGame() {
+		this.goesToDiscardPile = false;
+	}
+
+	public boolean goesToDiscardPile() {
+		return this.goesToDiscardPile;
 	}
 
 	public void flip() {
@@ -38,6 +47,10 @@ public class CardEvent extends Card implements EventHandlerAble {
 
 		}
 
+	}
+
+	public void setVisibleFalse() {
+		super.imageView.setVisible(false);
 	}
 
 }

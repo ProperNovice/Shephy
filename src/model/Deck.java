@@ -36,6 +36,9 @@ public class Deck {
 		this.deck.add(new CardEvent(CardEnum.INSPIRATION));
 		this.deck.add(new CardEvent(CardEnum.LIGHTNING));
 		this.deck.add(new CardEvent(CardEnum.METEOR));
+
+		this.deck.get(this.deck.size() - 1).setGoesOutsideOfTheGame();
+
 		this.deck.add(new CardEvent(CardEnum.MULTIPLY));
 		this.deck.add(new CardEvent(CardEnum.PLAGUE));
 		this.deck.add(new CardEvent(CardEnum.PLANNING_SHEEP));

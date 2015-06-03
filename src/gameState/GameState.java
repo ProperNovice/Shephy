@@ -46,11 +46,15 @@ public class GameState {
 		Logger.logNewLine("" + textEnum);
 	}
 
-	protected void removeCardEventFromHandAddToDiscardAnimateAsynchronous(
+	protected void removeCardEventFromHandHandleAnimateSynchronous(
 			CardEvent cardEvent) {
 
 		this.controller.hand().removeCardShiftHandAnimateSynchronous(cardEvent);
-		this.controller.discard().addCardAnimateSynchronous(cardEvent);
+
+		if (cardEvent.goesToDiscardPile())
+			this.controller.discard().addCardAnimateSynchronous(cardEvent);
+		else
+			cardEvent.setVisibleFalse();
 
 	}
 
@@ -196,6 +200,33 @@ public class GameState {
 
 		this.controller.gameStateController().setGameState(
 				GameStateEnum.RESOLVE_SHEEP_DOG);
+
+	}
+
+	protected void resolveMeteor() {
+
+		if (this.controller.board().size() <= 3
+				|| this.controller.board().allCardsAreSameValue()) {
+
+			int sheepCardsToDiscard = (int) Math.min(this.controller.board()
+					.size(), 3);
+
+			for (int counter = 1; counter <= sheepCardsToDiscard; counter++) {
+
+				CardSheep cardSheep = this.controller.board()
+						.removeHighestSheepRearrangeSynchronous();
+
+				this.controller.sheepFoundation()
+						.addCardSheepAnimateSynchronous(cardSheep);
+
+			}
+
+			Lock.lock();
+
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
+
+		}
 
 	}
 
