@@ -15,6 +15,7 @@ public class Card {
 	protected Image front = null;
 	protected CardEnum cardEnum = null;
 	protected Controller controller = Instances.getControllerInstance();
+	private double coordinateX, coordinateY;
 
 	public Card(CardEnum cardEnum) {
 
@@ -34,7 +35,13 @@ public class Card {
 
 	}
 
+	private void updateCoordinates(double coordinateX, double coordinateY) {
+		this.coordinateX = coordinateX;
+		this.coordinateY = coordinateY;
+	}
+
 	public void relocate(double x, double y) {
+		updateCoordinates(x, y);
 		this.imageView.relocate(x, y);
 	}
 
@@ -43,6 +50,7 @@ public class Card {
 	}
 
 	public void animate(double endingX, double endingY) {
+		updateCoordinates(endingX, endingY);
 		Animation.animate(this.imageView, endingX, endingY,
 				AnimationSynch.SYNCHRONOUS);
 	}
@@ -53,6 +61,14 @@ public class Card {
 
 	public void toFront() {
 		this.imageView.toFront();
+	}
+
+	public double getCoordinateX() {
+		return this.coordinateX;
+	}
+
+	public double getCoordinateY() {
+		return this.coordinateY;
 	}
 
 }

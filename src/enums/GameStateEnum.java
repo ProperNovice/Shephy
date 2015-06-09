@@ -9,6 +9,11 @@ public enum GameStateEnum {
 	RESOLVE_CROWDING("resolve crowding"),
 	RESOLVE_FALLING_ROCK("resolve falling rock"),
 	RESOLVE_SHEEP_DOG("resolve sheep dog"),
+	RESOLVE_METEOR("resolve meteor"),
+	RESOLVE_PLAGUE("resolve plague"),
+	RESOLVE_STORM("resolve storm"),
+	RESOLVE_BE_FRUITFUL("resolve be fruitful"),
+	RESOLVE_ALL_PURPOSE_SHEEP("resolve all purpose sheep"),
 
 	;
 

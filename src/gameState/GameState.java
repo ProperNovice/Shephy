@@ -4,11 +4,10 @@ import instances.Instances;
 import utils.ArrayList;
 import utils.Lock;
 import utils.Logger;
-
 import components.CardEvent;
 import components.CardSheep;
-
 import controller.Controller;
+import enums.CardEnum;
 import enums.GameStateEnum;
 import enums.TextEnum;
 
@@ -55,6 +54,63 @@ public class GameState {
 			this.controller.discard().addCardAnimateSynchronous(cardEvent);
 		else
 			cardEvent.setVisibleFalse();
+
+	}
+
+	protected void resolveCardEvent(CardEnum cardEnumPressed) {
+
+		Logger.logNewLine("resolving " + cardEnumPressed);
+
+		switch (cardEnumPressed) {
+
+		case LIGHTNING:
+			resolveLightning();
+			break;
+
+		case SHEPHION:
+			resolveShephion();
+			break;
+
+		case CROWDING:
+			resolveCrowding();
+			break;
+
+		case FALLING_ROCK:
+			resolveFallingRock();
+			break;
+
+		case MULTIPLY:
+			resolveMultiply();
+			break;
+
+		case SHEEP_DOG:
+			resolveSheepDog();
+			break;
+
+		case METEOR:
+			resolveMeteor();
+			break;
+
+		case PLAGUE:
+			resolvePlague();
+			break;
+
+		case STORM:
+			resolveStorm();
+			break;
+
+		case BE_FRUITFUL:
+			resolveBeFruitful();
+			break;
+
+		case ALL_PURPOSE_SHEEP:
+			resolveAllPurposeSheep();
+			break;
+
+		default:
+			System.out.println("not yet implemented");
+
+		}
 
 	}
 
@@ -226,7 +282,113 @@ public class GameState {
 			this.controller.gameStateController().setGameState(
 					GameStateEnum.START_NEW_ROUND);
 
+		} else
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.RESOLVE_METEOR);
+
+	}
+
+	protected void resolvePlague() {
+
+		if (this.controller.board().allCardsAreSameValue()) {
+
+			ArrayList<CardSheep> board = this.controller.board()
+					.removeAllSheep();
+
+			this.controller.sheepFoundation().addCardSheepAnimateSynchronous(
+					board);
+			Lock.lock();
+
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
+
+		} else {
+
+			Lock.lock();
+
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.RESOLVE_PLAGUE);
+
 		}
+
+	}
+
+	protected void resolveStorm() {
+
+		if (this.controller.board().size() <= 2
+				|| this.controller.board().allCardsAreSameValue()) {
+
+			int sheepCardsToDiscard = (int) Math.min(this.controller.board()
+					.size(), 2);
+
+			for (int counter = 1; counter <= sheepCardsToDiscard; counter++) {
+
+				CardSheep cardSheep = this.controller.board()
+						.removeHighestSheepRearrangeSynchronous();
+
+				this.controller.sheepFoundation()
+						.addCardSheepAnimateSynchronous(cardSheep);
+
+			}
+
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
+
+		} else {
+
+			Lock.lock();
+
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.RESOLVE_STORM);
+
+		}
+	}
+
+	protected void resolveBeFruitful() {
+
+		if (this.controller.board().isFull()) {
+
+			Lock.lock();
+
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
+
+		} else if (this.controller.board().allCardsAreSameValue()) {
+
+			int value = this.controller.board().getHighestCardValue();
+			CardSheep cardSheep = this.controller.sheepFoundation()
+					.getCardSheep(value);
+
+			this.controller.board().addCardSheepAnimateSynchronous(cardSheep);
+			Lock.lock();
+
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
+
+		} else {
+
+			Lock.lock();
+
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.RESOLVE_BE_FRUITFUL);
+
+		}
+
+	}
+
+	protected void resolveAllPurposeSheep() {
+
+		Lock.lock();
+
+		if (this.controller.hand().isEmpty()) {
+
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
+			return;
+
+		} else
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.RESOLVE_ALL_PURPOSE_SHEEP);
 
 	}
 

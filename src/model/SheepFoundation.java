@@ -92,7 +92,7 @@ public class SheepFoundation {
 			return this.value;
 		}
 
-		public CardSheep getSheep() {
+		public CardSheep removeSheep() {
 			return this.sheeps.removeFirst();
 		}
 
@@ -102,7 +102,7 @@ public class SheepFoundation {
 
 		for (SheepList sheepList : this.sheepList)
 			if (sheepList.getValue() == value)
-				return sheepList.getSheep();
+				return sheepList.removeSheep();
 
 		Logger.logNewLine("sheep foundation getSheep() null");
 		return null;

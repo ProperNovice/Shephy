@@ -3,11 +3,16 @@ package controller;
 import enums.GameStateEnum;
 import enums.TextEnum;
 import gameState.Animating;
+import gameState.ResolveAllPurposeSheep;
+import gameState.ResolveBeFruitful;
 import gameState.ChooseEvent;
 import gameState.GameState;
 import gameState.ResolveCrowding;
 import gameState.ResolveFallingRock;
+import gameState.ResolveMeteor;
+import gameState.ResolvePlague;
 import gameState.ResolveSheepDog;
+import gameState.ResolveStorm;
 import gameState.StartGame;
 import gameState.StartNewRound;
 import utils.Animation;
@@ -26,6 +31,11 @@ public class GameStateController {
 	private GameState resolveCrowding = new ResolveCrowding();
 	private GameState resolveFallingRock = new ResolveFallingRock();
 	private GameState resolveSheepDog = new ResolveSheepDog();
+	private GameState resolveMeteor = new ResolveMeteor();
+	private GameState resolvePlague = new ResolvePlague();
+	private GameState resolveStorm = new ResolveStorm();
+	private GameState resolveBeFruitful = new ResolveBeFruitful();
+	private GameState resolveAllPurposeSheep = new ResolveAllPurposeSheep();
 
 	public GameStateController() {
 
@@ -65,6 +75,26 @@ public class GameStateController {
 
 		case RESOLVE_SHEEP_DOG:
 			this.currentGameState = this.resolveSheepDog;
+			break;
+
+		case RESOLVE_METEOR:
+			this.currentGameState = this.resolveMeteor;
+			break;
+
+		case RESOLVE_PLAGUE:
+			this.currentGameState = this.resolvePlague;
+			break;
+
+		case RESOLVE_STORM:
+			this.currentGameState = this.resolveStorm;
+			break;
+
+		case RESOLVE_BE_FRUITFUL:
+			this.currentGameState = this.resolveBeFruitful;
+			break;
+
+		case RESOLVE_ALL_PURPOSE_SHEEP:
+			this.currentGameState = this.resolveAllPurposeSheep;
 			break;
 
 		}

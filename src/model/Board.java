@@ -88,6 +88,10 @@ public class Board {
 
 	}
 
+	public int getHighestCardValue() {
+		return this.board.get(0).getValue();
+	}
+
 	public CardSheep removeLastSheep() {
 		return this.board.removeLast();
 	}
@@ -103,6 +107,24 @@ public class Board {
 
 	public boolean isFull() {
 		return (this.board.size() == this.MAXIMUM_SIZE);
+	}
+
+	public ArrayList<CardSheep> removeAllSheepWithRankRearrangeSynchronous(
+			CardSheep cardSheep) {
+
+		ArrayList<CardSheep> list = new ArrayList<>();
+
+		for (CardSheep cardSheepTemp : this.board)
+			if (cardSheep.getValue() == cardSheepTemp.getValue())
+				list.add(cardSheepTemp);
+
+		for (CardSheep cardSheepTemp : list)
+			this.board.remove(cardSheepTemp);
+
+		rearrangeBoardSynchronous();
+
+		return list;
+
 	}
 
 }
