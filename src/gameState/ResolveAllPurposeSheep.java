@@ -13,8 +13,11 @@ public class ResolveAllPurposeSheep extends GameState {
 	@Override
 	public void handleGameStateChange() {
 
-		super.controller.textController().showText(
-				TextEnum.CHOOSE_EVENT_TO_PLAY);
+		if (super.controller.hand().size() > 1)
+			super.controller.textController().showText(
+					TextEnum.CHOOSE_EVENT_TO_PLAY);
+		else
+			handleCardEventHandPressed(super.controller.hand().peekSoleCard());
 
 	}
 

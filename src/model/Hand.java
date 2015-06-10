@@ -64,6 +64,10 @@ public class Hand {
 
 	}
 
+	public CardEvent peekSoleCard() {
+		return this.hand.get(0);
+	}
+
 	public int size() {
 		return this.hand.size();
 	}
