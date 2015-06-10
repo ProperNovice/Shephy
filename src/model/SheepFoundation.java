@@ -96,6 +96,10 @@ public class SheepFoundation {
 			return this.sheeps.removeFirst();
 		}
 
+		public boolean contains(CardSheep cardSheep) {
+			return this.sheeps.contains(cardSheep);
+		}
+
 	}
 
 	public CardSheep getCardSheep(int value) {
@@ -121,6 +125,16 @@ public class SheepFoundation {
 
 		for (CardSheep cardSheep : sheep)
 			addCardSheepAnimateSynchronous(cardSheep);
+
+	}
+
+	public boolean containsSheep(CardSheep cardSheep) {
+
+		for (SheepList sheepList : this.sheepList)
+			if (sheepList.contains(cardSheep))
+				return true;
+
+		return false;
 
 	}
 

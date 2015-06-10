@@ -34,10 +34,16 @@ public class GameState {
 
 		if (this.controller.board().contains(cardSheep))
 			handleCardSheepBoardPressed(cardSheep);
+		else if (this.controller.sheepFoundation().containsSheep(cardSheep))
+			handleCardSheepFoundationPressed(cardSheep);
 
 	}
 
 	protected void handleCardSheepBoardPressed(CardSheep cardSheep) {
+
+	}
+
+	protected void handleCardSheepFoundationPressed(CardSheep cardSheep) {
 
 	}
 
@@ -107,6 +113,14 @@ public class GameState {
 			resolveAllPurposeSheep();
 			break;
 
+		case PLANNING_SHEEP:
+			resolvePlanningSheep();
+			break;
+
+		case FILL_THE_EARTH:
+			resolveFillTheEarth();
+			break;
+
 		default:
 			System.out.println("not yet implemented");
 
@@ -114,7 +128,7 @@ public class GameState {
 
 	}
 
-	protected void resolveLightning() {
+	private void resolveLightning() {
 
 		CardSheep cardSheep = this.controller.board()
 				.removeHighestSheepRearrangeSynchronous();
@@ -129,7 +143,7 @@ public class GameState {
 
 	}
 
-	protected void resolveShephion() {
+	private void resolveShephion() {
 
 		ArrayList<CardSheep> sheep = this.controller.board().removeAllSheep();
 		this.controller.sheepFoundation().addCardSheepAnimateSynchronous(sheep);
@@ -141,7 +155,7 @@ public class GameState {
 
 	}
 
-	protected void resolveCrowding() {
+	private void resolveCrowding() {
 
 		if (this.controller.board().size() <= 2) {
 
@@ -180,7 +194,7 @@ public class GameState {
 
 	}
 
-	protected void resolveFallingRock() {
+	private void resolveFallingRock() {
 
 		if (this.controller.board().size() == 1
 				|| this.controller.board().allCardsAreSameValue()) {
@@ -204,7 +218,7 @@ public class GameState {
 
 	}
 
-	protected void resolveMultiply() {
+	private void resolveMultiply() {
 
 		Logger.logNewLine("resolving multiply");
 
@@ -228,7 +242,7 @@ public class GameState {
 
 	}
 
-	protected void resolveSheepDog() {
+	private void resolveSheepDog() {
 
 		if (this.controller.hand().isEmpty()) {
 
@@ -259,7 +273,7 @@ public class GameState {
 
 	}
 
-	protected void resolveMeteor() {
+	private void resolveMeteor() {
 
 		if (this.controller.board().size() <= 3
 				|| this.controller.board().allCardsAreSameValue()) {
@@ -288,7 +302,7 @@ public class GameState {
 
 	}
 
-	protected void resolvePlague() {
+	private void resolvePlague() {
 
 		if (this.controller.board().allCardsAreSameValue()) {
 
@@ -313,7 +327,7 @@ public class GameState {
 
 	}
 
-	protected void resolveStorm() {
+	private void resolveStorm() {
 
 		if (this.controller.board().size() <= 2
 				|| this.controller.board().allCardsAreSameValue()) {
@@ -344,7 +358,7 @@ public class GameState {
 		}
 	}
 
-	protected void resolveBeFruitful() {
+	private void resolveBeFruitful() {
 
 		if (this.controller.board().isFull()) {
 
@@ -376,7 +390,7 @@ public class GameState {
 
 	}
 
-	protected void resolveAllPurposeSheep() {
+	private void resolveAllPurposeSheep() {
 
 		Lock.lock();
 
@@ -389,6 +403,33 @@ public class GameState {
 		} else
 			this.controller.gameStateController().setGameState(
 					GameStateEnum.RESOLVE_ALL_PURPOSE_SHEEP);
+
+	}
+
+	private void resolvePlanningSheep() {
+
+		Lock.lock();
+
+		if (this.controller.hand().isEmpty())
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
+
+		else
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.RESOLVE_PLANNING_SHEEP);
+
+	}
+
+	private void resolveFillTheEarth() {
+
+		Lock.lock();
+
+		if (this.controller.board().isFull())
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
+		else
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.RESOLVE_FILL_THE_EARTH);
 
 	}
 

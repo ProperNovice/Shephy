@@ -9,8 +9,10 @@ import gameState.ChooseEvent;
 import gameState.GameState;
 import gameState.ResolveCrowding;
 import gameState.ResolveFallingRock;
+import gameState.ResolveFillTheEarth;
 import gameState.ResolveMeteor;
 import gameState.ResolvePlague;
+import gameState.ResolvePlanningSheep;
 import gameState.ResolveSheepDog;
 import gameState.ResolveStorm;
 import gameState.StartGame;
@@ -36,6 +38,8 @@ public class GameStateController {
 	private GameState resolveStorm = new ResolveStorm();
 	private GameState resolveBeFruitful = new ResolveBeFruitful();
 	private GameState resolveAllPurposeSheep = new ResolveAllPurposeSheep();
+	private GameState resolvePlanningSheep = new ResolvePlanningSheep();
+	private GameState resolveFillTheEarth = new ResolveFillTheEarth();
 
 	public GameStateController() {
 
@@ -95,6 +99,14 @@ public class GameStateController {
 
 		case RESOLVE_ALL_PURPOSE_SHEEP:
 			this.currentGameState = this.resolveAllPurposeSheep;
+			break;
+
+		case RESOLVE_PLANNING_SHEEP:
+			this.currentGameState = this.resolvePlanningSheep;
+			break;
+
+		case RESOLVE_FILL_THE_EARTH:
+			this.currentGameState = this.resolveFillTheEarth;
 			break;
 
 		}
