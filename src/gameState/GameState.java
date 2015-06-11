@@ -48,7 +48,7 @@ public class GameState {
 	}
 
 	public void handleTextOptionPressed(TextEnum textEnum) {
-		Logger.logNewLine("" + textEnum);
+
 	}
 
 	protected void removeCardEventFromHandHandleAnimateSynchronous(
@@ -119,6 +119,10 @@ public class GameState {
 
 		case FILL_THE_EARTH:
 			resolveFillTheEarth();
+			break;
+
+		case GOLDEN_HOOVES:
+			resolveGoldenHooves();
 			break;
 
 		default:
@@ -231,7 +235,8 @@ public class GameState {
 
 		}
 
-		CardSheep cardSheep = this.controller.sheepFoundation().getCardSheep(3);
+		CardSheep cardSheep = this.controller.sheepFoundation()
+				.removeCardSheep(3);
 
 		this.controller.board().addCardSheepAnimateSynchronous(cardSheep);
 
@@ -371,7 +376,7 @@ public class GameState {
 
 			int value = this.controller.board().getHighestCardValue();
 			CardSheep cardSheep = this.controller.sheepFoundation()
-					.getCardSheep(value);
+					.removeCardSheep(value);
 
 			this.controller.board().addCardSheepAnimateSynchronous(cardSheep);
 			Lock.lock();
@@ -430,6 +435,19 @@ public class GameState {
 		else
 			this.controller.gameStateController().setGameState(
 					GameStateEnum.RESOLVE_FILL_THE_EARTH);
+
+	}
+
+	private void resolveGoldenHooves() {
+
+		Lock.lock();
+
+		if (this.controller.board().allCardsAreSameValue())
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
+		else
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.RESOLVE_GOLDEN_HOOVES);
 
 	}
 

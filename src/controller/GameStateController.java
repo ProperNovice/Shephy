@@ -10,6 +10,7 @@ import gameState.GameState;
 import gameState.ResolveCrowding;
 import gameState.ResolveFallingRock;
 import gameState.ResolveFillTheEarth;
+import gameState.ResolveGoldenHooves;
 import gameState.ResolveMeteor;
 import gameState.ResolvePlague;
 import gameState.ResolvePlanningSheep;
@@ -40,6 +41,7 @@ public class GameStateController {
 	private GameState resolveAllPurposeSheep = new ResolveAllPurposeSheep();
 	private GameState resolvePlanningSheep = new ResolvePlanningSheep();
 	private GameState resolveFillTheEarth = new ResolveFillTheEarth();
+	private GameState resolveGoldenHooves = new ResolveGoldenHooves();
 
 	public GameStateController() {
 
@@ -107,6 +109,10 @@ public class GameStateController {
 
 		case RESOLVE_FILL_THE_EARTH:
 			this.currentGameState = this.resolveFillTheEarth;
+			break;
+
+		case RESOLVE_GOLDEN_HOOVES:
+			this.currentGameState = this.resolveGoldenHooves;
 			break;
 
 		}

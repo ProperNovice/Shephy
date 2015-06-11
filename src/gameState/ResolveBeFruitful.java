@@ -26,7 +26,7 @@ public class ResolveBeFruitful extends GameState {
 		int value = cardSheep.getValue();
 
 		CardSheep cardSheepToAdd = super.controller.sheepFoundation()
-				.getCardSheep(value);
+				.removeCardSheep(value);
 
 		super.controller.board().addCardSheepAnimateSynchronous(cardSheepToAdd);
 		Lock.lock();

@@ -16,8 +16,10 @@ public class StartGame extends GameState {
 		addCardSheepToBoard(100);
 
 		setCardAsFirst(CardEnum.DOMINION);
-		setCardAsFirst(CardEnum.FILL_THE_EARTH);
 		setCardAsFirst(CardEnum.FLOURISH);
+		setCardAsFirst(CardEnum.GOLDEN_HOOVES);
+		setCardAsFirst(CardEnum.INSPIRATION);
+		setCardAsFirst(CardEnum.WOLVES);
 
 		super.controller.gameStateController().setGameState(
 				GameStateEnum.START_NEW_ROUND);
@@ -26,8 +28,8 @@ public class StartGame extends GameState {
 
 	private void addCardSheepToBoard(int value) {
 
-		CardSheep cardSheep = super.controller.sheepFoundation().getCardSheep(
-				value);
+		CardSheep cardSheep = super.controller.sheepFoundation()
+				.removeCardSheep(value);
 		super.controller.board().addCardSheepAnimateSynchronous(cardSheep);
 
 	}
@@ -37,7 +39,6 @@ public class StartGame extends GameState {
 	}
 
 	// DOMINION("dominion"),
-	// FILL_THE_EARTH("fill_the_earth"),
 	// FLOURISH("flourish"),
 	// GOLDEN_HOOVES("golden_hooves"),
 	// INSPIRATION("inspiration"),
@@ -48,6 +49,7 @@ public class StartGame extends GameState {
 	// BE_FRUITFUL("be_fruitful"),
 	// CROWDING("crowding"),
 	// FALLING_ROCK("falling_rock"),
+	// FILL_THE_EARTH("fill_the_earth"),
 	// LIGHTNING("lightning"),
 	// METEOR("meteor"),
 	// MULTIPLY("multiply"),
