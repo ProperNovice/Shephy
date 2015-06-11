@@ -125,6 +125,14 @@ public class GameState {
 			resolveGoldenHooves();
 			break;
 
+		case FLOURISH:
+			resolveFlourish();
+			break;
+
+		case WOLVES:
+			resolveWolves();
+			break;
+
 		default:
 			System.out.println("not yet implemented");
 
@@ -448,6 +456,98 @@ public class GameState {
 		else
 			this.controller.gameStateController().setGameState(
 					GameStateEnum.RESOLVE_GOLDEN_HOOVES);
+
+	}
+
+	private void resolveFlourish() {
+
+		if (this.controller.board().isFull()) {
+
+			Lock.lock();
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
+
+		} else if (this.controller.board().allCardsAreSameValue()
+				&& this.controller.board().getHighestCardValue() == 1) {
+
+			Lock.lock();
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
+
+		} else {
+
+			Lock.lock();
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.RESOLVE_FLOURISH);
+
+		}
+
+	}
+
+	private void resolveWolves() {
+
+		this.controller.gameStateController().setGameState(
+				GameStateEnum.ANIMATING);
+
+		CardSheep cardSheep = this.controller.board()
+				.removeHighestSheepRearrangeSynchronous();
+
+		int cardSheepValueOld = cardSheep.getValue();
+		int cardSheepValueNew;
+
+		switch (cardSheepValueOld) {
+
+		case 1:
+			cardSheepValueNew = -1;
+			break;
+
+		case 3:
+			cardSheepValueNew = 1;
+			break;
+
+		case 10:
+			cardSheepValueNew = 3;
+			break;
+
+		case 30:
+			cardSheepValueNew = 10;
+			break;
+
+		case 100:
+			cardSheepValueNew = 30;
+			break;
+
+		case 300:
+			cardSheepValueNew = 100;
+			break;
+
+		case 1000:
+			cardSheepValueNew = 300;
+			break;
+
+		default:
+			cardSheepValueNew = -1;
+			break;
+
+		}
+
+		this.controller.sheepFoundation().addCardSheepAnimateSynchronous(
+				cardSheep);
+		Lock.lock();
+
+		if (cardSheepValueNew != -1) {
+
+			CardSheep cardSheepNew = this.controller.sheepFoundation()
+					.removeCardSheep(cardSheepValueNew);
+
+			this.controller.board()
+					.addCardSheepAnimateSynchronous(cardSheepNew);
+			Lock.lock();
+
+		}
+
+		this.controller.gameStateController().setGameState(
+				GameStateEnum.START_NEW_ROUND);
 
 	}
 

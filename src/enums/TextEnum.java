@@ -13,6 +13,7 @@ public enum TextEnum {
 	FILL_THE_BOARD("Fill the board", TextTypeEnum.OPTION),
 	CHOOSE_SHEEP_TO_RAISE_THE_RANK("Choose sheep to\nraise the rank", TextTypeEnum.INDICATOR),
 	RAISE_THE_RANK_OF_ALL_SHEEP("Raise the rank\nof all sheep", TextTypeEnum.OPTION),
+	CHOOSE_SHEEP("Choose sheep", TextTypeEnum.INDICATOR),
 
 	;
 

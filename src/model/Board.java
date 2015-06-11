@@ -60,6 +60,10 @@ public class Board {
 		return this.board.size();
 	}
 
+	public int cardsCanBeAdded() {
+		return this.MAXIMUM_SIZE - this.board.size();
+	}
+
 	public CardSheep removeHighestSheepRearrangeSynchronous() {
 
 		CardSheep cardSheep = this.board.remove(0);
@@ -82,6 +86,19 @@ public class Board {
 
 		for (CardSheep cardSheep : this.board)
 			if (cardSheep.getValue() != valueFirstCard)
+				return false;
+
+		return true;
+
+	}
+
+	public boolean allCardsAreSameValueExceptAces() {
+
+		int valueFirstCard = this.board.get(0).getValue();
+
+		for (CardSheep cardSheep : this.board)
+			if (cardSheep.getValue() != valueFirstCard
+					&& cardSheep.getValue() != 1)
 				return false;
 
 		return true;

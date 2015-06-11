@@ -11,15 +11,13 @@ public class StartGame extends GameState {
 
 		addCardSheepToBoard(1);
 		addCardSheepToBoard(1);
-		addCardSheepToBoard(1);
 		addCardSheepToBoard(3);
+		addCardSheepToBoard(100);
 		addCardSheepToBoard(100);
 
 		setCardAsFirst(CardEnum.DOMINION);
-		setCardAsFirst(CardEnum.FLOURISH);
-		setCardAsFirst(CardEnum.GOLDEN_HOOVES);
 		setCardAsFirst(CardEnum.INSPIRATION);
-		setCardAsFirst(CardEnum.WOLVES);
+		setCardAsFirst(CardEnum.SLUMP);
 
 		super.controller.gameStateController().setGameState(
 				GameStateEnum.START_NEW_ROUND);
@@ -39,17 +37,16 @@ public class StartGame extends GameState {
 	}
 
 	// DOMINION("dominion"),
-	// FLOURISH("flourish"),
-	// GOLDEN_HOOVES("golden_hooves"),
 	// INSPIRATION("inspiration"),
 	// SLUMP("slump"),
-	// WOLVES("wolves"),
 
 	// ALL_PURPOSE_SHEEP("all-purpose_sheep"),
 	// BE_FRUITFUL("be_fruitful"),
 	// CROWDING("crowding"),
 	// FALLING_ROCK("falling_rock"),
 	// FILL_THE_EARTH("fill_the_earth"),
+	// FLOURISH("flourish"),
+	// GOLDEN_HOOVES("golden_hooves"),
 	// LIGHTNING("lightning"),
 	// METEOR("meteor"),
 	// MULTIPLY("multiply"),
@@ -58,6 +55,7 @@ public class StartGame extends GameState {
 	// SHEEP_DOG("sheep_dog"),
 	// SHEPHION("shephion"),
 	// STORM("storm"),
+	// WOLVES("wolves"),
 
 	// Merge controller with gameStateController, TestFX text controller
 
