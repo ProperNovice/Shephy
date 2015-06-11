@@ -8,7 +8,6 @@ import enums.TextEnum;
 
 public class ResolveGoldenHooves extends GameState {
 
-	private boolean runsForFirstTime = true;
 	private ArrayList<CardSheep> cardsSheepThatHaveBeenRaised = new ArrayList<>();
 
 	@Override
@@ -20,6 +19,26 @@ public class ResolveGoldenHooves extends GameState {
 
 	@Override
 	public void handleTextOptionPressed(TextEnum textEnum) {
+
+		super.controller.textController().concealText();
+
+		super.controller.gameStateController().setGameState(
+				GameStateEnum.ANIMATING);
+
+		switch (textEnum) {
+
+		case CONTINUE:
+			handleEndGameState();
+			break;
+
+		case RAISE_THE_RANK_OF_ALL_SHEEP:
+			handleRaiseTheRankOfAllSheep();
+			break;
+
+		default:
+			break;
+
+		}
 
 	}
 
@@ -41,20 +60,78 @@ public class ResolveGoldenHooves extends GameState {
 
 		super.controller.textController().concealText();
 
+		addSheepPressedToFoundation(cardSheep);
+		Lock.lock();
+
+		int higherValue = getHigherValue(cardSheepValue);
+
+		addNextRankToBoard(higherValue);
+		Lock.lock();
+
+		if (super.controller.board().stillLeftSheepToRaiseTheRank(
+				this.cardsSheepThatHaveBeenRaised))
+			super.controller.gameStateController().setGameState(
+					GameStateEnum.RESOLVE_GOLDEN_HOOVES);
+		else
+			handleEndGameState();
+
+	}
+
+	private void handleRaiseTheRankOfAllSheep() {
+
+		ArrayList<CardSheep> sheepToRaiseTheRank = super.controller.board()
+				.removeAllSheepThatHaveNotBeenRaisedRearrangeSynchronous(
+						this.cardsSheepThatHaveBeenRaised);
+
+		super.controller.sheepFoundation().addCardSheepAnimateSynchronous(
+				sheepToRaiseTheRank);
+		Lock.lock();
+
+		ArrayList<Integer> nextRank = new ArrayList<>();
+
+		for (CardSheep cardSheep : sheepToRaiseTheRank)
+			nextRank.add(getHigherValue(cardSheep.getValue()));
+
+		ArrayList<CardSheep> cardSheepToAddToBoard = new ArrayList<>();
+
+		for (Integer integer : nextRank)
+			cardSheepToAddToBoard.add(super.controller.sheepFoundation()
+					.removeCardSheep(integer));
+
+		for (CardSheep cardSheep : cardSheepToAddToBoard)
+			super.controller.board().addCardSheepAnimateSynchronous(cardSheep);
+
+		Lock.lock();
+
+		handleEndGameState();
+
+	}
+
+	private void handleEndGameState() {
+
+		this.cardsSheepThatHaveBeenRaised.clear();
+		super.controller.gameStateController().setGameState(
+				GameStateEnum.START_NEW_ROUND);
+
+	}
+
+	private void addSheepPressedToFoundation(CardSheep cardSheep) {
+
 		this.cardsSheepThatHaveBeenRaised.add(cardSheep);
 
 		super.controller.board().removeSheepRearrangeSynchronous(cardSheep);
 		super.controller.sheepFoundation().addCardSheepAnimateSynchronous(
 				cardSheep);
-		Lock.lock();
 
-		int higherValue = getHigherValue(cardSheepValue);
+	}
+
+	private void addNextRankToBoard(int value) {
+
 		CardSheep cardSheepToAdd = super.controller.sheepFoundation()
-				.removeCardSheep(higherValue);
+				.removeCardSheep(value);
 		this.cardsSheepThatHaveBeenRaised.add(cardSheepToAdd);
 
 		super.controller.board().addCardSheepAnimateSynchronous(cardSheepToAdd);
-		Lock.lock();
 
 	}
 

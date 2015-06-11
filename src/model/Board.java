@@ -127,4 +127,52 @@ public class Board {
 
 	}
 
+	public boolean stillLeftSheepToRaiseTheRank(
+			ArrayList<CardSheep> cardsSheepThatHaveBeenRaised) {
+
+		int highestValue = this.board.get(0).getValue();
+
+		for (CardSheep cardSheep : this.board) {
+
+			if (cardSheep.getValue() == highestValue)
+				continue;
+
+			if (cardsSheepThatHaveBeenRaised.contains(cardSheep))
+				continue;
+
+			return true;
+
+		}
+
+		return false;
+
+	}
+
+	public ArrayList<CardSheep> removeAllSheepThatHaveNotBeenRaisedRearrangeSynchronous(
+			ArrayList<CardSheep> cardsSheepThatHaveBeenRaised) {
+
+		ArrayList<CardSheep> sheepRemoved = new ArrayList<>();
+		ArrayList<CardSheep> boardTemp = this.board.clone();
+
+		int highestValue = this.board.get(0).getValue();
+
+		for (CardSheep cardSheep : boardTemp) {
+
+			if (cardSheep.getValue() == highestValue)
+				continue;
+
+			if (cardsSheepThatHaveBeenRaised.contains(cardSheep))
+				continue;
+
+			this.board.remove(cardSheep);
+			sheepRemoved.add(cardSheep);
+
+		}
+
+		rearrangeBoardSynchronous();
+
+		return sheepRemoved;
+
+	}
+
 }
