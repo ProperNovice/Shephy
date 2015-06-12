@@ -14,10 +14,9 @@ public class StartGame extends GameState {
 		addCardSheepToBoard(1);
 		addCardSheepToBoard(3);
 		addCardSheepToBoard(3);
-		addCardSheepToBoard(100);
+		addCardSheepToBoard(3);
 		addCardSheepToBoard(100);
 
-		setCardAsFirst(CardEnum.DOMINION);
 		setCardAsFirst(CardEnum.INSPIRATION);
 
 		super.controller.gameStateController().setGameState(
@@ -37,12 +36,12 @@ public class StartGame extends GameState {
 		super.controller.deck().setCardAsFirst(cardEnum);
 	}
 
-	// DOMINION("dominion"),
 	// INSPIRATION("inspiration"),
 
 	// ALL_PURPOSE_SHEEP("all-purpose_sheep"),
 	// BE_FRUITFUL("be_fruitful"),
 	// CROWDING("crowding"),
+	// DOMINION("dominion"),
 	// FALLING_ROCK("falling_rock"),
 	// FILL_THE_EARTH("fill_the_earth"),
 	// FLOURISH("flourish"),

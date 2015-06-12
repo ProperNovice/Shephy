@@ -8,6 +8,7 @@ import gameState.ResolveBeFruitful;
 import gameState.ChooseEvent;
 import gameState.GameState;
 import gameState.ResolveCrowding;
+import gameState.ResolveDominion;
 import gameState.ResolveFallingRock;
 import gameState.ResolveFillTheEarth;
 import gameState.ResolveFlourish;
@@ -46,6 +47,7 @@ public class GameStateController {
 	private GameState resolveGoldenHooves = new ResolveGoldenHooves();
 	private GameState resolveFlourish = new ResolveFlourish();
 	private GameState resolveSlump = new ResolveSlump();
+	private GameState resolveDominion = new ResolveDominion();
 
 	public GameStateController() {
 
@@ -125,6 +127,10 @@ public class GameStateController {
 
 		case RESOLVE_SLUMP:
 			this.currentGameState = this.resolveSlump;
+			break;
+
+		case RESOLVE_DOMINION:
+			this.currentGameState = this.resolveDominion;
 			break;
 
 		}

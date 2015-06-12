@@ -137,6 +137,10 @@ public class GameState {
 			resolveSlump();
 			break;
 
+		case DOMINION:
+			resolveDominion();
+			break;
+
 		default:
 			System.out.println("not yet implemented");
 
@@ -578,13 +582,26 @@ public class GameState {
 					GameStateEnum.START_NEW_ROUND);
 
 		} else {
-			
+
 			Lock.lock();
-			
+
 			this.controller.gameStateController().setGameState(
 					GameStateEnum.RESOLVE_SLUMP);
-			
+
 		}
+
+	}
+
+	private void resolveDominion() {
+
+		Lock.lock();
+
+		if (this.controller.board().size() == 1)
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
+		else
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.RESOLVE_DOMINION);
 
 	}
 

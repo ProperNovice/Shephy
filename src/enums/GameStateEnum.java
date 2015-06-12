@@ -19,6 +19,7 @@ public enum GameStateEnum {
 	RESOLVE_GOLDEN_HOOVES("resolve golden hooves"),
 	RESOLVE_FLOURISH("resolve flourish"),
 	RESOLVE_SLUMP("resolve slump"),
+	RESOLVE_DOMINION("resolve dominion"),
 
 	;
 
