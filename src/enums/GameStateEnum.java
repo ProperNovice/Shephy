@@ -20,6 +20,7 @@ public enum GameStateEnum {
 	RESOLVE_FLOURISH("resolve flourish"),
 	RESOLVE_SLUMP("resolve slump"),
 	RESOLVE_DOMINION("resolve dominion"),
+	RESOLVE_INSPIRATION("resolve inspiration"),
 
 	;
 

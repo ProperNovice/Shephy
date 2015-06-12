@@ -141,6 +141,10 @@ public class GameState {
 			resolveDominion();
 			break;
 
+		case INSPIRATION:
+			resolveInspiration();
+			break;
+
 		default:
 			System.out.println("not yet implemented");
 
@@ -602,6 +606,21 @@ public class GameState {
 		else
 			this.controller.gameStateController().setGameState(
 					GameStateEnum.RESOLVE_DOMINION);
+
+	}
+
+	private void resolveInspiration() {
+		
+		Lock.lock();
+
+		if (this.controller.deck().size() <= 1)
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
+
+		else
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.RESOLVE_INSPIRATION);
+			
 
 	}
 

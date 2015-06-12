@@ -89,4 +89,12 @@ public class Deck {
 
 	}
 
+	public int size() {
+		return this.deck.size();
+	}
+
+	public ArrayList<CardEvent> getDeckClone() {
+		return this.deck.clone();
+	}
+
 }

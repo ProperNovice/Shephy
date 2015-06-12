@@ -13,6 +13,7 @@ import gameState.ResolveFallingRock;
 import gameState.ResolveFillTheEarth;
 import gameState.ResolveFlourish;
 import gameState.ResolveGoldenHooves;
+import gameState.ResolveInspiration;
 import gameState.ResolveMeteor;
 import gameState.ResolvePlague;
 import gameState.ResolvePlanningSheep;
@@ -48,6 +49,7 @@ public class GameStateController {
 	private GameState resolveFlourish = new ResolveFlourish();
 	private GameState resolveSlump = new ResolveSlump();
 	private GameState resolveDominion = new ResolveDominion();
+	private GameState resolveInspiration = new ResolveInspiration();
 
 	public GameStateController() {
 
@@ -131,6 +133,10 @@ public class GameStateController {
 
 		case RESOLVE_DOMINION:
 			this.currentGameState = this.resolveDominion;
+			break;
+
+		case RESOLVE_INSPIRATION:
+			this.currentGameState = this.resolveInspiration;
 			break;
 
 		}
