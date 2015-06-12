@@ -133,6 +133,10 @@ public class GameState {
 			resolveWolves();
 			break;
 
+		case SLUMP:
+			resolveSlump();
+			break;
+
 		default:
 			System.out.println("not yet implemented");
 
@@ -548,6 +552,39 @@ public class GameState {
 
 		this.controller.gameStateController().setGameState(
 				GameStateEnum.START_NEW_ROUND);
+
+	}
+
+	private void resolveSlump() {
+
+		if (this.controller.board().size() == 1) {
+
+			Lock.lock();
+
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
+
+		} else if (this.controller.board().allCardsAreSameValue()) {
+
+			int cardsToDiscard = this.controller.board().size() / 2;
+
+			for (int counter = 1; counter <= cardsToDiscard; counter++)
+				this.controller.sheepFoundation()
+						.addCardSheepAnimateSynchronous(
+								this.controller.board().removeLastSheep());
+			Lock.lock();
+
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.START_NEW_ROUND);
+
+		} else {
+			
+			Lock.lock();
+			
+			this.controller.gameStateController().setGameState(
+					GameStateEnum.RESOLVE_SLUMP);
+			
+		}
 
 	}
 

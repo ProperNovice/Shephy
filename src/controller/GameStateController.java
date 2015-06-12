@@ -16,6 +16,7 @@ import gameState.ResolveMeteor;
 import gameState.ResolvePlague;
 import gameState.ResolvePlanningSheep;
 import gameState.ResolveSheepDog;
+import gameState.ResolveSlump;
 import gameState.ResolveStorm;
 import gameState.StartGame;
 import gameState.StartNewRound;
@@ -44,6 +45,7 @@ public class GameStateController {
 	private GameState resolveFillTheEarth = new ResolveFillTheEarth();
 	private GameState resolveGoldenHooves = new ResolveGoldenHooves();
 	private GameState resolveFlourish = new ResolveFlourish();
+	private GameState resolveSlump = new ResolveSlump();
 
 	public GameStateController() {
 
@@ -119,6 +121,10 @@ public class GameStateController {
 
 		case RESOLVE_FLOURISH:
 			this.currentGameState = this.resolveFlourish;
+			break;
+
+		case RESOLVE_SLUMP:
+			this.currentGameState = this.resolveSlump;
 			break;
 
 		}

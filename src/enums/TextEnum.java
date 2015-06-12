@@ -14,6 +14,7 @@ public enum TextEnum {
 	CHOOSE_SHEEP_TO_RAISE_THE_RANK("Choose sheep to\nraise the rank", TextTypeEnum.INDICATOR),
 	RAISE_THE_RANK_OF_ALL_SHEEP("Raise the rank\nof all sheep", TextTypeEnum.OPTION),
 	CHOOSE_SHEEP("Choose sheep", TextTypeEnum.INDICATOR),
+	RELEASE_AUTO("Release auto", TextTypeEnum.OPTION),
 
 	;
 

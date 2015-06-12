@@ -11,13 +11,14 @@ public class StartGame extends GameState {
 
 		addCardSheepToBoard(1);
 		addCardSheepToBoard(1);
+		addCardSheepToBoard(1);
+		addCardSheepToBoard(3);
 		addCardSheepToBoard(3);
 		addCardSheepToBoard(100);
 		addCardSheepToBoard(100);
 
 		setCardAsFirst(CardEnum.DOMINION);
 		setCardAsFirst(CardEnum.INSPIRATION);
-		setCardAsFirst(CardEnum.SLUMP);
 
 		super.controller.gameStateController().setGameState(
 				GameStateEnum.START_NEW_ROUND);
@@ -38,7 +39,6 @@ public class StartGame extends GameState {
 
 	// DOMINION("dominion"),
 	// INSPIRATION("inspiration"),
-	// SLUMP("slump"),
 
 	// ALL_PURPOSE_SHEEP("all-purpose_sheep"),
 	// BE_FRUITFUL("be_fruitful"),
@@ -54,9 +54,11 @@ public class StartGame extends GameState {
 	// PLANNING_SHEEP("planning_sheep"),
 	// SHEEP_DOG("sheep_dog"),
 	// SHEPHION("shephion"),
+	// SLUMP("slump"),
 	// STORM("storm"),
 	// WOLVES("wolves"),
 
-	// Merge controller with gameStateController, TestFX text controller
+	// TestFX text controller, anadiarthrosh sto show text ena ena na ta bazei
+	// se sosth seira
 
 }

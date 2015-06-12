@@ -18,6 +18,7 @@ public enum GameStateEnum {
 	RESOLVE_FILL_THE_EARTH("resolve fill the earth"),
 	RESOLVE_GOLDEN_HOOVES("resolve golden hooves"),
 	RESOLVE_FLOURISH("resolve flourish"),
+	RESOLVE_SLUMP("resolve slump"),
 
 	;
 
