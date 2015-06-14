@@ -33,7 +33,7 @@ public class ResolvePlanningSheep extends GameState {
 
 		super.controller.textController().concealText();
 
-		cardEvent.setVisibleFalse();
+		cardEvent.setVisible(false);
 
 		super.controller.hand()
 				.removeCardShiftHandAnimateSynchronous(cardEvent);

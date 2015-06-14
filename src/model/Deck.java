@@ -53,7 +53,7 @@ public class Deck {
 
 	}
 
-	private void flipDeck() {
+	public void flipDeck() {
 
 		for (CardEvent cardEvent : this.deck)
 			cardEvent.flip();
@@ -138,6 +138,39 @@ public class Deck {
 			}
 
 		}
+
+	}
+
+	public void panelDeckSetVisible(boolean value) {
+
+		this.background.setVisible(value);
+
+		for (CardEvent cardEvent : this.deck)
+			cardEvent.setVisible(value);
+
+	}
+
+	public void backGroundSetVisibleFalse() {
+		this.background.setVisible(false);
+	}
+
+	public boolean contains(CardEvent cardEvent) {
+		return this.deck.contains(cardEvent);
+	}
+
+	public void remove(CardEvent cardEvent) {
+		this.deck.remove(cardEvent);
+	}
+
+	public void wrapUpDeckShuffleAnimateSynchronous() {
+
+		for (CardEvent cardEvent : this.deck)
+			cardEvent.animate(Coordinates.DECK.x(), Coordinates.DECK.y());
+
+		this.deck.shuffle();
+
+		for (CardEvent cardEvent : this.deck)
+			cardEvent.toBack();
 
 	}
 

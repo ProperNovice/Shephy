@@ -49,8 +49,8 @@ public class CardEvent extends Card implements EventHandlerAble {
 
 	}
 
-	public void setVisibleFalse() {
-		super.imageView.setVisible(false);
+	public void setVisible(boolean value) {
+		super.imageView.setVisible(value);
 	}
 
 }

@@ -23,10 +23,16 @@ public class GameState {
 
 		if (this.controller.hand().contains(cardEvent))
 			handleCardEventHandPressed(cardEvent);
+		else if (this.controller.deck().contains(cardEvent))
+			handleCardEventDeckPressed(cardEvent);
 
 	}
 
 	protected void handleCardEventHandPressed(CardEvent cardEvent) {
+
+	}
+
+	protected void handleCardEventDeckPressed(CardEvent cardEvent) {
 
 	}
 
@@ -59,7 +65,7 @@ public class GameState {
 		if (cardEvent.goesToDiscardPile())
 			this.controller.discard().addCardAnimateSynchronous(cardEvent);
 		else
-			cardEvent.setVisibleFalse();
+			cardEvent.setVisible(false);
 
 	}
 

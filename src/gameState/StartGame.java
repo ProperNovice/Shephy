@@ -10,6 +10,9 @@ public class StartGame extends GameState {
 	public void handleGameStateChange() {
 
 		addCardSheepToBoard(1);
+		addCardSheepToBoard(30);
+		addCardSheepToBoard(1);
+		addCardSheepToBoard(1);
 
 		setCardAsFirst(CardEnum.INSPIRATION);
 
