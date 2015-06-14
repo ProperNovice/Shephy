@@ -23,6 +23,7 @@ public enum TextEnum {
 	END_GAME("End game", TextTypeEnum.INDICATOR),
 	YOU_LOST("You lost", TextTypeEnum.INDICATOR),
 	YOU_WON("You won", TextTypeEnum.INDICATOR),
+	RESTART("Restart", TextTypeEnum.OPTION),
 
 	;
 

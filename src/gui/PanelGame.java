@@ -6,9 +6,9 @@ import utils.Parent;
 
 public class PanelGame extends Parent {
 
-	public PanelGame() {
+	public PanelGame(Panel panel) {
 		Instances.createPanelGame(this);
-		new Controller();
+		new Controller(panel);
 	}
 
 }

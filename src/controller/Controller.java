@@ -1,7 +1,7 @@
 package controller;
 
 import components.RoundController;
-
+import gui.Panel;
 import instances.Instances;
 import model.Board;
 import model.Deck;
@@ -21,10 +21,13 @@ public class Controller {
 	private Discard discard = null;
 	private TextController textController = null;
 	private RoundController roundController = null;
+	private Panel panel = null;
 
-	public Controller() {
+	public Controller(Panel panel) {
 
 		createInstances();
+
+		this.panel = panel;
 
 		Executor.runLater(() -> this.gameStateController
 				.setGameState(GameStateEnum.START_GAME));
@@ -75,6 +78,10 @@ public class Controller {
 
 	public RoundController roundController() {
 		return this.roundController;
+	}
+
+	public void restartGame() {
+		this.panel.restartGame();
 	}
 
 }

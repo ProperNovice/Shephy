@@ -21,6 +21,7 @@ public class HandleEndGame extends GameState {
 	public void handleTextOptionPressed(TextEnum textEnum) {
 
 		super.controller.textController().concealText();
+		super.controller.restartGame();
 
 	}
 
@@ -29,7 +30,7 @@ public class HandleEndGame extends GameState {
 		ArrayList<TextEnum> arrayList = new ArrayList<>();
 
 		arrayList.add(textEnum);
-		arrayList.add(TextEnum.CONTINUE);
+		arrayList.add(TextEnum.RESTART);
 
 		super.controller.textController().showText(arrayList);
 
