@@ -610,17 +610,23 @@ public class GameState {
 	}
 
 	private void resolveInspiration() {
-		
-		Lock.lock();
 
-		if (this.controller.deck().size() <= 1)
+		if (this.controller.deck().size() <= 1) {
+
+			Lock.lock();
+
 			this.controller.gameStateController().setGameState(
 					GameStateEnum.START_NEW_ROUND);
 
-		else
+		} else {
+
+			this.controller.deck().layDownDeck();
+			Lock.lock();
+
 			this.controller.gameStateController().setGameState(
 					GameStateEnum.RESOLVE_INSPIRATION);
-			
+
+		}
 
 	}
 

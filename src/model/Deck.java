@@ -1,17 +1,20 @@
 package model;
 
 import utils.ArrayList;
-
+import utils.ImageView;
 import components.CardEvent;
-
 import enums.CardEnum;
 import enums.Coordinates;
+import enums.Dimensions;
 
 public class Deck {
 
 	private ArrayList<CardEvent> deck = new ArrayList<>();
+	private ImageView background = new ImageView("background.png");
 
 	public Deck() {
+
+		this.background.setVisible(false);
 
 		createDeck();
 		flipDeck();
@@ -93,8 +96,49 @@ public class Deck {
 		return this.deck.size();
 	}
 
-	public ArrayList<CardEvent> getDeckClone() {
-		return this.deck.clone();
+	public void layDownDeck() {
+
+		this.background.toFront();
+		this.background.setVisible(true);
+
+		flipDeck();
+
+		int cardsEachRow = 6;
+		int totalRows = (int) Math.ceil((double) this.deck.size()
+				/ cardsEachRow);
+
+		double topLeftX = Dimensions.FRAME.x() / 2
+				- Dimensions.GAP_BETWEEN_CARDS.x() / 2 - 2
+				* Dimensions.CARD_PLUS_GAP.x() - Dimensions.CARD.x();
+
+		double totalY = Dimensions.CARD.y() + (totalRows - 1)
+				* Dimensions.CARD_PLUS_GAP.y();
+
+		double topLeftY = (Dimensions.FRAME.y() - totalY) / 2;
+
+		int cardsPlaced = 0;
+
+		double x = topLeftX, y = topLeftY;
+
+		for (CardEvent cardEvent : this.deck) {
+
+			cardEvent.animate(x, y);
+
+			cardsPlaced++;
+
+			if (cardsPlaced < cardsEachRow)
+				x += Dimensions.CARD_PLUS_GAP.x();
+
+			else {
+
+				cardsPlaced = 0;
+				x = topLeftX;
+				y += Dimensions.CARD_PLUS_GAP.y();
+
+			}
+
+		}
+
 	}
 
 }

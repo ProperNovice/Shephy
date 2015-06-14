@@ -54,6 +54,10 @@ public class TextGame implements EventHandlerAble {
 		this.text.relocate(x, y);
 	}
 
+	public void toFront() {
+		this.text.toFront();
+	}
+
 	public void setVisible(boolean value) {
 		this.text.setVisible(value);
 	}

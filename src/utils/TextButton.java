@@ -50,6 +50,18 @@ public class TextButton extends Text {
 	}
 
 	@Override
+	public void toFront() {
+
+		PlatformFX.runLater(() -> {
+
+			this.polyline.toFront();
+			super.text.toFront();
+
+		});
+
+	}
+
+	@Override
 	public void setWidth(final double pixels) {
 
 		PlatformFX.runLater(() -> {
