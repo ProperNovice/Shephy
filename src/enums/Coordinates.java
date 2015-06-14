@@ -8,6 +8,8 @@ public enum Coordinates {
 	SHEEP_FOUNDATION(Dimensions.GAP_BETWEEN_BORDERS.x(), Dimensions.GAP_BETWEEN_BORDERS.y()),
 	BOARD(SHEEP_FOUNDATION.x(), SHEEP_FOUNDATION.y() + Dimensions.CARD_PLUS_GAP.y()),
 	TEXT(HAND.x() + 5 * Dimensions.CARD_PLUS_GAP.x() + 3 * Dimensions.GAP_BETWEEN_CARDS.x(), HAND.y()),
+	ROUND_INDICATOR(HAND.x() + 5 * Dimensions.CARD_PLUS_GAP.x() + 3 * Dimensions.GAP_BETWEEN_CARDS.x(), Dimensions.GAP_BETWEEN_BORDERS.y()),
+	TEXT_ROUNDS(ROUND_INDICATOR.x() + Dimensions.TEXT.y() / 2 + 2 * Dimensions.GAP_BETWEEN_CARDS.x(), ROUND_INDICATOR.y()),
 
 	;
 

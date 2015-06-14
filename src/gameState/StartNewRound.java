@@ -12,9 +12,12 @@ public class StartNewRound extends GameState {
 	@Override
 	public void handleGameStateChange() {
 
-		fillHand();
+		if (!super.controller.hand().isMaximumSize()) {
 
-		Lock.lock();
+			fillHand();
+			Lock.lock();
+
+		}
 
 		super.controller.gameStateController().setGameState(
 				GameStateEnum.CHOOSE_EVENT);

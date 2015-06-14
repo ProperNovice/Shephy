@@ -43,7 +43,7 @@ public class TextController {
 
 				if (!textGame.getTextEnum().equals(textEnum))
 					continue;
-				
+
 				textGame.toFront();
 
 				this.textsShowing.add(textGame);

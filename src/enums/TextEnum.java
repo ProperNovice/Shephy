@@ -17,6 +17,10 @@ public enum TextEnum {
 	RELEASE_AUTO("Release auto", TextTypeEnum.OPTION),
 	SHOW_BOARD("Show board", TextTypeEnum.OPTION),
 	SHOW_DECK("Show deck", TextTypeEnum.OPTION),
+	ROUND_1("Round 1", TextTypeEnum.INDICATOR),
+	ROUND_2("Round 2", TextTypeEnum.INDICATOR),
+	ROUND_3("Round 3", TextTypeEnum.INDICATOR),
+	END_GAME("End game", TextTypeEnum.INDICATOR),
 
 	;
 

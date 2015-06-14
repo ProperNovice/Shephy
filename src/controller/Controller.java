@@ -1,5 +1,7 @@
 package controller;
 
+import components.RoundController;
+
 import instances.Instances;
 import model.Board;
 import model.Deck;
@@ -18,6 +20,7 @@ public class Controller {
 	private Board board = null;
 	private Discard discard = null;
 	private TextController textController = null;
+	private RoundController roundController = null;
 
 	public Controller() {
 
@@ -38,6 +41,7 @@ public class Controller {
 		this.board = new Board();
 		this.discard = new Discard();
 		this.textController = new TextController();
+		this.roundController = new RoundController();
 
 	}
 
@@ -67,6 +71,10 @@ public class Controller {
 
 	public TextController textController() {
 		return this.textController;
+	}
+
+	public RoundController roundController() {
+		return this.roundController;
 	}
 
 }
