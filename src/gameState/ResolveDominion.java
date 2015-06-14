@@ -48,7 +48,12 @@ public class ResolveDominion extends GameState {
 
 	@Override
 	public void handleTextOptionPressed(TextEnum textEnum) {
+
+		super.controller.gameStateController().setGameState(
+				GameStateEnum.ANIMATING);
+		super.controller.textController().concealText();
 		handleResolve();
+
 	}
 
 	private void handleResolve() {

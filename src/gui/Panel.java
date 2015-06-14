@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import utils.Logger;
 import utils.Parent;
 import utils.PlatformFX;
 import utils.ShutDown;
@@ -24,6 +25,8 @@ public class Panel extends Parent implements EventHandler<MouseEvent> {
 	}
 
 	public void restartGame() {
+
+		Logger.logNewLine("restarting");
 
 		PlatformFX.runLater(() -> {
 
