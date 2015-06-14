@@ -35,7 +35,11 @@ public class Hand {
 
 	}
 
-	private void shiftHand() {
+	public void addCard(CardEvent cardEvent) {
+		this.hand.addFirst(cardEvent);
+	}
+
+	public void shiftHand() {
 
 		double endingX = Coordinates.HAND.x() + 4
 				* Dimensions.CARD_PLUS_GAP.x();

@@ -67,4 +67,8 @@ public class RoundController {
 
 	}
 
+	public boolean gameEnded() {
+		return this.currentRound == 4;
+	}
+
 }

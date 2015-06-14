@@ -24,6 +24,16 @@ public class StartGame extends GameState {
 
 	}
 
+	// private void addCardsFromDeckToDiscardPile(int numberOfCards) {
+	//
+	// for (int counter = 1; counter <= numberOfCards; counter++) {
+	// CardEvent cardEvent = super.controller.deck().removeFirstCard();
+	// cardEvent.flip();
+	// super.controller.discard().addCardAnimateSynchronous(cardEvent);
+	// }
+	//
+	// }
+
 	// private void setCardAsFirst(CardEnum cardEnum) {
 	// super.controller.deck().setCardAsFirst(cardEnum);
 	// }

@@ -123,7 +123,11 @@ public class Board {
 	}
 
 	public boolean isFull() {
-		return (this.board.size() == this.MAXIMUM_SIZE);
+		return this.board.size() == this.MAXIMUM_SIZE;
+	}
+
+	public boolean isEmpty() {
+		return this.board.isEmpty();
 	}
 
 	public ArrayList<CardSheep> removeAllSheepWithRankRearrangeSynchronous(

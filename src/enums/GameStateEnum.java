@@ -21,6 +21,7 @@ public enum GameStateEnum {
 	RESOLVE_SLUMP("resolve slump"),
 	RESOLVE_DOMINION("resolve dominion"),
 	RESOLVE_INSPIRATION("resolve inspiration"),
+	HANDLE_END_GAME("handle end game"),
 
 	;
 

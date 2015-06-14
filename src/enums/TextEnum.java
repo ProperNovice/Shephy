@@ -21,6 +21,8 @@ public enum TextEnum {
 	ROUND_2("Round 2", TextTypeEnum.INDICATOR),
 	ROUND_3("Round 3", TextTypeEnum.INDICATOR),
 	END_GAME("End game", TextTypeEnum.INDICATOR),
+	YOU_LOST("You lost", TextTypeEnum.INDICATOR),
+	YOU_WON("You won", TextTypeEnum.INDICATOR),
 
 	;
 

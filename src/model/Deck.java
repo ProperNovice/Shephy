@@ -174,4 +174,12 @@ public class Deck {
 
 	}
 
+	public boolean isEmpty() {
+		return this.deck.isEmpty();
+	}
+
+	public void addCards(ArrayList<CardEvent> list) {
+		this.deck.addAll(list);
+	}
+
 }

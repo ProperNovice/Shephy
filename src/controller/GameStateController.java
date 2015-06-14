@@ -3,6 +3,7 @@ package controller;
 import enums.GameStateEnum;
 import enums.TextEnum;
 import gameState.Animating;
+import gameState.HandleEndGame;
 import gameState.ResolveAllPurposeSheep;
 import gameState.ResolveBeFruitful;
 import gameState.ChooseEvent;
@@ -50,6 +51,7 @@ public class GameStateController {
 	private GameState resolveSlump = new ResolveSlump();
 	private GameState resolveDominion = new ResolveDominion();
 	private GameState resolveInspiration = new ResolveInspiration();
+	private GameState handleEndGame = new HandleEndGame();
 
 	public GameStateController() {
 
@@ -137,6 +139,10 @@ public class GameStateController {
 
 		case RESOLVE_INSPIRATION:
 			this.currentGameState = this.resolveInspiration;
+			break;
+
+		case HANDLE_END_GAME:
+			this.currentGameState = this.handleEndGame;
 			break;
 
 		}

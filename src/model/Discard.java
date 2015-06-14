@@ -21,4 +21,12 @@ public class Discard {
 
 	}
 
+	public ArrayList<CardEvent> remove() {
+
+		ArrayList<CardEvent> discardClone = this.discard.clone();
+		this.discard.clear();
+		return discardClone;
+
+	}
+
 }
