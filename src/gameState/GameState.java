@@ -606,7 +606,7 @@ public class GameState {
 
 		Lock.lock();
 
-		if (this.controller.board().size() == 1)
+		if (this.controller.board().size() <= 2)
 			this.controller.gameStateController().setGameState(
 					GameStateEnum.START_NEW_ROUND);
 		else
