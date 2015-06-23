@@ -1,7 +1,8 @@
-/gameState/
-/model/
-/enums/
-/controller/
-/gui/
-/utils/
 /components/
+/controller/
+/enums/
+/gameState/
+/gui/
+/instances/
+/model/
+/utils/
